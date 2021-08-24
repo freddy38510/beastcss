@@ -16,7 +16,7 @@
     "README.md",
     "LICENSE"
   ],
-  "types": "./src/index.d.ts",
+  "types": "./dist/index.d.ts",
   "license": "MIT",
   "author": "Freddy Escobar <freddyescobar@hotmail.fr>",
   "keywords": [

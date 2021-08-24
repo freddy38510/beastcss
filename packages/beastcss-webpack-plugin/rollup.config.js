@@ -33,7 +33,10 @@ const config = {
   ],
   plugins: [
     copy({
-      targets: [{ src: 'src/schema.json', dest: 'dist' }],
+      targets: [
+        { src: 'src/schema.json', dest: 'dist' },
+        { src: 'src/index.d.ts', dest: 'dist' },
+      ],
     }),
   ],
 };
