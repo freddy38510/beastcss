@@ -1,0 +1,15 @@
+h1 {
+  color: blue;
+}
+h2 {
+  color: red;
+}
+p {
+  color: purple;
+}
+p.unused {
+  color: orange;
+}
+p.bold {
+  font-weight: bold;
+}

@@ -1,0 +1,9 @@
+{
+  "private": true,
+  "dependencies": {
+    "css-loader": "^6.2.0",
+    "html-webpack-plugin": "^5.0.0",
+    "mini-css-extract-plugin": "^1.6.0",
+    "webpack": "5.21.0"
+  }
+}

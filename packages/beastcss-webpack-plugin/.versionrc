@@ -1,0 +1,5 @@
+{
+  "path": ".",
+  "tag-prefix": "beastcss-webpack-plugin-v",
+  "releaseCommitMessageFormat": "chore(release): beastcss-webpack-plugin@{{currentTag}}"
+}

@@ -1,0 +1,5 @@
+{
+  "path": ".",
+  "tag-prefix": "beastcss-v",
+  "releaseCommitMessageFormat": "chore(release): beastcss@{{currentTag}}"
+}

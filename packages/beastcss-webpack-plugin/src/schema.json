@@ -1,0 +1,67 @@
+{
+  "type": "object",
+  "properties": {
+    "external": {
+      "type": "boolean",
+      "default": true
+    },
+    "externalThreshold": {
+      "type": "integer",
+      "default": 0
+    },
+    "internal": {
+      "type": "boolean",
+      "default": true
+    },
+    "pruneSource": {
+      "type": "boolean",
+      "default": false
+    },
+    "additionalStylesheets": {
+      "type": "array",
+      "default": []
+    },
+    "merge": {
+      "type": "boolean",
+      "default": true
+    },
+    "asyncLoadExternalStylesheets": {
+      "type": "boolean",
+      "default": true
+    },
+    "preloadExternalStylesheets": {
+      "type": "boolean",
+      "default": true
+    },
+    "exclude": {
+      "anyOf": [{ "instanceof": "Function" }, { "instanceof": "RegExp" }]
+    },
+    "whitelist": {
+      "type": "array",
+      "items": {
+        "anyOf": [{ "type": "string" }, { "instanceof": "RegExp" }]
+      }
+    },
+    "noscriptFallback": {
+      "type": "boolean",
+      "default": true
+    },
+    "fontFace": {
+      "type": "boolean",
+      "default": false
+    },
+    "keyframes": {
+      "type": "boolean",
+      "default": true
+    },
+    "logLevel": {
+      "enum": ["info", "warn", "error", "trace", "debug", "silent"],
+      "default": "info"
+    },
+    "logger": {
+      "type": "object"
+    }
+  },
+  "optional": true,
+  "additionalProperties": false
+}
