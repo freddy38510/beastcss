@@ -1,3 +1,4 @@
+import copy from 'rollup-plugin-copy';
 import { main, module, dependencies } from './package.json';
 
 /**
@@ -24,6 +25,11 @@ const config = {
     },
   ],
   external: [...Object.keys(dependencies), /core-js/, 'path', 'fs'],
+  plugins: [
+    copy({
+      targets: [{ src: 'src/index.d.ts', dest: 'dist' }],
+    }),
+  ],
 };
 
 export default config;
