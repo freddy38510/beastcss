@@ -1,5 +1,5 @@
 {
-  "name": "basic",
+  "name": "multiple",
   "version": "1.0.0",
   "jest": {
     "testURL": "http://localhost/"
