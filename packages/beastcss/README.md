@@ -179,8 +179,6 @@ Inline used @keyframes rules.
 
 Type: `Object`
 
-Default: `fs/promises`
-
 Filesystem to be used when reading/writing to external stylesheets files.
 
 ### `logLevel`
