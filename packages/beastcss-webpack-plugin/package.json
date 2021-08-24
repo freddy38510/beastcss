@@ -43,7 +43,7 @@
     "release": "HUSKY=0 yarn run standard-version --lerna-package beastcss-webpack-plugin"
   },
   "dependencies": {
-    "beastcss": "^1.0.1",
+    "beastcss": "^1.0.2",
     "micromatch": "^4.0.4",
     "schema-utils": "^3.1.1",
     "webpack-sources": "^3.2.0"
