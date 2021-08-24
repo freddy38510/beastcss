@@ -1,12 +1,7 @@
 export default Beastcss;
 
 import type { HTMLElement } from 'node-html-parser';
-import type { readFile, writeFile, rm } from 'fs/promises';
-import type {
-  readFile as readFileSync,
-  writeFile as writeFileSync,
-  rm as rmSync,
-} from 'fs';
+import type fs from 'fs';
 
 export type logLevel = 'info' | 'warn' | 'error' | 'trace' | 'debug' | 'silent';
 
@@ -19,9 +14,9 @@ export interface Logger {
 }
 
 interface FileSystem {
-  readFile: typeof readFileSync | typeof readFile;
-  writeFile: typeof writeFileSync | typeof writeFile;
-  rm: typeof rmSync | typeof rm;
+  readFile: typeof fs.promises.readFile | typeof fs.readFile;
+  writeFile: typeof fs.promises.writeFile | typeof fs.writeFile;
+  rm: typeof fs.promises.rm | typeof fs.rm;
 }
 
 export interface Options {

@@ -1,5 +1,5 @@
 import path from 'path';
-import fs from 'fs/promises';
+import fs from 'fs';
 import FastGlob from 'fast-glob';
 import dropcss from '@freddy38510/dropcss';
 import { HTMLElement } from 'node-html-parser';
@@ -34,9 +34,9 @@ export default class Beastcss {
     );
 
     this.fs = {
-      readFile: readFile.bind(options.fs || fs),
-      writeFile: writeFile.bind(options.fs || fs),
-      removeFile: removeFile.bind(options.fs || fs),
+      readFile: readFile.bind(options.fs || fs.promises),
+      writeFile: writeFile.bind(options.fs || fs.promises),
+      removeFile: removeFile.bind(options.fs || fs.promises),
     };
 
     this.usedSelectors = new Set();

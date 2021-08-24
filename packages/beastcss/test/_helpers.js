@@ -1,5 +1,5 @@
 import path from 'path';
-import fs from 'fs/promises';
+import fs from 'fs';
 import rimraf from 'rimraf';
 import Beastcss from '../src/index';
 
@@ -12,19 +12,19 @@ export const instantiateBeastcss = (fixture = null, options = {}) =>
 
 export const copyDir = async (src, dest) => {
   try {
-    await fs.access(dest);
+    await fs.promises.access(dest);
   } catch (_e) {
-    await fs.mkdir(dest, { recursive: true });
+    await fs.promises.mkdir(dest, { recursive: true });
   }
 
-  const entries = await fs.readdir(src, { withFileTypes: true });
+  const entries = await fs.promises.readdir(src, { withFileTypes: true });
 
   entries.forEach(async (entry) => {
     const srcPath = path.join(src, entry.name);
     const destPath = path.join(dest, entry.name);
 
     if (entry.isFile()) {
-      await fs.copyFile(srcPath, destPath);
+      await fs.promises.copyFile(srcPath, destPath);
 
       return;
     }

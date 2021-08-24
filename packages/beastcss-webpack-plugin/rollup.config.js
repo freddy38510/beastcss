@@ -28,7 +28,6 @@ const config = {
     ...Object.keys(dependencies),
     /core-js/,
     'path',
-    'fs/promises',
     'fs',
     './schema.json',
   ],

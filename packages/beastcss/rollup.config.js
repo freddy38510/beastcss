@@ -23,13 +23,7 @@ const config = {
       preferConst: true,
     },
   ],
-  external: [
-    ...Object.keys(dependencies),
-    /core-js/,
-    'path',
-    'fs/promises',
-    'fs',
-  ],
+  external: [...Object.keys(dependencies), /core-js/, 'path', 'fs'],
 };
 
 export default config;
