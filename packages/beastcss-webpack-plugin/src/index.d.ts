@@ -1,7 +1,7 @@
 export default BeastcssWebpackPlugin;
 
 import type Beastcss from 'beastcss';
-import type { Compilation, Compiler, Asset } from '@types/webpack';
+import type { Compilation, Compiler, Asset } from 'webpack';
 import type { RawSource } from 'webpack-sources';
 
 declare class BeastcssWebpackPlugin extends Beastcss {
