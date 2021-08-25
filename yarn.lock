@@ -1073,10 +1073,10 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
-"@freddy38510/dropcss@^2.3.0":
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/@freddy38510/dropcss/-/dropcss-2.3.0.tgz#9a6a983f34f9f4bdbd634484d4aad379bed8860f"
-  integrity sha512-IvSDVrKZXzSowvd1Bt6xSq4WOdzTVdzKD9jCKty6KKi1cJa9696MsS8Qt0/QxMbW3bX18gWPgtTH+ChoRTynHA==
+"@freddy38510/dropcss@^2.3.1":
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/@freddy38510/dropcss/-/dropcss-2.3.1.tgz#a182fed1f86a6f8da27203a1224fae2af9f5139b"
+  integrity sha512-aLnTWqFSgeuVrnT6C+RbM5BSes4S5FBTzf6xCdGN/nf8r/zxoj4A/5N8p0olKdJzdOt4XrEzlx6+fSIi3Spebw==
 
 "@humanwhocodes/config-array@^0.5.0":
   version "0.5.0"
@@ -2291,10 +2291,24 @@
   resolved "https://registry.yarnpkg.com/@types/prettier/-/prettier-2.3.2.tgz#fc8c2825e4ed2142473b4a81064e6e081463d1b3"
   integrity sha512-eI5Yrz3Qv4KPUa/nSIAi0h+qX0XyewOliug5F2QAtuRg6Kjg6jfmxe1GIwoIRhZspD1A0RP8ANrPwvEXXtRFog==
 
+"@types/source-list-map@*":
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/@types/source-list-map/-/source-list-map-0.1.2.tgz#0078836063ffaf17412349bba364087e0ac02ec9"
+  integrity sha512-K5K+yml8LTo9bWJI/rECfIPrGgxdpeNbj+d53lwN4QjW1MCwlkhUms+gtdzigTeUyBr09+u8BwOIY3MXvHdcsA==
+
 "@types/stack-utils@^2.0.0":
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/@types/stack-utils/-/stack-utils-2.0.1.tgz#20f18294f797f2209b5f65c8e3b5c8e8261d127c"
   integrity sha512-Hl219/BT5fLAaz6NDkSuhzasy49dwQS/DSdu4MdggFB8zcXv7vflBI3xp7FEmkmdDkBUI2bPUNeMttp2knYdxw==
+
+"@types/webpack-sources@^3.2.0":
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/@types/webpack-sources/-/webpack-sources-3.2.0.tgz#16d759ba096c289034b26553d2df1bf45248d38b"
+  integrity sha512-Ft7YH3lEVRQ6ls8k4Ff1oB4jN6oy/XmU6tQISKdhfh+1mR+viZFphS6WL0IrtDOzvefmJg5a0s7ZQoRXwqTEFg==
+  dependencies:
+    "@types/node" "*"
+    "@types/source-list-map" "*"
+    source-map "^0.7.3"
 
 "@types/webpack@^5.0.0":
   version "5.28.0"
