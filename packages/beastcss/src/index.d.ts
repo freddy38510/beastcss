@@ -16,7 +16,7 @@ export interface Logger {
 interface FileSystem {
   readFile: typeof fs.promises.readFile | typeof fs.readFile;
   writeFile: typeof fs.promises.writeFile | typeof fs.writeFile;
-  rm: typeof fs.promises.rm | typeof fs.rm;
+  unlink: typeof fs.promises.unlink | typeof fs.unlink;
 }
 
 export interface Options {

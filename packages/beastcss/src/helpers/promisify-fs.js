@@ -26,9 +26,9 @@ export async function readFile(filePath) {
  * @returns {Promise<void>}
  */
 export async function removeFile(filePath) {
-  if (this.rm.constructor.name === 'Function') {
+  if (this.unlink.constructor.name === 'Function') {
     return new Promise((resolve, reject) => {
-      this.rm(filePath, (err) => {
+      this.unlink(filePath, (err) => {
         if (err) {
           return reject(err);
         }
@@ -37,7 +37,7 @@ export async function removeFile(filePath) {
     });
   }
 
-  return this.rm(filePath);
+  return this.unlink(filePath);
 }
 
 /**
