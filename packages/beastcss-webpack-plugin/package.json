@@ -49,10 +49,10 @@
     "webpack-sources": "^3.2.0"
   },
   "devDependencies": {
-    "enhanced-resolve": "^5.8.2",
-    "file-loader": "^6.0.0",
-    "jsdom": "^17.0.0",
-    "nano-memoize": "^1.2.1"
+    "enhanced-resolve": "5.8.2",
+    "file-loader": "6.2.0",
+    "jsdom": "17.0.0",
+    "nano-memoize": "1.2.1"
   },
   "peerDependencies": {
     "html-webpack-plugin": "^4.0.0 || ^5.0.0",
