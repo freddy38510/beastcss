@@ -193,7 +193,7 @@ describe('Beastcss Webpack Plugin', () => {
 
       it('should insert used css to internal', () => {
         expect(document.getElementById('used')).not.toBeNull();
-        expect(document.getElementById('used').textContent).toEqual(
+        expect(document.getElementById('used').textContent).toBe(
           'h1{color: green;}.additional{background: red;}'
         );
       });
