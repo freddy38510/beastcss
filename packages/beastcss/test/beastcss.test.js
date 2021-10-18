@@ -495,7 +495,7 @@ describe('Beastcss', () => {
       Beastcss.logger.info('message');
 
       expect(console.info.mock.results).toHaveLength(1);
-      expect(console.info.mock.calls[0][0]).toEqual('prefix message');
+      expect(console.info.mock.calls[0][0]).toBe('prefix message');
     });
   });
 
