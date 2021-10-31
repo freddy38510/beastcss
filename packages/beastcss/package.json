@@ -1,6 +1,6 @@
 {
   "name": "beastcss",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Inline critical CSS and async load the rest.",
   "main": "dist/index.cjs",
   "module": "dist/index.esm.js",

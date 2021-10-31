@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.5](https://github.com/freddy38510/beastcss/compare/beastcss-v1.0.4...beastcss-v1.0.5) (2021-10-31)
+
+
+### Bug Fixes
+
+* **beastcss:** preload/async load external stylesheets even if no used css rules was found ([ee24563](https://github.com/freddy38510/beastcss/commit/ee245635990aa3b3418739686595c0a7f132ee4b))
+
 ### [1.0.4](https://github.com/freddy38510/beastcss/compare/beastcss-v1.0.3...beastcss-v1.0.4) (2021-10-18)
 
 
