@@ -429,12 +429,9 @@ export default class Beastcss {
       });
     }
 
-    if (usedCSS.size === 0) {
-      // no used css was found
-      return;
+    if (usedCSS.size !== 0) {
+      Beastcss.cssToInternal(astHTML, usedCSS.content, stylesheet.link);
     }
-
-    Beastcss.cssToInternal(astHTML, usedCSS.content, stylesheet.link);
 
     if (stylesheet.link) {
       if (this.options.preloadExternalStylesheets === true) {
@@ -464,12 +461,10 @@ export default class Beastcss {
     // @see http://filamentgroup.github.io/loadCSS/test/mediatoggle.html
     link.setAttribute('media', 'print');
 
-    if (this.options.manuallyApplyExternalStylesheets !== true) {
-      link.setAttribute(
-        'onload',
-        `this.media='${media || 'all'}'; this.onload=null;`
-      );
-    }
+    link.setAttribute(
+      'onload',
+      `this.media='${media || 'all'}'; this.onload=null;`
+    );
 
     if (this.options.noscriptFallback !== false) {
       const noscript = new HTMLElement('noscript', {}, '', null);

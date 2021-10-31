@@ -24,4 +24,4 @@ export const formatToMs = (number) => formatDuration(Number(number) / 1000000);
 
 // partial percent of total
 export const formatToPercent = (partial, total) =>
-  formatConcentration((partial / total) * 100);
+  formatConcentration(partial / total || 0 * 100);
