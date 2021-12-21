@@ -61,7 +61,7 @@
     "lerna": "4.0.0",
     "prettier": "2.4.1",
     "rimraf": "3.0.2",
-    "rollup": "2.58.0",
+    "rollup": "2.61.1",
     "rollup-plugin-copy": "3.4.0",
     "standard-version": "9.3.2"
   }
