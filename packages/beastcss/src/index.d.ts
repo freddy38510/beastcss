@@ -101,7 +101,12 @@ declare class Beastcss {
 
   pruneSource(stylesheet: stylesheet, processId: string): Promise<boolean>;
 
-  dropUnusedCSS(html: string, originalCss: string, processId: string): string;
+  dropUnusedCSS(
+    html: string,
+    originalCss: string,
+    processId: string,
+    accumulate: boolean
+  ): string;
 
   mergeInternalStylesheets(astHTML: HTMLElement): void;
 

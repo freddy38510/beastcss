@@ -258,7 +258,7 @@ export default class Beastcss {
     return escapedChars.restoreCSSSelectors(css).trim();
   }
 
-  dropUnusedCSS(html, originalCss, accumulate = false, processId) {
+  dropUnusedCSS(html, originalCss, processId, accumulate = false) {
     const options = {
       html,
       css: escapedChars.replaceCSSSelectors(originalCss),
@@ -340,7 +340,7 @@ export default class Beastcss {
 
   async processInternalStylesheet(html, style, processId) {
     const usedCSS = {
-      content: this.dropUnusedCSS(html, style.rawText, false, processId),
+      content: this.dropUnusedCSS(html, style.rawText, processId),
     };
 
     usedCSS.size = Buffer.byteLength(usedCSS.content);
@@ -412,8 +412,8 @@ export default class Beastcss {
       content: this.dropUnusedCSS(
         html,
         stylesheet.source.content,
-        this.options.pruneSource,
-        processId
+        processId,
+        this.options.pruneSource
       ),
     };
 
