@@ -46,7 +46,7 @@
     "beastcss": "1.0.6",
     "micromatch": "4.0.4",
     "schema-utils": "4.0.0",
-    "webpack-sources": "3.2.2"
+    "webpack-sources": "3.2.3"
   },
   "devDependencies": {
     "enhanced-resolve": "5.8.3",
