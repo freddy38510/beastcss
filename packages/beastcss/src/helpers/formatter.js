@@ -1,7 +1,7 @@
 const { format: formatDigital } = new Intl.NumberFormat('en', {
   style: 'unit',
   unit: 'kilobyte',
-  maximumFractionDigits: 2,
+  maximumFractionDigits: 4,
 });
 
 const { format: formatDuration } = new Intl.NumberFormat('en', {
@@ -24,4 +24,4 @@ export const formatToMs = (number) => formatDuration(Number(number) / 1000000);
 
 // partial percent of total
 export const formatToPercent = (partial, total) =>
-  formatConcentration(partial / total || 0 * 100);
+  formatConcentration((partial / total) * 100 || 0);
