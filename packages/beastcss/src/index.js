@@ -115,7 +115,7 @@ export default class Beastcss {
         const content = await this.fs.readFile(stylesheet.path);
 
         return {
-          content,
+          content: content.toString(),
           size: Buffer.byteLength(content),
         };
       } catch (e) {
