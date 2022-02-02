@@ -5,7 +5,7 @@
  * @returns {Promise<string>} a Promise resolved to file content
  */
 export async function readFile(filePath) {
-  if (this.readFile.constructor.name === 'Function') {
+  if (this.readFile.length === 3) {
     return new Promise((resolve, reject) => {
       this.readFile(filePath, 'utf8', (err, data) => {
         if (err) {
@@ -26,7 +26,7 @@ export async function readFile(filePath) {
  * @returns {Promise<void>}
  */
 export async function removeFile(filePath) {
-  if (this.unlink.constructor.name === 'Function') {
+  if (this.unlink.length === 2) {
     return new Promise((resolve, reject) => {
       this.unlink(filePath, (err) => {
         if (err) {
@@ -48,7 +48,7 @@ export async function removeFile(filePath) {
  * @returns {Promise<void>}
  */
 export async function writeFile(filePath, data) {
-  if (this.writeFile.constructor.name === 'Function') {
+  if (this.writeFile.length === 4) {
     return new Promise((resolve, reject) => {
       this.writeFile(filePath, data, 'utf-8', (err) => {
         if (err) {
