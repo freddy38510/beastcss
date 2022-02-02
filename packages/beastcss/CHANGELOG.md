@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.7](https://github.com/freddy38510/beastcss/compare/beastcss-v1.0.6...beastcss-v1.0.7) (2022-02-02)
+
+
+### Bug Fixes
+
+* **beastcss:** pass correct percentage to formatConcentration function ([0f54c3c](https://github.com/freddy38510/beastcss/commit/0f54c3c118984c5844990382b1dae22636e629f3))
+* **beastcss:** stringify potential buffer from readed file ([9dfb787](https://github.com/freddy38510/beastcss/commit/9dfb787dd61a538a38c4d9174679f32cb6af0f13))
+* **beastcss:** supports potential non-asynchronous functions of fs option ([3332afd](https://github.com/freddy38510/beastcss/commit/3332afdb85ec4b30b4203581ff08fe5b30451d46))
+* **deps:** update dependency fast-glob to v3.2.11 ([#45](https://github.com/freddy38510/beastcss/issues/45)) ([d128cca](https://github.com/freddy38510/beastcss/commit/d128cca3f692af54c1760f240c9281f7fa296888))
+* **deps:** update dependency node-html-parser to v5.2.0 ([#37](https://github.com/freddy38510/beastcss/issues/37)) ([c24ae89](https://github.com/freddy38510/beastcss/commit/c24ae89d6df27c93cd71e8ccf6fa7b1d3d356125))
+
 ### [1.0.6](https://github.com/freddy38510/beastcss/compare/beastcss-v1.0.5...beastcss-v1.0.6) (2021-12-21)
 
 
