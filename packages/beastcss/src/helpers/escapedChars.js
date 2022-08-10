@@ -12,6 +12,7 @@ export function replaceHTMLClasses(html) {
       .replace(/\?/gm, '__2')
       .replace(/\(/gm, '__3')
       .replace(/\)/gm, '__4')
+      .replace(/\!/gm, '__4')
   );
 }
 
@@ -27,7 +28,8 @@ export function replaceCSSSelectors(css) {
     .replace(/\\\//gm, '__1')
     .replace(/\\\?/gm, '__2')
     .replace(/\\\(/gm, '__3')
-    .replace(/\\\)/gm, '__4');
+    .replace(/\\\)/gm, '__4')
+    .replace(/\\\!/gm, '__5');
 }
 
 /**
@@ -42,5 +44,6 @@ export function restoreCSSSelectors(css) {
     .replace(/__1/gm, '\\/')
     .replace(/__2/gm, '\\?')
     .replace(/__3/gm, '\\(')
-    .replace(/__4/gm, '\\)');
+    .replace(/__4/gm, '\\)')
+    .replace(/__5/gm, '\\!');
 }
