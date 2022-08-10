@@ -50,6 +50,6 @@ export function restoreCSSSelectors(css) {
     .replace(/__3/gm, '\\(')
     .replace(/__4/gm, '\\)')
     .replace(/__5/gm, '\\!')
-    .replace(/__5/gm, '\\<')
-    .replace(/__5/gm, '\\>');
+    .replace(/__6/gm, '\\<')
+    .replace(/__7/gm, '\\>');
 }
