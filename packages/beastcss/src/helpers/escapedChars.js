@@ -12,7 +12,7 @@ export function replaceHTMLClasses(html) {
       .replace(/\?/gm, '__2')
       .replace(/\(/gm, '__3')
       .replace(/\)/gm, '__4')
-      .replace(/\!/gm, '__4')
+      .replace(/\!/gm, '__5')
   );
 }
 
