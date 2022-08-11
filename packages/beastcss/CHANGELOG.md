@@ -1,6 +1,13 @@
 # Changelog
 
-All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
+
+### [1.1.2](https://github.com/freddy38510/beastcss/compare/beastcss-v1.1.1...beastcss-v1.1.2) (2022-08-11)
+
+
+### Bug Fixes
+
+* **beastcss:** allow to omit parameter when instantiating the Beastcss class ([83de81a](https://github.com/freddy38510/beastcss/commit/83de81a963ec579979ef51ae272abf0a05ca97a9))
 
 ### [1.1.1](https://github.com/freddy38510/beastcss/compare/beastcss-v1.1.0...beastcss-v1.1.1) (2022-08-11)
 

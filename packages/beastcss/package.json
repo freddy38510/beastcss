@@ -1,6 +1,6 @@
 {
   "name": "beastcss",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Inline critical CSS and async load the rest.",
   "main": "dist/index.cjs",
   "module": "dist/index.esm.js",
@@ -39,7 +39,7 @@
     "build": "yarn run rollup -c",
     "dev": "yarn run rollup -c -w",
     "prepack": "yarn -s build",
-    "release": "HUSKY=0 yarn run commit-and-tag-version --lerna-package beastcss"
+    "release": "HUSKY=0 yarn run commit-and-tag-version"
   },
   "dependencies": {
     "@freddy38510/dropcss": "2.4.0",
