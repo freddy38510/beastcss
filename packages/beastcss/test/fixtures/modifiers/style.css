@@ -1,0 +1,27 @@
+.with\:colon {
+  color: blue;
+}
+
+.with\/slash {
+  color: blue;
+}
+
+.with\?questionmark {
+  color: blue;
+}
+
+.with\(parentheses\) {
+  color: blue;
+}
+
+.with\!exclamationmark {
+  color: blue;
+}
+
+.with\<guillemets\> {
+  color: blue;
+}
+
+.with\{brackets\} {
+  color: blue;
+}

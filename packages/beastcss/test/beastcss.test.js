@@ -35,6 +35,45 @@ describe('Beastcss', () => {
     });
   });
 
+  describe('modifiers', () => {
+    let html;
+
+    beforeAll(async () => {
+      const originalHtml = await fs.promises.readFile(
+        path.join(__dirname, 'fixtures/modifiers/index.html'),
+        'utf8'
+      );
+
+      const Beastcss = instantiateBeastcss('modifiers');
+
+      html = await Beastcss.process(originalHtml);
+    });
+
+    it('should insert used css to internal', () => {
+      const stylesTagContent = html.match(/<style>(.*)<\/style>/gms)[0];
+
+      expect(stylesTagContent).toMatch('.with\\:colon');
+      expect(stylesTagContent).toMatch('.with\\/slash');
+      expect(stylesTagContent).toMatch('.with\\?questionmark');
+      expect(stylesTagContent).toMatch('.with\\(parentheses\\)');
+      expect(stylesTagContent).toMatch('.with\\!exclamationmark');
+      expect(stylesTagContent).toMatch('.with\\<guillemets\\>');
+      expect(stylesTagContent).toMatch('.with\\{brackets\\}');
+    });
+
+    it('should correctly restore html class names', () => {
+      const bodyTagContent = html.match(/<body>(.*)<\/body>/gms)[0];
+
+      expect(bodyTagContent).toMatch('with:colon');
+      expect(bodyTagContent).toMatch('with/slash');
+      expect(bodyTagContent).toMatch('with?questionmark');
+      expect(bodyTagContent).toMatch('with(parentheses)');
+      expect(bodyTagContent).toMatch('with!exclamationmark');
+      expect(bodyTagContent).toMatch('with<guillemets>');
+      expect(bodyTagContent).toMatch('with{brackets}');
+    });
+  });
+
   describe('whitelist', () => {
     let html;
 
