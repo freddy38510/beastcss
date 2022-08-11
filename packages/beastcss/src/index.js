@@ -10,7 +10,7 @@ import { defaultLogger, setVerbosity } from './helpers/log';
 import { readFile, writeFile, removeFile } from './helpers/promisify-fs';
 
 export default class Beastcss {
-  constructor(options) {
+  constructor(options = {}) {
     this.options = {
       logLevel: 'info',
       path: '',
