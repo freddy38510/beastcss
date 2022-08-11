@@ -40,7 +40,7 @@
     "build": "yarn run rollup -c",
     "dev": "yarn run rollup -c -w",
     "prepack": "yarn -s build",
-    "release": "HUSKY=0 yarn run standard-version --lerna-package beastcss-webpack-plugin"
+    "release": "HUSKY=0 yarn run commit-and-tag-version --lerna-package beastcss-webpack-plugin"
   },
   "dependencies": {
     "beastcss": "1.1.1",

@@ -39,7 +39,7 @@
     "build": "yarn run rollup -c",
     "dev": "yarn run rollup -c -w",
     "prepack": "yarn -s build",
-    "release": "HUSKY=0 yarn run standard-version --lerna-package beastcss"
+    "release": "HUSKY=0 yarn run commit-and-tag-version --lerna-package beastcss"
   },
   "dependencies": {
     "@freddy38510/dropcss": "2.4.0",
