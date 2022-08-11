@@ -1,6 +1,6 @@
 {
   "name": "beastcss-webpack-plugin",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Webpack plugin to inline critical CSS and async load the rest.",
   "main": "dist/index.cjs",
   "module": "dist/index.esm.js",
