@@ -42,7 +42,7 @@
     "release": "HUSKY=0 yarn run standard-version --lerna-package beastcss"
   },
   "dependencies": {
-    "@freddy38510/dropcss": "2.3.2",
+    "@freddy38510/dropcss": "2.4.0",
     "chalk": "4.1.2",
     "fast-glob": "3.2.11",
     "node-html-parser": "5.4.1"
