@@ -44,7 +44,7 @@
   },
   "dependencies": {
     "beastcss": "1.0.7",
-    "micromatch": "4.0.4",
+    "micromatch": "4.0.5",
     "schema-utils": "4.0.0",
     "webpack-sources": "3.2.3"
   },
