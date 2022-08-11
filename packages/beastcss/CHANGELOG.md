@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.1](https://github.com/freddy38510/beastcss/compare/beastcss-v1.1.0...beastcss-v1.1.1) (2022-08-11)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @freddy38510/dropcss to v2.4.0 ([#84](https://github.com/freddy38510/beastcss/issues/84)) ([fd0c94c](https://github.com/freddy38510/beastcss/commit/fd0c94cbd7a82b178811d8e89a73f123df7effae))
+
 ## [1.1.0](https://github.com/freddy38510/beastcss/compare/beastcss-v1.0.7...beastcss-v1.1.0) (2022-08-11)
 
 
