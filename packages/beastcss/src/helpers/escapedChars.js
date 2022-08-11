@@ -12,9 +12,11 @@ export function replaceHTMLClasses(html) {
       .replace(/\?/gm, '__2')
       .replace(/\(/gm, '__3')
       .replace(/\)/gm, '__4')
-      .replace(/\!/gm, '__5')
+      .replace(/!/gm, '__5')
       .replace(/</gm, '__6')
       .replace(/>/gm, '__7')
+      .replace(/{/gm, '__8')
+      .replace(/}/gm, '__9')
   );
 }
 
@@ -31,13 +33,15 @@ export function replaceCSSSelectors(css) {
     .replace(/\\\?/gm, '__2')
     .replace(/\\\(/gm, '__3')
     .replace(/\\\)/gm, '__4')
-    .replace(/\\\!/gm, '__5')
+    .replace(/\\!/gm, '__5')
     .replace(/\\</gm, '__6')
-    .replace(/\\>/gm, '__7');
+    .replace(/\\>/gm, '__7')
+    .replace(/\\{/gm, '__8')
+    .replace(/\\}/gm, '__9');
 }
 
 /**
- * Restore escaped specials characters in css selectors replaced by unique strings with cleanCSSForParser()
+ * Restore escaped specials characters in css selectors replaced by unique strings
  *
  * @param {string} css a css string
  * @returns {string} css string with escaped/specials characters in css selectors restored
@@ -51,5 +55,7 @@ export function restoreCSSSelectors(css) {
     .replace(/__4/gm, '\\)')
     .replace(/__5/gm, '\\!')
     .replace(/__6/gm, '\\<')
-    .replace(/__7/gm, '\\>');
+    .replace(/__7/gm, '\\>')
+    .replace(/__8/gm, '\\{')
+    .replace(/__9/gm, '\\}');
 }
