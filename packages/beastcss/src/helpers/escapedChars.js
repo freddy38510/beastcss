@@ -14,7 +14,9 @@ export function replaceHTMLClasses(html) {
       .replace(/\)/gm, '__4')
       .replace(/!/gm, '__5')
       .replace(/</gm, '__6')
+      .replace(/&lt;/gm, '__6')
       .replace(/>/gm, '__7')
+      .replace(/&gt;/gm, '__7')
       .replace(/{/gm, '__8')
       .replace(/}/gm, '__9')
   );
