@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.1.0](https://github.com/freddy38510/beastcss/compare/beastcss-v1.0.7...beastcss-v1.1.0) (2022-08-11)
+
+
+### Features
+
+* add Windi CSS support ([#65](https://github.com/freddy38510/beastcss/issues/65)) ([f0f8b34](https://github.com/freddy38510/beastcss/commit/f0f8b345f483481898f7f3d98d38384f8d9135d3))
+
+
+### Bug Fixes
+
+* **deps:** update dependency node-html-parser to v5.4.1 ([#73](https://github.com/freddy38510/beastcss/issues/73)) ([93d0f05](https://github.com/freddy38510/beastcss/commit/93d0f05a31df44a7f070142f5f2b399a0da9262f))
+
 ### [1.0.7](https://github.com/freddy38510/beastcss/compare/beastcss-v1.0.6...beastcss-v1.0.7) (2022-02-02)
 
 
