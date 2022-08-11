@@ -118,15 +118,15 @@ export async function compile(fixture, configDecorator, version) {
  *
  * @param {string} fixture fixture dir name
  * @param {Function} configDecorator a function to decorate webpack config
- * @param {import('beastcss/src/index.d.ts').Options} beastcssOptions options to passed to Beastcss
  * @param {string} version webpack version
+ * @param {import('beastcss/src/index.d.ts').options} beastcssOptions options to passed to Beastcss
  * @returns {object} returns the compiled html file content and webpack stats formated to JSON
  */
 export async function compileToHtml(
   fixture,
   configDecorator,
-  beastcssOptions = {},
-  version
+  version,
+  beastcssOptions = {}
 ) {
   const info = await compile(
     `fixtures/${fixture}/index.js`,

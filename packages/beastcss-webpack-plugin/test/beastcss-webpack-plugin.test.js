@@ -79,7 +79,7 @@ describe('Beastcss Webpack Plugin', () => {
       let html;
 
       beforeAll(async () => {
-        ({ info, html } = await compileToHtml('basic', configure, {}, version));
+        ({ info, html } = await compileToHtml('basic', configure, version));
       });
 
       afterAll(async () => {
@@ -129,7 +129,6 @@ describe('Beastcss Webpack Plugin', () => {
               }
             );
           },
-          {},
           version
         ));
         ({ window } = new JSDOM(html));
@@ -175,10 +174,10 @@ describe('Beastcss Webpack Plugin', () => {
               },
             });
           },
+          version,
           {
             additionalStylesheets: ['**/additional.css'],
-          },
-          version
+          }
         ));
         window = new JSDOM(html).window;
         document = window.document;
@@ -216,14 +215,14 @@ describe('Beastcss Webpack Plugin', () => {
       });
 
       it('should remove unused rules', async () => {
-        const { html } = await compileToHtml('basic', configure, {}, version);
+        const { html } = await compileToHtml('basic', configure, version);
 
         expect(html).not.toMatch(/\.extra-style/);
         expect(html).toMatchSnapshot();
       });
 
       it('should remove entire unused internal stylesheets', async () => {
-        const { html } = await compileToHtml('unused', configure, {}, version);
+        const { html } = await compileToHtml('unused', configure, version);
         const { window } = new JSDOM(html);
         const { document } = window;
 
@@ -245,14 +244,9 @@ describe('Beastcss Webpack Plugin', () => {
       let window;
 
       beforeAll(async () => {
-        ({ html } = await compileToHtml(
-          'external',
-          configure,
-          {
-            pruneSource: true,
-          },
-          version
-        ));
+        ({ html } = await compileToHtml('external', configure, version, {
+          pruneSource: true,
+        }));
       });
 
       afterAll(async () => {
@@ -303,10 +297,10 @@ describe('Beastcss Webpack Plugin', () => {
             configure(config, version);
             config.output.publicPath = '/_public/';
           },
+          version,
           {
             pruneSource: true,
-          },
-          version
+          }
         ));
         ({ window } = new JSDOM(html));
         ({ document } = window);
@@ -355,12 +349,9 @@ describe('Beastcss Webpack Plugin', () => {
       let document;
 
       beforeAll(async () => {
-        ({ html } = await compileToHtml(
-          'external',
-          configure,
-          { preloadExternalStylesheets: true },
-          version
-        ));
+        ({ html } = await compileToHtml('external', configure, version, {
+          preloadExternalStylesheets: true,
+        }));
         ({ window } = new JSDOM(html));
         ({ document } = window);
       });
@@ -404,14 +395,9 @@ describe('Beastcss Webpack Plugin', () => {
       let document;
 
       beforeAll(async () => {
-        ({ html } = await compileToHtml(
-          'external',
-          configure,
-          {
-            externalThreshold: 10000,
-          },
-          version
-        ));
+        ({ html } = await compileToHtml('external', configure, version, {
+          externalThreshold: 10000,
+        }));
         ({ window } = new JSDOM(html));
         ({ document } = window);
       });
@@ -431,7 +417,7 @@ describe('Beastcss Webpack Plugin', () => {
         let html;
 
         beforeAll(async () => {
-          ({ html } = await compileToHtml('keyframes', configure, {}, version));
+          ({ html } = await compileToHtml('keyframes', configure, version));
         });
 
         afterAll(async () => {
@@ -453,14 +439,9 @@ describe('Beastcss Webpack Plugin', () => {
         let html;
 
         beforeAll(async () => {
-          ({ html } = await compileToHtml(
-            'keyframes',
-            configure,
-            {
-              keyframes: false,
-            },
-            version
-          ));
+          ({ html } = await compileToHtml('keyframes', configure, version, {
+            keyframes: false,
+          }));
         });
 
         afterAll(async () => {
@@ -484,7 +465,7 @@ describe('Beastcss Webpack Plugin', () => {
         let html;
 
         beforeAll(async () => {
-          ({ html } = await compileToHtml('font-face', configure, {}, version));
+          ({ html } = await compileToHtml('font-face', configure, version));
           // console.log(html);
         });
 
@@ -507,14 +488,9 @@ describe('Beastcss Webpack Plugin', () => {
         let html;
 
         beforeAll(async () => {
-          ({ html } = await compileToHtml(
-            'font-face',
-            configure,
-            {
-              fontFace: true,
-            },
-            version
-          ));
+          ({ html } = await compileToHtml('font-face', configure, version, {
+            fontFace: true,
+          }));
         });
 
         afterAll(async () => {
@@ -552,10 +528,10 @@ describe('Beastcss Webpack Plugin', () => {
               })
             );
           },
+          version,
           {
             pruneSource: true,
-          },
-          version
+          }
         ));
 
         html2 = await readFile('fixtures/multiple/dist/index2.html');
@@ -611,8 +587,8 @@ describe('Beastcss Webpack Plugin', () => {
                 },
               });
             },
-            { pruneSource: true },
-            version
+            version,
+            { pruneSource: true }
           ));
 
           html2 = await readFile('fixtures/rawMultiple/dist/index2.html');
@@ -654,7 +630,7 @@ describe('Beastcss Webpack Plugin', () => {
       let info;
 
       beforeAll(async () => {
-        ({ info } = await compileToHtml('basic', configure, {}, version));
+        ({ info } = await compileToHtml('basic', configure, version));
       });
 
       afterAll(async () => {
