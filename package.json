@@ -44,7 +44,7 @@
     "@commitlint/cli": "16.3.0",
     "@commitlint/config-conventional": "16.2.4",
     "@commitlint/config-lerna-scopes": "16.2.4",
-    "@types/node": "16.11.22",
+    "@types/node": "16.11.47",
     "@types/webpack": "5.28.0",
     "@types/webpack-sources": "3.2.0",
     "babel-jest": "27.5.1",
