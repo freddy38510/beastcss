@@ -1,6 +1,13 @@
 # Changelog
 
-All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
+
+### [1.0.9](https://github.com/freddy38510/beastcss/compare/beastcss-webpack-plugin-v1.0.8...beastcss-webpack-plugin-v1.0.9) (2022-08-11)
+
+
+### Bug Fixes
+
+* **beastcss-webpack-plugin:** update dependency beastcss to v1.1.2 ([9623c60](https://github.com/freddy38510/beastcss/commit/9623c6043d128c9196938ef75b35d8fb615b20a0))
 
 ### [1.0.8](https://github.com/freddy38510/beastcss/compare/beastcss-webpack-plugin-v1.0.7...beastcss-webpack-plugin-v1.0.8) (2022-08-11)
 
