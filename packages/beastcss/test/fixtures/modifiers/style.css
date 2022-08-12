@@ -25,3 +25,8 @@
 .with\{brackets\} {
   color: blue;
 }
+
+.with\[square-brackets\] {
+  color: blue;
+}
+
