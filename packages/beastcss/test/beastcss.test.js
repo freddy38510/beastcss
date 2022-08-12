@@ -59,7 +59,7 @@ describe('Beastcss', () => {
       expect(stylesTagContent).toMatch('.with\\!exclamationmark');
       expect(stylesTagContent).toMatch('.with\\<guillemets\\>');
       expect(stylesTagContent).toMatch('.with\\{brackets\\}');
-      expect(stylesTagContent).toMatch('.with\\[brackets\\]');
+      expect(stylesTagContent).toMatch('.with\\[square-brackets\\]');
     });
 
     it('should correctly restore html class names', () => {
@@ -73,7 +73,7 @@ describe('Beastcss', () => {
       expect(bodyTagContent).toMatch('with<guillemets>');
       expect(bodyTagContent).toMatch('with&lt;guillemets&gt;');
       expect(bodyTagContent).toMatch('with{brackets}');
-      expect(bodyTagContent).toMatch('with[brackets]');
+      expect(bodyTagContent).toMatch('with[square-brackets]');
     });
   });
 
