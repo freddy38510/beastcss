@@ -7,18 +7,18 @@
 export function replaceHTMLClasses(html) {
   return html.replace(/class=["'][^"']*["']/gm, (m) =>
     m
-      .replace(/:/gm, '__0')
-      .replace(/\//gm, '__1')
-      .replace(/\?/gm, '__2')
-      .replace(/\(/gm, '__3')
-      .replace(/\)/gm, '__4')
-      .replace(/!/gm, '__5')
-      .replace(/</gm, '__6')
-      .replace(/&lt;/gm, '__6')
-      .replace(/>/gm, '__7')
-      .replace(/&gt;/gm, '__7')
-      .replace(/{/gm, '__8')
+      .replace(/\]/gm, '__11')
+      .replace(/\[/gm, '__10')
       .replace(/}/gm, '__9')
+      .replace(/{/gm, '__8')
+      .replace(/>|&gt;/gm, '__7')
+      .replace(/<|&lt;/gm, '__6')
+      .replace(/!/gm, '__5')
+      .replace(/\)/gm, '__4')
+      .replace(/\(/gm, '__3')
+      .replace(/\?/gm, '__2')
+      .replace(/\//gm, '__1')
+      .replace(/:/gm, '__0')
   );
 }
 
@@ -30,16 +30,18 @@ export function replaceHTMLClasses(html) {
  */
 export function replaceCSSSelectors(css) {
   return css
-    .replace(/\\:/gm, '__0')
-    .replace(/\\\//gm, '__1')
-    .replace(/\\\?/gm, '__2')
-    .replace(/\\\(/gm, '__3')
-    .replace(/\\\)/gm, '__4')
-    .replace(/\\!/gm, '__5')
-    .replace(/\\</gm, '__6')
-    .replace(/\\>/gm, '__7')
+    .replace(/\\\]/gm, '__11')
+    .replace(/\\\[/gm, '__10')
+    .replace(/\\}/gm, '__9')
     .replace(/\\{/gm, '__8')
-    .replace(/\\}/gm, '__9');
+    .replace(/\\>/gm, '__7')
+    .replace(/\\</gm, '__6')
+    .replace(/\\!/gm, '__5')
+    .replace(/\\\)/gm, '__4')
+    .replace(/\\\(/gm, '__3')
+    .replace(/\\\?/gm, '__2')
+    .replace(/\\\//gm, '__1')
+    .replace(/\\:/gm, '__0');
 }
 
 /**
@@ -50,14 +52,16 @@ export function replaceCSSSelectors(css) {
  */
 export function restoreCSSSelectors(css) {
   return css
-    .replace(/__0/gm, '\\:')
-    .replace(/__1/gm, '\\/')
-    .replace(/__2/gm, '\\?')
-    .replace(/__3/gm, '\\(')
-    .replace(/__4/gm, '\\)')
-    .replace(/__5/gm, '\\!')
-    .replace(/__6/gm, '\\<')
-    .replace(/__7/gm, '\\>')
+    .replace(/__11/gm, '\\]')
+    .replace(/__10/gm, '\\[')
+    .replace(/__9/gm, '\\}')
     .replace(/__8/gm, '\\{')
-    .replace(/__9/gm, '\\}');
+    .replace(/__7/gm, '\\>')
+    .replace(/__6/gm, '\\<')
+    .replace(/__5/gm, '\\!')
+    .replace(/__4/gm, '\\)')
+    .replace(/__3/gm, '\\(')
+    .replace(/__2/gm, '\\?')
+    .replace(/__1/gm, '\\/')
+    .replace(/__0/gm, '\\:');
 }
