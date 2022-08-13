@@ -13,7 +13,7 @@ export default class Beastcss {
   constructor(options = {}) {
     this.options = {
       logLevel: 'info',
-      path: '',
+      path: process.cwd(),
       publicPath: '',
       additionalStylesheets: [],
       pruneSource: false,
@@ -158,7 +158,7 @@ export default class Beastcss {
     const additionalStylesheets = [];
 
     const entries = await FastGlob(sources, {
-      cwd: this.options.path || process.cwd(),
+      cwd: this.options.path,
       baseNameMatch: true,
       unique: true,
       suppressErrors: true,
