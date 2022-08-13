@@ -1,4 +1,5 @@
 module.exports = {
+  preset: 'es-jest',
   testEnvironment: 'node',
   verbose: true,
   bail: 1,

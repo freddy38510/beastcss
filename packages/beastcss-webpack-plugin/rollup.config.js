@@ -24,13 +24,7 @@ const config = {
       preferConst: true,
     },
   ],
-  external: [
-    ...Object.keys(dependencies),
-    /core-js/,
-    'path',
-    'fs',
-    './schema.json',
-  ],
+  external: [...Object.keys(dependencies), 'path', 'fs', './schema.json'],
   plugins: [
     copy({
       targets: [

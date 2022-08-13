@@ -24,7 +24,7 @@ const config = {
       preferConst: true,
     },
   ],
-  external: [...Object.keys(dependencies), /core-js/, 'path', 'fs'],
+  external: [...Object.keys(dependencies), 'path', 'fs'],
   plugins: [
     copy({
       targets: [{ src: 'src/index.d.ts', dest: 'dist' }],
