@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+### [1.0.10](https://github.com/freddy38510/beastcss/compare/beastcss-webpack-plugin-v1.0.9...beastcss-webpack-plugin-v1.0.10) (2022-08-13)
+
+
+### Bug Fixes
+
+* **beastcss-webpack-plugin:** update dependency beastcss to v1.2.0 ([8171006](https://github.com/freddy38510/beastcss/commit/81710065aa6851af101e389ac1d2ae021289585d))
+
 ### [1.0.9](https://github.com/freddy38510/beastcss/compare/beastcss-webpack-plugin-v1.0.8...beastcss-webpack-plugin-v1.0.9) (2022-08-11)
 
 
