@@ -63,9 +63,9 @@ const beastcss = new Beastcss({
 
 Type: `String`
 
-Default: `''`
+Default: `process.cwd()`
 
-Base path location of the CSS files.
+Base path location of the CSS files. Set to the current working directory by default.
 
 ### `publicPath`
 

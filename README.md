@@ -86,9 +86,9 @@ That's it! Now when you run Webpack, the CSS used by your HTML will be inlined a
 
 Type: `String`
 
-Default: `''`
+Default: `process.cwd()`
 
-Base path location of the CSS files.
+Base path location of the CSS files. Set to the current working directory by default.
 
 > Notes: has no effect with `beastcss-webpack-plugin`.
 
