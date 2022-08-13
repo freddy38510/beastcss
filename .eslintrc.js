@@ -28,7 +28,7 @@ module.exports = {
     'import/no-extraneous-dependencies': [
       'error',
       {
-        devDependencies: ['**/rollup.config.js', '**/test/**'],
+        devDependencies: true,
         packageDir: [
           __dirname,
           path.join(__dirname, 'packages/beastcss'),
