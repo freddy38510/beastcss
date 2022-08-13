@@ -47,7 +47,7 @@ type stylesheet = {
 };
 
 declare class Beastcss {
-  constructor(options: Options);
+  constructor(options: Options?);
   options: Options;
   logger: Logger;
   usedSelectors: Set<string>;
