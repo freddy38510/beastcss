@@ -70,6 +70,7 @@ describe('Beastcss', () => {
       expect(bodyTagContent).toMatch('with(parentheses)');
       expect(bodyTagContent).toMatch('with!exclamationmark');
       expect(bodyTagContent).toMatch('with<guillemets>');
+      expect(bodyTagContent).toMatch('with&lt;guillemets&gt;');
       expect(bodyTagContent).toMatch('with{brackets}');
     });
   });
