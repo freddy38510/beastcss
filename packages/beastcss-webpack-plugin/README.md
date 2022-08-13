@@ -35,22 +35,6 @@ That's it! Now when you run Webpack, the CSS used by your HTML will be inlined a
 
 ## Options
 
-### `path`
-
-Type: `String`
-
-Default: `''`
-
-Base path location of the CSS files.
-
-### `publicPath`
-
-Type: `String`
-
-Default: `''`
-
-Public path of the CSS resources. This prefix is removed from the href attribute.
-
 ### `external`
 
 Type: `Boolean`
@@ -150,12 +134,6 @@ Type: `Boolean`
 Default: `false`
 
 Inline used @keyframes rules.
-
-### `fs`
-
-Type: `Object`
-
-Filesystem to be used when reading/writing to external stylesheets files.
 
 ### `logLevel`
 

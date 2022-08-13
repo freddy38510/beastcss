@@ -90,6 +90,8 @@ Default: `''`
 
 Base path location of the CSS files.
 
+> Notes: has no effect with `beastcss-webpack-plugin`.
+
 ### `publicPath`
 
 Type: `String`
@@ -97,6 +99,8 @@ Type: `String`
 Default: `''`
 
 Public path of the CSS resources. This prefix is removed from the href attribute.
+
+> Notes: has no effect with `beastcss-webpack-plugin`.
 
 ### `external`
 
@@ -203,6 +207,8 @@ Inline used @keyframes rules.
 Type: `Object`
 
 Filesystem to be used when reading/writing to external stylesheets files.
+
+> Notes: has no effect with `beastcss-webpack-plugin`.
 
 ### `logLevel`
 
