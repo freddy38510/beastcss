@@ -34,7 +34,7 @@
     "bootstrap": "lerna bootstrap --use-workspaces",
     "postinstall": "yarn run bootstrap",
     "prepare": "husky install",
-    "install-test-webpack-versions": "./bin/install-test-webpack-versions.sh",
+    "install-test-webpack-versions": "./scripts/install-test-webpack-versions.sh",
     "pretest": "yarn run install-test-webpack-versions",
     "test": "jest",
     "test:inspect": "NODE_OPTIONS='--inspect' yarn run test --runInBand"
