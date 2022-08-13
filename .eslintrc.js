@@ -4,7 +4,8 @@ module.exports = {
   env: {
     es2017: true,
     node: true,
-    jest: true,
+    browser: true,
+    'jest/globals': true,
   },
   extends: [
     'airbnb-base',
@@ -13,7 +14,6 @@ module.exports = {
     'plugin:jest/style',
     'plugin:jsdoc/recommended',
   ],
-  // parser: '@babel/eslint-parser',
   parserOptions: {
     ecmaVersion: 2019,
     sourceType: 'module',

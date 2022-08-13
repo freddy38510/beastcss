@@ -28,6 +28,7 @@
     "dev": "lerna run --stream --parallel dev",
     "dev:main": "lerna run --stream --scope beastcss dev",
     "dev:webpack": "lerna run --stream --scope beastcss-webpack-plugin dev",
+    "lint": "eslint --ext .js ./ --fix",
     "release:main": "lerna run --stream --scope beastcss release",
     "release:webpack": "lerna run --stream --scope beastcss-webpack-plugin release",
     "bootstrap": "lerna bootstrap --use-workspaces",
