@@ -25,3 +25,11 @@
 .with\{brackets\} {
   color: blue;
 }
+
+.with\[square-brackets\] {
+  color: blue;
+}
+
+.with\:\[mixed\/chars\] {
+  color: blue;
+}
