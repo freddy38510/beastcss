@@ -3,25 +3,6 @@ description: Create a report to help us improve
 title: Good bug title tells us about precise symptom, not about the root cause.
 labels: [bug]
 body:
-  - type: dropdown
-    id: package
-    attributes:
-      label: Packages
-      description: Choose the package in which you see the problem on.
-      options:
-        - beastcss
-        - beastcss-webpack-plugin
-    validations:
-      required: true
-  - type: input
-    id: version
-    attributes:
-      label: Version
-      description: |
-        The version of beastcss you are using.
-      placeholder: ex. 1.1.2
-    validations:
-      required: true
   - type: textarea
     id: description
     attributes:
@@ -61,16 +42,16 @@ body:
     attributes:
       label: Environment
       description: |
-        Please paste the output of running `npx envinfo --preset jest`.
+        Please paste the output of running `npx envinfo --preset jest --npmPackages beastcss,beastcss-webpack-plugin`.
         This will be automatically formatted as a code block, so no need for backticks.
       placeholder: |
         System:
-          OS: Linux 5.10 Debian GNU/Linux 9 (stretch)
+          OS: Linux 5.18 Arch Linux
           CPU: (8) arm64
         Binaries:
-          Node: 14.17.0 - /usr/local/bin/node
-          Yarn: 1.22.5 - /usr/local/bin/yarn
-          npm: 6.14.13 - /usr/local/bin/npm
+         Node: 18.7.0 - /usr/sbin/node
+         Yarn: 1.22.19 - /usr/sbin/yarn
+         npm: 8.17.0 - /usr/sbin/npm
         npmPackages:
           beastcss: 1.1.2 => 1.1.2
       render: shell
