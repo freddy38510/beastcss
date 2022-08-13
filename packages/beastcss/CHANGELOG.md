@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [1.2.0](https://github.com/freddy38510/beastcss/compare/beastcss-v1.1.2...beastcss-v1.2.0) (2022-08-13)
+
+
+### Features
+
+* **beastcss:** add support for square brackets in class names ([65a1225](https://github.com/freddy38510/beastcss/commit/65a12257a94a685ebf27c892423d56116422cc8d))
+* **beastcss:** set default "path" option to current working directory ([3e6f37d](https://github.com/freddy38510/beastcss/commit/3e6f37dbc68a0ac25b81953715bcba43550c669c))
+* **beastcss:** update TypeScript declaration file ([9df2eaf](https://github.com/freddy38510/beastcss/commit/9df2eaf944f58633a3e639fa669714f4e947be36))
+
 ### [1.1.2](https://github.com/freddy38510/beastcss/compare/beastcss-v1.1.1...beastcss-v1.1.2) (2022-08-11)
 
 
