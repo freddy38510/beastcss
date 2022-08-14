@@ -50,7 +50,7 @@
     "commitizen": "4.2.5",
     "cz-conventional-changelog": "3.3.0",
     "es-jest": "2.0.0",
-    "eslint": "8.21.0",
+    "eslint": "8.22.0",
     "eslint-config-airbnb-base": "15.0.0",
     "eslint-config-prettier": "8.5.0",
     "eslint-plugin-import": "2.26.0",
