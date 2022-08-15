@@ -5,16 +5,14 @@
   "main": "dist/index.cjs",
   "module": "dist/index.esm.js",
   "exports": {
+    "types": "./dist/index.d.ts",
     "require": "./dist/index.cjs",
-    "import": "./dist/index.esm.js",
-    "default": "./dist/index.esm.js"
+    "import": "./dist/index.esm.js"
   },
   "type": "module",
   "files": [
     "src",
-    "dist",
-    "README.md",
-    "LICENSE"
+    "dist"
   ],
   "types": "./dist/index.d.ts",
   "license": "MIT",
