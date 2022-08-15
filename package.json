@@ -34,7 +34,7 @@
     "release:webpack": "lerna run --stream --scope beastcss-webpack-plugin release",
     "bootstrap": "lerna bootstrap --use-workspaces",
     "postinstall": "yarn run bootstrap",
-    "install-test-webpack-versions": "./scripts/install-test-webpack-versions.sh",
+    "install-test-webpack-versions": "node ./scripts/test.install-webpack-versions.js",
     "pretest": "yarn run install-test-webpack-versions",
     "test": "jest",
     "test:inspect": "NODE_OPTIONS='--inspect' yarn run test --runInBand"
