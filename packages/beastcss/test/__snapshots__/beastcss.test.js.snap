@@ -66,36 +66,32 @@ exports[`Beastcss additional stylesheets should match html snapshot 1`] = `
 
 exports[`Beastcss exclude with a function should match html snapshot 1`] = `
 "<html>
+  <head>
+    <style>h1{color: blue;}p{color: purple;}</style><link rel=\\"stylesheet\\" href=\\"/style.css\\" media=\\"print\\" onload=\\"this.media='all'; this.onload=null;\\"><noscript><link rel=\\"stylesheet\\" href=\\"/style.css\\"></noscript>
+    <link rel=\\"stylesheet\\" href=\\"/excluded.css\\" >
+  </head>
 
-<head>
-  <style>h1{color: blue;}p{color: purple;}</style><link rel=\\"stylesheet\\" href=\\"/style.css\\" media=\\"print\\" onload=\\"this.media='all'; this.onload=null;\\"><noscript><link rel=\\"stylesheet\\" href=\\"/style.css\\"></noscript>
-  <link rel=\\"stylesheet\\" href=\\"/excluded.css\\" >
-</head>
-
-<body>
-  <h1>Hello World!</h1>
-  <p>This is a paragraph</p>
-  <p class=\\"excluded\\"></p>
-</body>
-
+  <body>
+    <h1>Hello World!</h1>
+    <p>This is a paragraph</p>
+    <p class=\\"excluded\\"></p>
+  </body>
 </html>
 "
 `;
 
 exports[`Beastcss exclude with a regexp should match html snapshot 1`] = `
 "<html>
+  <head>
+    <style>h1{color: blue;}p{color: purple;}</style><link rel=\\"stylesheet\\" href=\\"/style.css\\" media=\\"print\\" onload=\\"this.media='all'; this.onload=null;\\"><noscript><link rel=\\"stylesheet\\" href=\\"/style.css\\"></noscript>
+    <link rel=\\"stylesheet\\" href=\\"/excluded.css\\" >
+  </head>
 
-<head>
-  <style>h1{color: blue;}p{color: purple;}</style><link rel=\\"stylesheet\\" href=\\"/style.css\\" media=\\"print\\" onload=\\"this.media='all'; this.onload=null;\\"><noscript><link rel=\\"stylesheet\\" href=\\"/style.css\\"></noscript>
-  <link rel=\\"stylesheet\\" href=\\"/excluded.css\\" >
-</head>
-
-<body>
-  <h1>Hello World!</h1>
-  <p>This is a paragraph</p>
-  <p class=\\"excluded\\"></p>
-</body>
-
+  <body>
+    <h1>Hello World!</h1>
+    <p>This is a paragraph</p>
+    <p class=\\"excluded\\"></p>
+  </body>
 </html>
 "
 `;
@@ -103,7 +99,7 @@ exports[`Beastcss exclude with a regexp should match html snapshot 1`] = `
 exports[`Beastcss external=false should match html snapshot 1`] = `
 "<html>
   <head>
-    <link rel=\\"stylesheet\\" href=\\"/style.css\\">
+    <link rel=\\"stylesheet\\" href=\\"/style.css\\" >
   </head>
   <body>
     <h1>Hello World!</h1>
@@ -170,7 +166,7 @@ exports[`Beastcss whitelist with string should match html snapshot 1`] = `
 exports[`Beastcss without asyncload should match html snapshot 1`] = `
 "<html>
   <head>
-    <style>h1{color: blue;}p{color: purple;}</style><link rel=\\"stylesheet\\" href=\\"/style.css\\">
+    <style>h1{color: blue;}p{color: purple;}</style><link rel=\\"stylesheet\\" href=\\"/style.css\\" >
   </head>
   <body>
     <h1>Hello World!</h1>

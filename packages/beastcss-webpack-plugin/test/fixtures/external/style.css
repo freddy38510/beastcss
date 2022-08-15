@@ -10,8 +10,10 @@ body {
   color: purple;
   background-color: #d8da3d;
 }
-*,:after,:before{
-  box-sizing: inherit
+*,
+:after,
+:before {
+  box-sizing: inherit;
 }
 ul.navbar {
   list-style-type: none;

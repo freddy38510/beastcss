@@ -8,7 +8,7 @@ exports[`Beastcss Webpack Plugin External stylesheets webpack@4.40.0 should matc
   <style>:root{font-size: 10px;}html{height: 100%;}body{padding-left: 11em;
   font-family: 'Times New Roman', times, serif;
   color: purple;
-  background-color: #d8da3d;}*,:after,:before{box-sizing: inherit}ul.navbar{list-style-type: none;
+  background-color: #d8da3d;}*,:after,:before{box-sizing: inherit;}ul.navbar{list-style-type: none;
   padding: 0;
   margin: 0;
   position: absolute;
@@ -47,7 +47,7 @@ exports[`Beastcss Webpack Plugin External stylesheets webpack@5.21.0 should matc
   <script defer src=\\"bundle.js\\"></script><style>:root{font-size: 10px;}html{height: 100%;}body{padding-left: 11em;
   font-family: 'Times New Roman', times, serif;
   color: purple;
-  background-color: #d8da3d;}*,:after,:before{box-sizing: inherit}ul.navbar{list-style-type: none;
+  background-color: #d8da3d;}*,:after,:before{box-sizing: inherit;}ul.navbar{list-style-type: none;
   padding: 0;
   margin: 0;
   position: absolute;
@@ -89,8 +89,10 @@ body {
   color: purple;
   background-color: #d8da3d;
 }
-*,:after,:before{
-  box-sizing: inherit
+*,
+:after,
+:before {
+  box-sizing: inherit;
 }
 ul.navbar {
   list-style-type: none;
@@ -139,7 +141,7 @@ exports[`Beastcss Webpack Plugin Internal stylesheets webpack@4.40.0 should remo
   <head>
     <title>Basic Demo</title>
     <style>body{padding-left: 11em;
-        font-family: \\"Times New Roman\\", times, serif;
+        font-family: 'Times New Roman', times, serif;
         color: purple;
         background-color: #d8da3d;}ul.navbar{list-style-type: none;
         padding: 0;
@@ -179,7 +181,7 @@ exports[`Beastcss Webpack Plugin Internal stylesheets webpack@5.21.0 should remo
   <head>
     <title>Basic Demo</title>
     <style>body{padding-left: 11em;
-        font-family: \\"Times New Roman\\", times, serif;
+        font-family: 'Times New Roman', times, serif;
         color: purple;
         background-color: #d8da3d;}ul.navbar{list-style-type: none;
         padding: 0;
@@ -279,7 +281,7 @@ exports[`Beastcss Webpack Plugin preloadExternalStylesheets webpack@4.40.0 shoul
   <style>:root{font-size: 10px;}html{height: 100%;}body{padding-left: 11em;
   font-family: 'Times New Roman', times, serif;
   color: purple;
-  background-color: #d8da3d;}*,:after,:before{box-sizing: inherit}ul.navbar{list-style-type: none;
+  background-color: #d8da3d;}*,:after,:before{box-sizing: inherit;}ul.navbar{list-style-type: none;
   padding: 0;
   margin: 0;
   position: absolute;
@@ -316,7 +318,7 @@ exports[`Beastcss Webpack Plugin preloadExternalStylesheets webpack@5.21.0 shoul
   <script defer src=\\"bundle.js\\"></script><style>:root{font-size: 10px;}html{height: 100%;}body{padding-left: 11em;
   font-family: 'Times New Roman', times, serif;
   color: purple;
-  background-color: #d8da3d;}*,:after,:before{box-sizing: inherit}ul.navbar{list-style-type: none;
+  background-color: #d8da3d;}*,:after,:before{box-sizing: inherit;}ul.navbar{list-style-type: none;
   padding: 0;
   margin: 0;
   position: absolute;
@@ -353,7 +355,7 @@ exports[`Beastcss Webpack Plugin prune source on multiple html webpack@4.40.0 sh
   <style>:root{font-size: 10px;}html{height: 100%;}body{padding-left: 11em;
   font-family: 'Times New Roman', times, serif;
   color: purple;
-  background-color: #d8da3d;}*,:after,:before{box-sizing: inherit}ul.navbar{list-style-type: none;
+  background-color: #d8da3d;}*,:after,:before{box-sizing: inherit;}ul.navbar{list-style-type: none;
   padding: 0;
   margin: 0;
   position: absolute;
@@ -367,7 +369,7 @@ exports[`Beastcss Webpack Plugin prune source on multiple html webpack@4.40.0 sh
   border-top: thin dotted;}:root{font-size: 10px;}html{height: 100%;}body{padding-left: 11em;
   font-family: 'Times New Roman', times, serif;
   color: purple;
-  background-color: #d8da3d;}*,:after,:before{box-sizing: inherit}ul.navbar{list-style-type: none;
+  background-color: #d8da3d;}*,:after,:before{box-sizing: inherit;}ul.navbar{list-style-type: none;
   padding: 0;
   margin: 0;
   position: absolute;
@@ -404,7 +406,7 @@ exports[`Beastcss Webpack Plugin prune source on multiple html webpack@4.40.0 sh
   <style>:root{font-size: 10px;}html{height: 100%;}body{padding-left: 11em;
   font-family: 'Times New Roman', times, serif;
   color: purple;
-  background-color: #d8da3d;}*,:after,:before{box-sizing: inherit}ul.navbar{list-style-type: none;
+  background-color: #d8da3d;}*,:after,:before{box-sizing: inherit;}ul.navbar{list-style-type: none;
   padding: 0;
   margin: 0;
   position: absolute;
@@ -418,7 +420,7 @@ exports[`Beastcss Webpack Plugin prune source on multiple html webpack@4.40.0 sh
   border-top: thin dotted;}h2{color: red;}.bold{font-weight: bold;}:root{font-size: 10px;}html{height: 100%;}body{padding-left: 11em;
   font-family: 'Times New Roman', times, serif;
   color: purple;
-  background-color: #d8da3d;}*,:after,:before{box-sizing: inherit}ul.navbar{list-style-type: none;
+  background-color: #d8da3d;}*,:after,:before{box-sizing: inherit;}ul.navbar{list-style-type: none;
   padding: 0;
   margin: 0;
   position: absolute;
@@ -459,7 +461,7 @@ exports[`Beastcss Webpack Plugin prune source on multiple html webpack@5.21.0 sh
   <script defer src=\\"bundle.js\\"></script><style>:root{font-size: 10px;}html{height: 100%;}body{padding-left: 11em;
   font-family: 'Times New Roman', times, serif;
   color: purple;
-  background-color: #d8da3d;}*,:after,:before{box-sizing: inherit}ul.navbar{list-style-type: none;
+  background-color: #d8da3d;}*,:after,:before{box-sizing: inherit;}ul.navbar{list-style-type: none;
   padding: 0;
   margin: 0;
   position: absolute;
@@ -473,7 +475,7 @@ exports[`Beastcss Webpack Plugin prune source on multiple html webpack@5.21.0 sh
   border-top: thin dotted;}:root{font-size: 10px;}html{height: 100%;}body{padding-left: 11em;
   font-family: 'Times New Roman', times, serif;
   color: purple;
-  background-color: #d8da3d;}*,:after,:before{box-sizing: inherit}ul.navbar{list-style-type: none;
+  background-color: #d8da3d;}*,:after,:before{box-sizing: inherit;}ul.navbar{list-style-type: none;
   padding: 0;
   margin: 0;
   position: absolute;
@@ -510,7 +512,7 @@ exports[`Beastcss Webpack Plugin prune source on multiple html webpack@5.21.0 sh
   <script defer src=\\"bundle.js\\"></script><style>:root{font-size: 10px;}html{height: 100%;}body{padding-left: 11em;
   font-family: 'Times New Roman', times, serif;
   color: purple;
-  background-color: #d8da3d;}*,:after,:before{box-sizing: inherit}ul.navbar{list-style-type: none;
+  background-color: #d8da3d;}*,:after,:before{box-sizing: inherit;}ul.navbar{list-style-type: none;
   padding: 0;
   margin: 0;
   position: absolute;
@@ -524,7 +526,7 @@ exports[`Beastcss Webpack Plugin prune source on multiple html webpack@5.21.0 sh
   border-top: thin dotted;}h2{color: red;}.bold{font-weight: bold;}:root{font-size: 10px;}html{height: 100%;}body{padding-left: 11em;
   font-family: 'Times New Roman', times, serif;
   color: purple;
-  background-color: #d8da3d;}*,:after,:before{box-sizing: inherit}ul.navbar{list-style-type: none;
+  background-color: #d8da3d;}*,:after,:before{box-sizing: inherit;}ul.navbar{list-style-type: none;
   padding: 0;
   margin: 0;
   position: absolute;
@@ -568,8 +570,10 @@ body {
   color: purple;
   background-color: #d8da3d;
 }
-*,:after,:before{
-  box-sizing: inherit
+*,
+:after,
+:before {
+  box-sizing: inherit;
 }
 ul.navbar {
   list-style-type: none;
@@ -624,7 +628,7 @@ exports[`Beastcss Webpack Plugin prune source on multiple html without html-webp
     <style>:root{font-size: 10px;}html{height: 100%;}body{padding-left: 11em;
   font-family: 'Times New Roman', times, serif;
   color: purple;
-  background-color: #d8da3d;}*,:after,:before{box-sizing: inherit}ul.navbar{list-style-type: none;
+  background-color: #d8da3d;}*,:after,:before{box-sizing: inherit;}ul.navbar{list-style-type: none;
   padding: 0;
   margin: 0;
   position: absolute;
@@ -662,7 +666,7 @@ exports[`Beastcss Webpack Plugin prune source on multiple html without html-webp
     <style>:root{font-size: 10px;}html{height: 100%;}body{padding-left: 11em;
   font-family: 'Times New Roman', times, serif;
   color: purple;
-  background-color: #d8da3d;}*,:after,:before{box-sizing: inherit}ul.navbar{list-style-type: none;
+  background-color: #d8da3d;}*,:after,:before{box-sizing: inherit;}ul.navbar{list-style-type: none;
   padding: 0;
   margin: 0;
   position: absolute;
@@ -704,7 +708,7 @@ exports[`Beastcss Webpack Plugin prune source on multiple html without html-webp
     <style>:root{font-size: 10px;}html{height: 100%;}body{padding-left: 11em;
   font-family: 'Times New Roman', times, serif;
   color: purple;
-  background-color: #d8da3d;}*,:after,:before{box-sizing: inherit}ul.navbar{list-style-type: none;
+  background-color: #d8da3d;}*,:after,:before{box-sizing: inherit;}ul.navbar{list-style-type: none;
   padding: 0;
   margin: 0;
   position: absolute;
@@ -742,7 +746,7 @@ exports[`Beastcss Webpack Plugin prune source on multiple html without html-webp
     <style>:root{font-size: 10px;}html{height: 100%;}body{padding-left: 11em;
   font-family: 'Times New Roman', times, serif;
   color: purple;
-  background-color: #d8da3d;}*,:after,:before{box-sizing: inherit}ul.navbar{list-style-type: none;
+  background-color: #d8da3d;}*,:after,:before{box-sizing: inherit;}ul.navbar{list-style-type: none;
   padding: 0;
   margin: 0;
   position: absolute;
@@ -784,7 +788,7 @@ exports[`Beastcss Webpack Plugin publicPath webpack@4.40.0 should match html sna
   <style>:root{font-size: 10px;}html{height: 100%;}body{padding-left: 11em;
   font-family: 'Times New Roman', times, serif;
   color: purple;
-  background-color: #d8da3d;}*,:after,:before{box-sizing: inherit}ul.navbar{list-style-type: none;
+  background-color: #d8da3d;}*,:after,:before{box-sizing: inherit;}ul.navbar{list-style-type: none;
   padding: 0;
   margin: 0;
   position: absolute;
@@ -823,7 +827,7 @@ exports[`Beastcss Webpack Plugin publicPath webpack@5.21.0 should match html sna
   <script defer src=\\"/_public/bundle.js\\"></script><style>:root{font-size: 10px;}html{height: 100%;}body{padding-left: 11em;
   font-family: 'Times New Roman', times, serif;
   color: purple;
-  background-color: #d8da3d;}*,:after,:before{box-sizing: inherit}ul.navbar{list-style-type: none;
+  background-color: #d8da3d;}*,:after,:before{box-sizing: inherit;}ul.navbar{list-style-type: none;
   padding: 0;
   margin: 0;
   position: absolute;
@@ -865,8 +869,10 @@ body {
   color: purple;
   background-color: #d8da3d;
 }
-*,:after,:before{
-  box-sizing: inherit
+*,
+:after,
+:before {
+  box-sizing: inherit;
 }
 ul.navbar {
   list-style-type: none;
@@ -913,7 +919,7 @@ exports[`Beastcss Webpack Plugin webpack compilation webpack@4.40.0 should match
   <head>
     <title>Basic Demo</title>
     <style>body{padding-left: 11em;
-        font-family: \\"Times New Roman\\", times, serif;
+        font-family: 'Times New Roman', times, serif;
         color: purple;
         background-color: #d8da3d;}ul.navbar{list-style-type: none;
         padding: 0;
@@ -951,7 +957,7 @@ exports[`Beastcss Webpack Plugin webpack compilation webpack@5.21.0 should match
   <head>
     <title>Basic Demo</title>
     <style>body{padding-left: 11em;
-        font-family: \\"Times New Roman\\", times, serif;
+        font-family: 'Times New Roman', times, serif;
         color: purple;
         background-color: #d8da3d;}ul.navbar{list-style-type: none;
         padding: 0;
