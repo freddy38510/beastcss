@@ -1,6 +1,0 @@
-#!/bin/sh
-. "$(dirname "$0")/_/husky.sh"
-
-file="$1"
-
-cat "$file" | npx commitlint -q || (exec < /dev/tty && node_modules/.bin/cz --hook || true)

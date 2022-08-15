@@ -34,7 +34,6 @@
     "release:webpack": "lerna run --stream --scope beastcss-webpack-plugin release",
     "bootstrap": "lerna bootstrap --use-workspaces",
     "postinstall": "yarn run bootstrap",
-    "prepare": "husky install",
     "install-test-webpack-versions": "./scripts/install-test-webpack-versions.sh",
     "pretest": "yarn run install-test-webpack-versions",
     "test": "jest",
@@ -56,12 +55,26 @@
     "eslint-plugin-import": "2.26.0",
     "eslint-plugin-jest": "26.8.2",
     "eslint-plugin-jsdoc": "39.3.6",
-    "husky": "8.0.1",
     "jest": "28.1.3",
     "lerna": "5.4.1",
+    "lint-staged": "13.0.3",
     "prettier": "2.7.1",
     "rimraf": "3.0.2",
     "rollup": "2.77.3",
-    "rollup-plugin-copy": "3.4.0"
+    "rollup-plugin-copy": "3.4.0",
+    "simple-git-hooks": "2.8.0"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "yarn run lint-staged --concurrent false",
+    "prepare-commit-msg": "cat $1 | npx commitlint -q || (exec < /dev/tty && node_modules/.bin/cz --hook || true)",
+    "commit-msg": "npx --no -- commitlint --edit $1"
+  },
+  "lint-staged": {
+    "*": [
+      "prettier --write --cache --ignore-unknown"
+    ],
+    "packages/*/src/**/*.js": [
+      "eslint --cache --fix"
+    ]
   }
 }
