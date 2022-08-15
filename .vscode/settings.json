@@ -6,16 +6,14 @@
   },
   "jest.jestCommandLine": "yarn test",
   "jest.showCoverageOnLoad": true,
-  "jest.debugCodeLens.showWhenTestStateIn": [
-    "fail",
-    "unknown",
-    "pass",
-    "skip"
-  ],
+  "jest.debugCodeLens.showWhenTestStateIn": ["fail", "unknown", "pass", "skip"],
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
 }
