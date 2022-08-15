@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-const { spawnSync } = require('child_process');
+const spawn = require('cross-spawn');
 const { resolve } = require('path');
 const { readdirSync } = require('fs');
 
@@ -20,7 +20,7 @@ try {
 }
 
 webpackVersions.forEach((version) => {
-  spawnSync('yarn', ['install'], {
+  spawn.sync('yarn', ['install'], {
     cwd: resolve(rootDir, version),
     stdio: 'inherit',
   });
