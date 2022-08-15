@@ -20,6 +20,14 @@ module.exports = {
     sourceType: 'module',
   },
   settings: {
+    'import/resolver': {
+      workspaces: {
+        extensions: ['.js'],
+        sources: {
+          beastcss: ['packages/beastcss/src/*'],
+        },
+      },
+    },
     jsdoc: {
       mode: 'typescript',
     },
