@@ -1,9 +1,11 @@
 {
   "bootstrap-sha": "c3554a3a3a201d76d84419bc27dda4f0c046d86d",
+  "last-release-sha": "224cbb392de96fdf157a6235c909761bebe7e733",
   "packages": {
     "packages/beastcss": {},
     "packages/beastcss-webpack-plugin": {}
   },
   "plugins": ["node-workspace"],
-  "monorepo-tags": true
+  "monorepo-tags": true,
+  "group-pull-request-title-pattern": "chore: release ${branch}"
 }

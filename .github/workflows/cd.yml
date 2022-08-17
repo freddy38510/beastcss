@@ -22,7 +22,7 @@ jobs:
           manifest-file: .github/release-please-manifest.json
           monorepo-tags: true
           release-type: node
-          group-pull-request-title-pattern: "chore${scope}: release${component} ${version}"
+          pull-request-title-pattern: "chore${scope}: release${component} ${version}"
 
       # - name: Publish packages
       #  if: ${{ steps.release.outputs.releases_created }}
