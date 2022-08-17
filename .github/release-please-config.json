@@ -5,5 +5,5 @@
     "packages/beastcss-webpack-plugin": {}
   },
   "plugins": ["node-workspace"],
-  "group-pull-request-title-pattern": "chore${scope}: release${component} ${version}"
+  "monorepo-tags": true
 }

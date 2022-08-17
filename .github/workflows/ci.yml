@@ -3,6 +3,8 @@ name: CI
 on:
   push:
     branches: [master]
+    paths-ignore:
+      - "*.md"
   pull_request:
   workflow_dispatch:
 
@@ -13,6 +15,7 @@ concurrency:
 jobs:
   build:
     runs-on: ${{ matrix.os }}
+    if: "!contains(github.event.commits[0].message, 'chore')"
     strategy:
       matrix:
         os: [ubuntu-latest]

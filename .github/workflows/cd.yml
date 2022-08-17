@@ -1,18 +1,15 @@
 name: CD
 
 on:
-  workflow_run:
-    workflows: ["CI"]
-    types:
-      - completed
+  push:
+    branches:
+      - master
   workflow_dispatch:
 
 jobs:
   release:
     name: Release
     runs-on: ubuntu-latest
-    # outputs:
-    # releases_created: ${{ steps.release-please.outputs.releases_created }}
     steps:
       - name: Running Release Please
         uses: google-github-actions/release-please-action@v3
