@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.1](https://github.com/freddy38510/beastcss/compare/beastcss-v1.2.0...beastcss-v1.2.1) (2022-08-17)
+
+
+### Bug Fixes
+
+* expose types and do not include doc and license files in the package ([8dd745c](https://github.com/freddy38510/beastcss/commit/8dd745c460a7f93d37938ef7bc5137e1540215f7))
+
 ## [1.2.0](https://github.com/freddy38510/beastcss/compare/beastcss-v1.1.2...beastcss-v1.2.0) (2022-08-13)
 
 
