@@ -1,5 +1,19 @@
 # Changelog
 
+## [1.0.11](https://github.com/freddy38510/beastcss/compare/beastcss-webpack-plugin-v1.0.10...beastcss-webpack-plugin-v1.0.11) (2022-08-17)
+
+
+### Bug Fixes
+
+* expose types and do not include doc and license files in the package ([8dd745c](https://github.com/freddy38510/beastcss/commit/8dd745c460a7f93d37938ef7bc5137e1540215f7))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * beastcss bumped from 1.2.0 to ^1.2.1
+
 ### [1.0.10](https://github.com/freddy38510/beastcss/compare/beastcss-webpack-plugin-v1.0.9...beastcss-webpack-plugin-v1.0.10) (2022-08-13)
 
 
