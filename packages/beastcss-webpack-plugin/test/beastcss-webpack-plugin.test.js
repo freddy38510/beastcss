@@ -23,7 +23,7 @@ webpackVersions.forEach((version) => {
   } catch (err) {
     throw new Error(
       `Error requiring html-webpack-plugin ${version}:\n${err}\n\n` +
-        'Try running "yarn install-test-webpack-versions".'
+        'Try running "pnpm install".'
     );
   }
 
@@ -34,7 +34,7 @@ webpackVersions.forEach((version) => {
   } catch (err) {
     throw new Error(
       `Error requiring mini-css-extract-plugin ${version}:\n${err}\n\n` +
-        'Try running "yarn install-test-webpack-versions".'
+        'Try running "pnpm install".'
     );
   }
 });
@@ -87,7 +87,7 @@ describe('Beastcss Webpack Plugin', () => {
       });
 
       it('should have compiled with correct webpack version', () => {
-        expect(info.version).toBe(version);
+        expect(info.version.slice(0, 1)).toBe(version);
       });
 
       it('should have compiled 2 assets', () => {

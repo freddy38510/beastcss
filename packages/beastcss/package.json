@@ -34,10 +34,8 @@
     "node": ">=12.0.0"
   },
   "scripts": {
-    "build": "yarn run rollup -c",
-    "dev": "yarn run rollup -c -w",
-    "prepack": "yarn -s build",
-    "release": "HUSKY=0 yarn run commit-and-tag-version"
+    "build": "rimraf dist && rollup -c",
+    "dev": "rimraf dist && rollup -c -w"
   },
   "dependencies": {
     "@freddy38510/dropcss": "2.4.0",

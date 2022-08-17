@@ -45,7 +45,7 @@ export async function compile(fixture, configDecorator, version) {
   } catch (err) {
     throw new Error(
       `Error requiring Webpack ${version}:\n${err}\n\n` +
-        'Try running "yarn install-test-webpack-versions".'
+        'Try running "pnpm install".'
     );
   }
 
@@ -77,7 +77,7 @@ export async function compile(fixture, configDecorator, version) {
 
   const compiler = webpack(config);
 
-  if (version === '4.40.0') {
+  if (version.startsWith('4')) {
     // fix worker process that failed to exit gracefully
     compiler.inputFileSystem = new CachedInputFileSystem(fs, 60000);
   }

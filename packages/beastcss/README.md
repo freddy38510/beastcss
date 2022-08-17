@@ -14,6 +14,12 @@ or
 yarn add -D beastcss
 ```
 
+or
+
+```sh
+pnpm add -D beastcss
+```
+
 ## Usage
 
 Create a Beastcss instance with the given options.

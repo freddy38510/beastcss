@@ -2,4 +2,5 @@ packages/*/CHANGELOG.md
 dist/
 temp/
 LICENSE.md
-yarn.lock
+pnpm-lock.yaml
+pnpm-workspace.yaml

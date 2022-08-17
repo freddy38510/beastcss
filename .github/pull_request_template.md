@@ -1,30 +1,26 @@
-<!--
-Thanks for sending a pull request!
-Please fill in the following content to let us know better about this change.
--->
+<!-- Thank you for contributing! -->
 
-## Description
+### Description
 
-<!-- Describe what the change is -->
+<!-- Please insert your description here and provide especially info about the "what" this PR is solving -->
 
-## Checklist
+### Additional context
 
-- [ ] Add test cases to all the changes you introduce
-- [ ] Run `yarn lint` and `yarn test` locally to ensure this change passes linter check and test
-- [ ] Test the changes on the local machine manually
-- [ ] Update the documentation for the changes
+<!-- e.g. is there anything you'd like reviewers to focus on? -->
 
-## Expected behavior
+---
 
-<!-- A clear and concise description of what you expected to happen -->
+### What is the purpose of this pull request? <!-- (put an "X" next to an item) -->
 
-## Steps to Test This Pull Request
+- [ ] Bug fix
+- [ ] New Feature
+- [ ] Documentation update
+- [ ] Other
 
-<!-- Steps to reproduce the behavior:
-1. ...
-2. ...
-3. ... -->
+### Before submitting the PR, please make sure you do the following
 
-## Additional context
-
-<!-- Add any other RELATED ISSUE, context or screenshots about the pull request here. -->
+- [ ] Read the [Contributing Guidelines](https://github.com/freddy38510/beastcss/blob/main/CONTRIBUTING.md).
+- [ ] Read the [Pull Request Guidelines](https://github.com/freddy38510/beastcss/blob/main/CONTRIBUTING.md#pull-request-guidelines) and follow the [Commit Convention](https://github.com/freddy38510/beastcss/blob/main/.github/commit-convention.md).
+- [ ] Check that there isn't already a PR that solves the problem the same way to avoid creating a duplicate.
+- [ ] Provide a description in this PR that addresses **what** the PR is solving, or reference the issue that it solves (e.g. `fixes #123`).
+- [ ] Ideally, include relevant tests that fail without this PR but pass with it.

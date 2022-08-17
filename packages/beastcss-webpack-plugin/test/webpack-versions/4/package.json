@@ -2,8 +2,8 @@
   "private": true,
   "dependencies": {
     "css-loader": "^5.2.7",
-    "html-webpack-plugin": "^4.0.0",
+    "html-webpack-plugin": "webpack-4",
     "mini-css-extract-plugin": "^1.6.0",
-    "webpack": "4.40.0"
+    "webpack": "webpack-4"
   }
 }

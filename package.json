@@ -2,42 +2,24 @@
   "private": true,
   "license": "MIT",
   "author": "Freddy Escobar <freddyescobar@hotmail.fr>",
-  "workspaces": {
-    "packages": [
-      "./packages/*"
-    ],
-    "nohoist": [
-      "**/css-loader",
-      "**/enhanced-resolve",
-      "**/file-loader",
-      "**/html-webpack-plugin",
-      "**/mini-css-extract-plugin",
-      "**/nano-memoize",
-      "**/webpack"
-    ]
-  },
   "config": {
     "commitizen": {
       "path": "cz-conventional-changelog"
     }
   },
+  "workspaces": {
+    "packages": [
+      "./packages/*"
+    ]
+  },
   "scripts": {
-    "build": "lerna run --stream build",
-    "build:main": "lerna run --stream --scope beastcss  build",
-    "build:webpack": "lerna run --stream --scope beastcss-webpack-plugin build",
-    "dev": "lerna run --stream --parallel dev",
-    "dev:main": "lerna run --stream --scope beastcss dev",
-    "dev:webpack": "lerna run --stream --scope beastcss-webpack-plugin dev",
-    "format": "prettier --write --cache .",
-    "lint": "eslint --cache .",
-    "release:main": "lerna run --stream --scope beastcss release",
-    "release:webpack": "lerna run --stream --scope beastcss-webpack-plugin release",
-    "bootstrap": "lerna bootstrap --use-workspaces",
-    "postinstall": "yarn run bootstrap",
-    "install-test-webpack-versions": "node ./scripts/test.install-webpack-versions.js",
-    "pretest": "yarn run install-test-webpack-versions",
+    "preinstall": "npx only-allow pnpm",
+    "postinstall": "simple-git-hooks",
+    "build": "pnpm -r --filter=./packages/* run build",
+    "dev": "pnpm -r --stream --filter=./packages/* run dev",
     "test": "jest",
-    "test:inspect": "NODE_OPTIONS='--inspect' yarn run test --runInBand"
+    "format": "prettier --write --cache .",
+    "lint": "eslint --cache ."
   },
   "devDependencies": {
     "@commitlint/cli": "17.0.3",
@@ -45,9 +27,7 @@
     "@types/node": "16.11.48",
     "@types/webpack": "5.28.0",
     "@types/webpack-sources": "3.2.0",
-    "commit-and-tag-version": "10.1.0",
     "commitizen": "4.2.5",
-    "cross-spawn": "7.0.3",
     "cz-conventional-changelog": "3.3.0",
     "es-jest": "2.0.0",
     "eslint": "8.21.0",
@@ -58,16 +38,17 @@
     "eslint-plugin-jest": "26.8.2",
     "eslint-plugin-jsdoc": "39.3.6",
     "jest": "28.1.3",
-    "lerna": "5.4.1",
     "lint-staged": "13.0.3",
+    "pnpm": "7.9.1",
     "prettier": "2.7.1",
     "rimraf": "3.0.2",
     "rollup": "2.77.3",
     "rollup-plugin-copy": "3.4.0",
-    "simple-git-hooks": "2.8.0"
+    "simple-git-hooks": "2.8.0",
+    "typescript": "4.7.4"
   },
   "simple-git-hooks": {
-    "pre-commit": "yarn run lint-staged --concurrent false",
+    "pre-commit": "pnpm lint-staged --concurrent false",
     "prepare-commit-msg": "cat $1 | npx commitlint -q || (exec < /dev/tty && node_modules/.bin/cz --hook || true)",
     "commit-msg": "npx --no -- commitlint --edit $1"
   },
@@ -78,5 +59,13 @@
     "packages/*/src/**/*.js": [
       "eslint --cache --fix"
     ]
+  },
+  "packageManager": "pnpm@7.9.1",
+  "pnpm": {
+    "overrides": {
+      "beastcss": "workspace:*",
+      "beastcss-webpack-plugin": "workspace:*",
+      "glob-parent": "^6.0.2"
+    }
   }
 }

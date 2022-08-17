@@ -18,6 +18,14 @@ yarn add -D beastcss
 yarn add -D beastcss-webpack-plugin
 ```
 
+or
+
+```sh
+pnpm add -D beastcss
+
+pnpm add -D beastcss-webpack-plugin
+```
+
 ## Usage
 
 Create a Beastcss instance with the given options.

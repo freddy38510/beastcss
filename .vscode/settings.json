@@ -4,7 +4,7 @@
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true
   },
-  "jest.jestCommandLine": "yarn test",
+  "jest.jestCommandLine": "pnpm run test",
   "jest.showCoverageOnLoad": true,
   "jest.debugCodeLens.showWhenTestStateIn": ["fail", "unknown", "pass", "skip"],
   "[javascript]": {

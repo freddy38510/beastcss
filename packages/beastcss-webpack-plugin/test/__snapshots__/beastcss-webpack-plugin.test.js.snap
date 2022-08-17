@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Beastcss Webpack Plugin External stylesheets webpack@4.40.0 should match html snapshot 1`] = `
+exports[`Beastcss Webpack Plugin External stylesheets webpack@4 should match html snapshot 1`] = `
 "<!DOCTYPE html>
 <html>
   <head>
@@ -37,9 +37,9 @@ exports[`Beastcss Webpack Plugin External stylesheets webpack@4.40.0 should matc
 "
 `;
 
-exports[`Beastcss Webpack Plugin External stylesheets webpack@4.40.0 should prune external stylesheet 1`] = `".extra-style{font-size: 200%;}"`;
+exports[`Beastcss Webpack Plugin External stylesheets webpack@4 should prune external stylesheet 1`] = `".extra-style{font-size: 200%;}"`;
 
-exports[`Beastcss Webpack Plugin External stylesheets webpack@5.21.0 should match html snapshot 1`] = `
+exports[`Beastcss Webpack Plugin External stylesheets webpack@5 should match html snapshot 1`] = `
 "<!DOCTYPE html>
 <html>
   <head>
@@ -76,7 +76,7 @@ exports[`Beastcss Webpack Plugin External stylesheets webpack@5.21.0 should matc
 "
 `;
 
-exports[`Beastcss Webpack Plugin External stylesheets webpack@5.21.0 should prune external stylesheet 1`] = `
+exports[`Beastcss Webpack Plugin External stylesheets webpack@5 should prune external stylesheet 1`] = `
 ":root {
   font-size: 10px;
 }
@@ -133,9 +133,9 @@ footer {
 "
 `;
 
-exports[`Beastcss Webpack Plugin Internal stylesheets webpack@4.40.0 should remove entire unused internal stylesheets 1`] = `"h1{color: green;}"`;
+exports[`Beastcss Webpack Plugin Internal stylesheets webpack@4 should remove entire unused internal stylesheets 1`] = `"h1{color: green;}"`;
 
-exports[`Beastcss Webpack Plugin Internal stylesheets webpack@4.40.0 should remove unused rules 1`] = `
+exports[`Beastcss Webpack Plugin Internal stylesheets webpack@4 should remove unused rules 1`] = `
 "<!DOCTYPE html>
 <html>
   <head>
@@ -173,9 +173,9 @@ exports[`Beastcss Webpack Plugin Internal stylesheets webpack@4.40.0 should remo
 "
 `;
 
-exports[`Beastcss Webpack Plugin Internal stylesheets webpack@5.21.0 should remove entire unused internal stylesheets 1`] = `"h1{color: green;}"`;
+exports[`Beastcss Webpack Plugin Internal stylesheets webpack@5 should remove entire unused internal stylesheets 1`] = `"h1{color: green;}"`;
 
-exports[`Beastcss Webpack Plugin Internal stylesheets webpack@5.21.0 should remove unused rules 1`] = `
+exports[`Beastcss Webpack Plugin Internal stylesheets webpack@5 should remove unused rules 1`] = `
 "<!DOCTYPE html>
 <html>
   <head>
@@ -213,7 +213,7 @@ exports[`Beastcss Webpack Plugin Internal stylesheets webpack@5.21.0 should remo
 "
 `;
 
-exports[`Beastcss Webpack Plugin Without html-webpack-plugin webpack@4.40.0 should match html snapshot 1`] = `
+exports[`Beastcss Webpack Plugin Without html-webpack-plugin webpack@4 should match html snapshot 1`] = `
 "<!DOCTYPE html>
 <html>
   <head>
@@ -228,7 +228,7 @@ exports[`Beastcss Webpack Plugin Without html-webpack-plugin webpack@4.40.0 shou
 "
 `;
 
-exports[`Beastcss Webpack Plugin Without html-webpack-plugin webpack@5.21.0 should match html snapshot 1`] = `
+exports[`Beastcss Webpack Plugin Without html-webpack-plugin webpack@5 should match html snapshot 1`] = `
 "<!DOCTYPE html>
 <html>
   <head>
@@ -243,7 +243,7 @@ exports[`Beastcss Webpack Plugin Without html-webpack-plugin webpack@5.21.0 shou
 "
 `;
 
-exports[`Beastcss Webpack Plugin additional stylesheets webpack@4.40.0 should match html snapshot 1`] = `
+exports[`Beastcss Webpack Plugin additional stylesheets webpack@4 should match html snapshot 1`] = `
 "<!DOCTYPE html>
 <html>
   <head>
@@ -258,7 +258,7 @@ exports[`Beastcss Webpack Plugin additional stylesheets webpack@4.40.0 should ma
 "
 `;
 
-exports[`Beastcss Webpack Plugin additional stylesheets webpack@5.21.0 should match html snapshot 1`] = `
+exports[`Beastcss Webpack Plugin additional stylesheets webpack@5 should match html snapshot 1`] = `
 "<!DOCTYPE html>
 <html>
   <head>
@@ -273,7 +273,7 @@ exports[`Beastcss Webpack Plugin additional stylesheets webpack@5.21.0 should ma
 "
 `;
 
-exports[`Beastcss Webpack Plugin preloadExternalStylesheets webpack@4.40.0 should match html snapshot 1`] = `
+exports[`Beastcss Webpack Plugin preloadExternalStylesheets webpack@4 should match html snapshot 1`] = `
 "<!DOCTYPE html>
 <html>
   <head>
@@ -310,7 +310,7 @@ exports[`Beastcss Webpack Plugin preloadExternalStylesheets webpack@4.40.0 shoul
 "
 `;
 
-exports[`Beastcss Webpack Plugin preloadExternalStylesheets webpack@5.21.0 should match html snapshot 1`] = `
+exports[`Beastcss Webpack Plugin preloadExternalStylesheets webpack@5 should match html snapshot 1`] = `
 "<!DOCTYPE html>
 <html>
   <head>
@@ -347,7 +347,7 @@ exports[`Beastcss Webpack Plugin preloadExternalStylesheets webpack@5.21.0 shoul
 "
 `;
 
-exports[`Beastcss Webpack Plugin prune source on multiple html webpack@4.40.0 should match html snapshot 1`] = `
+exports[`Beastcss Webpack Plugin prune source on multiple html webpack@4 should match html snapshot 1`] = `
 "<!DOCTYPE html>
 <html>
   <head>
@@ -398,7 +398,7 @@ exports[`Beastcss Webpack Plugin prune source on multiple html webpack@4.40.0 sh
 "
 `;
 
-exports[`Beastcss Webpack Plugin prune source on multiple html webpack@4.40.0 should match html2 snapshot: test 1`] = `
+exports[`Beastcss Webpack Plugin prune source on multiple html webpack@4 should match html2 snapshot: test 1`] = `
 "<!DOCTYPE html>
 <html>
   <head>
@@ -451,9 +451,9 @@ exports[`Beastcss Webpack Plugin prune source on multiple html webpack@4.40.0 sh
 "
 `;
 
-exports[`Beastcss Webpack Plugin prune source on multiple html webpack@4.40.0 should match stylesheet snapshot 1`] = `".extra-style{font-size: 200%;}"`;
+exports[`Beastcss Webpack Plugin prune source on multiple html webpack@4 should match stylesheet snapshot 1`] = `".extra-style{font-size: 200%;}"`;
 
-exports[`Beastcss Webpack Plugin prune source on multiple html webpack@5.21.0 should match html snapshot 1`] = `
+exports[`Beastcss Webpack Plugin prune source on multiple html webpack@5 should match html snapshot 1`] = `
 "<!DOCTYPE html>
 <html>
   <head>
@@ -504,7 +504,7 @@ exports[`Beastcss Webpack Plugin prune source on multiple html webpack@5.21.0 sh
 "
 `;
 
-exports[`Beastcss Webpack Plugin prune source on multiple html webpack@5.21.0 should match html2 snapshot: test 1`] = `
+exports[`Beastcss Webpack Plugin prune source on multiple html webpack@5 should match html2 snapshot: test 1`] = `
 "<!DOCTYPE html>
 <html>
   <head>
@@ -557,7 +557,7 @@ exports[`Beastcss Webpack Plugin prune source on multiple html webpack@5.21.0 sh
 "
 `;
 
-exports[`Beastcss Webpack Plugin prune source on multiple html webpack@5.21.0 should match stylesheet snapshot 1`] = `
+exports[`Beastcss Webpack Plugin prune source on multiple html webpack@5 should match stylesheet snapshot 1`] = `
 ":root {
   font-size: 10px;
 }
@@ -620,7 +620,7 @@ h2 {
 "
 `;
 
-exports[`Beastcss Webpack Plugin prune source on multiple html without html-webpack-plugin webpack@4.40.0 should match html snapshot 1`] = `
+exports[`Beastcss Webpack Plugin prune source on multiple html without html-webpack-plugin webpack@4 should match html snapshot 1`] = `
 "<!DOCTYPE html>
 <html>
   <head>
@@ -658,7 +658,7 @@ exports[`Beastcss Webpack Plugin prune source on multiple html without html-webp
 "
 `;
 
-exports[`Beastcss Webpack Plugin prune source on multiple html without html-webpack-plugin webpack@4.40.0 should match html2 snapshot: test 1`] = `
+exports[`Beastcss Webpack Plugin prune source on multiple html without html-webpack-plugin webpack@4 should match html2 snapshot: test 1`] = `
 "<!DOCTYPE html>
 <html>
   <head>
@@ -698,9 +698,9 @@ exports[`Beastcss Webpack Plugin prune source on multiple html without html-webp
 "
 `;
 
-exports[`Beastcss Webpack Plugin prune source on multiple html without html-webpack-plugin webpack@4.40.0 should match stylesheet snapshot 1`] = `".extra-style{font-size: 200%;}"`;
+exports[`Beastcss Webpack Plugin prune source on multiple html without html-webpack-plugin webpack@4 should match stylesheet snapshot 1`] = `".extra-style{font-size: 200%;}"`;
 
-exports[`Beastcss Webpack Plugin prune source on multiple html without html-webpack-plugin webpack@5.21.0 should match html snapshot 1`] = `
+exports[`Beastcss Webpack Plugin prune source on multiple html without html-webpack-plugin webpack@5 should match html snapshot 1`] = `
 "<!DOCTYPE html>
 <html>
   <head>
@@ -738,7 +738,7 @@ exports[`Beastcss Webpack Plugin prune source on multiple html without html-webp
 "
 `;
 
-exports[`Beastcss Webpack Plugin prune source on multiple html without html-webpack-plugin webpack@5.21.0 should match html2 snapshot: test 1`] = `
+exports[`Beastcss Webpack Plugin prune source on multiple html without html-webpack-plugin webpack@5 should match html2 snapshot: test 1`] = `
 "<!DOCTYPE html>
 <html>
   <head>
@@ -778,9 +778,9 @@ exports[`Beastcss Webpack Plugin prune source on multiple html without html-webp
 "
 `;
 
-exports[`Beastcss Webpack Plugin prune source on multiple html without html-webpack-plugin webpack@5.21.0 should match stylesheet snapshot 1`] = `".extra-style{font-size: 200%;}"`;
+exports[`Beastcss Webpack Plugin prune source on multiple html without html-webpack-plugin webpack@5 should match stylesheet snapshot 1`] = `".extra-style{font-size: 200%;}"`;
 
-exports[`Beastcss Webpack Plugin publicPath webpack@4.40.0 should match html snapshot 1`] = `
+exports[`Beastcss Webpack Plugin publicPath webpack@4 should match html snapshot 1`] = `
 "<!DOCTYPE html>
 <html>
   <head>
@@ -817,9 +817,9 @@ exports[`Beastcss Webpack Plugin publicPath webpack@4.40.0 should match html sna
 "
 `;
 
-exports[`Beastcss Webpack Plugin publicPath webpack@4.40.0 should prune external sheet 1`] = `".extra-style{font-size: 200%;}"`;
+exports[`Beastcss Webpack Plugin publicPath webpack@4 should prune external sheet 1`] = `".extra-style{font-size: 200%;}"`;
 
-exports[`Beastcss Webpack Plugin publicPath webpack@5.21.0 should match html snapshot 1`] = `
+exports[`Beastcss Webpack Plugin publicPath webpack@5 should match html snapshot 1`] = `
 "<!DOCTYPE html>
 <html>
   <head>
@@ -856,7 +856,7 @@ exports[`Beastcss Webpack Plugin publicPath webpack@5.21.0 should match html sna
 "
 `;
 
-exports[`Beastcss Webpack Plugin publicPath webpack@5.21.0 should prune external sheet 1`] = `
+exports[`Beastcss Webpack Plugin publicPath webpack@5 should prune external sheet 1`] = `
 ":root {
   font-size: 10px;
 }
@@ -913,7 +913,7 @@ footer {
 "
 `;
 
-exports[`Beastcss Webpack Plugin webpack compilation webpack@4.40.0 should match html snapshot 1`] = `
+exports[`Beastcss Webpack Plugin webpack compilation webpack@4 should match html snapshot 1`] = `
 "<!DOCTYPE html>
 <html>
   <head>
@@ -951,7 +951,7 @@ exports[`Beastcss Webpack Plugin webpack compilation webpack@4.40.0 should match
 "
 `;
 
-exports[`Beastcss Webpack Plugin webpack compilation webpack@5.21.0 should match html snapshot 1`] = `
+exports[`Beastcss Webpack Plugin webpack compilation webpack@5 should match html snapshot 1`] = `
 "<!DOCTYPE html>
 <html>
   <head>

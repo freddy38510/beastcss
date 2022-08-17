@@ -1,0 +1,9 @@
+{
+  "bootstrap-sha": "c3554a3a3a201d76d84419bc27dda4f0c046d86d",
+  "packages": {
+    "packages/beastcss": {},
+    "packages/beastcss-webpack-plugin": {}
+  },
+  "plugins": ["node-workspace"],
+  "group-pull-request-title-pattern": "chore${scope}: release${component} ${version}"
+}

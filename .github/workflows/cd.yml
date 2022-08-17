@@ -1,0 +1,29 @@
+name: CD
+
+on:
+  workflow_run:
+    workflows: ["CI"]
+    types:
+      - completed
+  workflow_dispatch:
+
+jobs:
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+    # outputs:
+    # releases_created: ${{ steps.release-please.outputs.releases_created }}
+    steps:
+      - name: Running Release Please
+        uses: google-github-actions/release-please-action@v3
+        id: release-please
+        with:
+          command: manifest
+          token: ${{secrets.GITHUB_TOKEN}}
+          default-branch: master
+          config-file: .github/release-please-config.json
+          manifest-file: .github/release-please-manifest.json
+
+      # - name: Publish packages
+      #  if: ${{ steps.release.outputs.releases_created }}
+      #  run: pnpm -r publish --access public

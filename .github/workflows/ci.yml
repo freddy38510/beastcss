@@ -30,17 +30,20 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2.2.2
+
       - name: Set node version to ${{ matrix.node_version }}
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node_version }}
-          cache: "yarn"
+          cache: "pnpm"
 
       - name: Install deps
-        run: yarn install --frozen-lockfile
+        run: pnpm install
 
       - name: Test unit
-        run: yarn test
+        run: pnpm run test
 
   lint:
     timeout-minutes: 10
@@ -51,17 +54,20 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2.2.2
+
       - name: Set node version to 14
         uses: actions/setup-node@v3
         with:
           node-version: 14
-          cache: "yarn"
+          cache: "pnpm"
 
       - name: Install deps
-        run: yarn install --frozen-lockfile
+        run: pnpm install
 
       - name: Lint
-        run: yarn run lint
+        run: pnpm run lint
 
       - name: Check formatting
-        run: yarn prettier --check .
+        run: pnpm prettier --check .

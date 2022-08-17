@@ -42,18 +42,10 @@ body:
     attributes:
       label: Environment
       description: |
-        Please paste the output of running `npx envinfo --preset jest --npmPackages beastcss,beastcss-webpack-plugin`.
+        Please paste the output of running `npx envinfo --system --npmPackages beastcss,beastcss-webpack-plugin --binaries`.
         This will be automatically formatted as a code block, so no need for backticks.
       placeholder: |
-        System:
-          OS: Linux 5.18 Arch Linux
-          CPU: (8) arm64
-        Binaries:
-         Node: 18.7.0 - /usr/sbin/node
-         Yarn: 1.22.19 - /usr/sbin/yarn
-         npm: 8.17.0 - /usr/sbin/npm
-        npmPackages:
-          beastcss: 1.1.2 => 1.1.2
+        System, Binaries, npmPackages
       render: shell
     validations:
       required: true
