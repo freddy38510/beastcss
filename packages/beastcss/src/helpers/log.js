@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import chalk from 'chalk';
+import { bold, blue, yellow, red } from 'kolorist';
 
 const LOG_LEVELS = ['trace', 'debug', 'info', 'warn', 'error', 'silent'];
 
@@ -11,13 +11,13 @@ export const defaultLogger = {
     console.debug(msg);
   },
   info(msg) {
-    console.info(chalk.bold.blue(msg));
+    console.info(bold(blue(msg)));
   },
   warn(msg) {
-    console.warn(chalk.yellow(msg));
+    console.warn(yellow(msg));
   },
   error(msg) {
-    console.error(chalk.bold.red(msg));
+    console.error(bold(red(msg)));
   },
 };
 

@@ -39,8 +39,8 @@
   },
   "dependencies": {
     "@freddy38510/dropcss": "2.4.0",
-    "chalk": "4.1.2",
     "fast-glob": "3.2.11",
+    "kolorist": "1.5.1",
     "node-html-parser": "5.4.1"
   },
   "publishConfig": {

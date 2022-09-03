@@ -2,7 +2,7 @@
 /* eslint-disable no-console */
 import fs from 'fs';
 import path from 'path';
-import chalk from 'chalk';
+import { bold, blue } from 'kolorist';
 import { instantiateBeastcss, copyDir, cleanDist } from './_helpers';
 
 describe('Beastcss', () => {
@@ -525,7 +525,7 @@ describe('Beastcss', () => {
       Beastcss.logger.info('message');
 
       expect(console.info.mock.results).toHaveLength(1);
-      expect(console.info.mock.calls[0][0]).toBe(chalk.bold.blue('message'));
+      expect(console.info.mock.calls[0][0]).toBe(bold(blue('message')));
     });
 
     it('should log with custom logger', () => {
