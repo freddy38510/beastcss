@@ -16,6 +16,8 @@ export default class BeastcssWebpackPlugin extends Beastcss {
     });
 
     super(options);
+
+    this.processedAssets = new Set();
   }
 
   /**
@@ -78,11 +80,17 @@ export default class BeastcssWebpackPlugin extends Beastcss {
         HtmlWebpackPlugin.constructor
           .getHooks(compilation)
           .beforeEmit.tapPromise(PLUGIN_NAME, async (htmlPluginData) => {
+            if (this.processedAssets.has(htmlPluginData.outputName)) {
+              return htmlPluginData;
+            }
+
             try {
               const html = await this.process(
                 htmlPluginData.html,
                 htmlPluginData.outputName
               );
+
+              this.processedAssets.add(htmlPluginData.outputName);
 
               htmlPluginData.html = html;
             } catch (e) {
@@ -110,10 +118,16 @@ export default class BeastcssWebpackPlugin extends Beastcss {
 
             await Promise.all(
               htmlAssets.map(async (htmlAsset) => {
+                if (this.processedAssets.has(htmlAsset.name)) {
+                  return;
+                }
+
                 const html = await this.process(
                   htmlAsset.html.toString(),
                   htmlAsset.name
                 );
+
+                this.processedAssets.add(htmlAsset.name);
 
                 this.compilation.updateAsset(
                   htmlAsset.name,
@@ -258,5 +272,11 @@ export default class BeastcssWebpackPlugin extends Beastcss {
         await this.fs.removeFile(stylesheet.path);
       }
     }
+  }
+
+  clear() {
+    super.clear();
+
+    this.processedAssets.clear();
   }
 }

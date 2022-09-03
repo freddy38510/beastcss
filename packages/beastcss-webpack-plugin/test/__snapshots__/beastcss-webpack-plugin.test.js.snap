@@ -37,62 +37,7 @@ exports[`Beastcss Webpack Plugin External stylesheets should match html snapshot
 "
 `;
 
-exports[`Beastcss Webpack Plugin External stylesheets should prune external stylesheet 1`] = `
-":root {
-  font-size: 10px;
-}
-html {
-  height: 100%;
-}
-body {
-  padding-left: 11em;
-  font-family: 'Times New Roman', times, serif;
-  color: purple;
-  background-color: #d8da3d;
-}
-*,
-:after,
-:before {
-  box-sizing: inherit;
-}
-ul.navbar {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-  position: absolute;
-  top: 2em;
-  left: 1em;
-  width: 9em;
-}
-h1 {
-  font-family: helvetica, arial, sans-serif;
-}
-ul.navbar li {
-  background: white;
-  margin: 0.5em 0;
-  padding: 0.3em;
-  border-right: 1em solid black;
-}
-ul.navbar a {
-  text-decoration: none;
-}
-a:link {
-  color: blue;
-}
-a:visited {
-  color: purple;
-}
-footer {
-  margin-top: 1em;
-  padding-top: 1em;
-  border-top: thin dotted;
-}
-.extra-style {
-  font-size: 200%;
-}
-
-"
-`;
+exports[`Beastcss Webpack Plugin External stylesheets should prune external stylesheet 1`] = `".extra-style{font-size: 200%;}"`;
 
 exports[`Beastcss Webpack Plugin Internal stylesheets should remove entire unused internal stylesheets 1`] = `"h1{color: green;}"`;
 
@@ -220,21 +165,7 @@ exports[`Beastcss Webpack Plugin prune source on multiple html should match html
   padding: 0.3em;
   border-right: 1em solid black;}ul.navbar a{text-decoration: none;}a:link{color: blue;}a:visited{color: purple;}footer{margin-top: 1em;
   padding-top: 1em;
-  border-top: thin dotted;}:root{font-size: 10px;}html{height: 100%;}body{padding-left: 11em;
-  font-family: 'Times New Roman', times, serif;
-  color: purple;
-  background-color: #d8da3d;}*,:after,:before{box-sizing: inherit;}ul.navbar{list-style-type: none;
-  padding: 0;
-  margin: 0;
-  position: absolute;
-  top: 2em;
-  left: 1em;
-  width: 9em;}h1{font-family: helvetica, arial, sans-serif;}ul.navbar li{background: white;
-  margin: 0.5em 0;
-  padding: 0.3em;
-  border-right: 1em solid black;}ul.navbar a{text-decoration: none;}a:link{color: blue;}a:visited{color: purple;}footer{margin-top: 1em;
-  padding-top: 1em;
-  border-top: thin dotted;}</style><link href=\\"main.css\\" rel=\\"stylesheet\\" media=\\"print\\" onload=\\"this.media='print'; this.onload=null;\\"><noscript><link rel=\\"stylesheet\\" href=\\"main.css\\" media=\\"print\\"></noscript><noscript><link rel=\\"stylesheet\\" href=\\"main.css\\"></noscript></head>
+  border-top: thin dotted;}</style><link href=\\"main.css\\" rel=\\"stylesheet\\" media=\\"print\\" onload=\\"this.media='all'; this.onload=null;\\"><noscript><link rel=\\"stylesheet\\" href=\\"main.css\\"></noscript></head>
   <body>
     <ul class=\\"navbar\\">
       <li>
@@ -271,21 +202,7 @@ exports[`Beastcss Webpack Plugin prune source on multiple html should match html
   padding: 0.3em;
   border-right: 1em solid black;}ul.navbar a{text-decoration: none;}a:link{color: blue;}a:visited{color: purple;}footer{margin-top: 1em;
   padding-top: 1em;
-  border-top: thin dotted;}h2{color: red;}.bold{font-weight: bold;}:root{font-size: 10px;}html{height: 100%;}body{padding-left: 11em;
-  font-family: 'Times New Roman', times, serif;
-  color: purple;
-  background-color: #d8da3d;}*,:after,:before{box-sizing: inherit;}ul.navbar{list-style-type: none;
-  padding: 0;
-  margin: 0;
-  position: absolute;
-  top: 2em;
-  left: 1em;
-  width: 9em;}h1{font-family: helvetica, arial, sans-serif;}ul.navbar li{background: white;
-  margin: 0.5em 0;
-  padding: 0.3em;
-  border-right: 1em solid black;}ul.navbar a{text-decoration: none;}a:link{color: blue;}a:visited{color: purple;}footer{margin-top: 1em;
-  padding-top: 1em;
-  border-top: thin dotted;}h2{color: red;}.bold{font-weight: bold;}</style><link href=\\"main.css\\" rel=\\"stylesheet\\" media=\\"print\\" onload=\\"this.media='print'; this.onload=null;\\"><noscript><link rel=\\"stylesheet\\" href=\\"main.css\\" media=\\"print\\"></noscript><noscript><link rel=\\"stylesheet\\" href=\\"main.css\\"></noscript></head>
+  border-top: thin dotted;}h2{color: red;}.bold{font-weight: bold;}</style><link href=\\"main.css\\" rel=\\"stylesheet\\" media=\\"print\\" onload=\\"this.media='all'; this.onload=null;\\"><noscript><link rel=\\"stylesheet\\" href=\\"main.css\\"></noscript></head>
   <body>
     <ul class=\\"navbar\\">
       <li>
@@ -305,68 +222,7 @@ exports[`Beastcss Webpack Plugin prune source on multiple html should match html
 "
 `;
 
-exports[`Beastcss Webpack Plugin prune source on multiple html should match stylesheet snapshot 1`] = `
-":root {
-  font-size: 10px;
-}
-html {
-  height: 100%;
-}
-body {
-  padding-left: 11em;
-  font-family: 'Times New Roman', times, serif;
-  color: purple;
-  background-color: #d8da3d;
-}
-*,
-:after,
-:before {
-  box-sizing: inherit;
-}
-ul.navbar {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-  position: absolute;
-  top: 2em;
-  left: 1em;
-  width: 9em;
-}
-h1 {
-  font-family: helvetica, arial, sans-serif;
-}
-ul.navbar li {
-  background: white;
-  margin: 0.5em 0;
-  padding: 0.3em;
-  border-right: 1em solid black;
-}
-ul.navbar a {
-  text-decoration: none;
-}
-a:link {
-  color: blue;
-}
-a:visited {
-  color: purple;
-}
-footer {
-  margin-top: 1em;
-  padding-top: 1em;
-  border-top: thin dotted;
-}
-h2 {
-  color: red;
-}
-.bold {
-  font-weight: bold;
-}
-.extra-style {
-  font-size: 200%;
-}
-
-"
-`;
+exports[`Beastcss Webpack Plugin prune source on multiple html should match stylesheet snapshot 1`] = `".extra-style{font-size: 200%;}"`;
 
 exports[`Beastcss Webpack Plugin prune source on multiple html without html-webpack-plugin should match html snapshot 1`] = `
 "<!DOCTYPE html>
@@ -485,62 +341,7 @@ exports[`Beastcss Webpack Plugin publicPath should match html snapshot 1`] = `
 "
 `;
 
-exports[`Beastcss Webpack Plugin publicPath should prune external sheet 1`] = `
-":root {
-  font-size: 10px;
-}
-html {
-  height: 100%;
-}
-body {
-  padding-left: 11em;
-  font-family: 'Times New Roman', times, serif;
-  color: purple;
-  background-color: #d8da3d;
-}
-*,
-:after,
-:before {
-  box-sizing: inherit;
-}
-ul.navbar {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-  position: absolute;
-  top: 2em;
-  left: 1em;
-  width: 9em;
-}
-h1 {
-  font-family: helvetica, arial, sans-serif;
-}
-ul.navbar li {
-  background: white;
-  margin: 0.5em 0;
-  padding: 0.3em;
-  border-right: 1em solid black;
-}
-ul.navbar a {
-  text-decoration: none;
-}
-a:link {
-  color: blue;
-}
-a:visited {
-  color: purple;
-}
-footer {
-  margin-top: 1em;
-  padding-top: 1em;
-  border-top: thin dotted;
-}
-.extra-style {
-  font-size: 200%;
-}
-
-"
-`;
+exports[`Beastcss Webpack Plugin publicPath should prune external sheet 1`] = `".extra-style{font-size: 200%;}"`;
 
 exports[`Beastcss Webpack Plugin webpack compilation should match html snapshot 1`] = `
 "<!DOCTYPE html>
