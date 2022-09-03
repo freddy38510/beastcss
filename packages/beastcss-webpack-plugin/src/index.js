@@ -61,9 +61,11 @@ export default class BeastcssWebpackPlugin extends Beastcss {
   }
 
   run(compiler) {
-    const HtmlWebpackPlugins = compiler.options.plugins.filter(
+    const htmlWebpackPlugins = compiler.options.plugins.filter(
       ({ constructor }) => constructor.name === 'HtmlWebpackPlugin'
     );
+
+    compiler.hooks.afterEmit.tap(PLUGIN_NAME, () => this.clear());
 
     compiler.hooks.thisCompilation.tap(PLUGIN_NAME, (compilation) => {
       this.compilation = compilation;
@@ -72,12 +74,7 @@ export default class BeastcssWebpackPlugin extends Beastcss {
         ? compilation.getLogger(PLUGIN_NAME)
         : this.logger;
 
-      // free memory / is it really necessary ?
-      // TODO: check if beastcss instance still exists
-      compiler.hooks.afterEmit.tap(PLUGIN_NAME, () => this.clear());
-
-      // html-webpack-plugin beforeEmit hook
-      HtmlWebpackPlugins.forEach((HtmlWebpackPlugin) => {
+      htmlWebpackPlugins.forEach((HtmlWebpackPlugin) => {
         HtmlWebpackPlugin.constructor
           .getHooks(compilation)
           .beforeEmit.tapPromise(PLUGIN_NAME, async (htmlPluginData) => {
@@ -98,54 +95,55 @@ export default class BeastcssWebpackPlugin extends Beastcss {
           });
       });
 
-      if (HtmlWebpackPlugins.length === 0) {
-        compilation.hooks.processAssets.tapPromise(
-          {
-            name: PLUGIN_NAME,
-            stage: compilation.constructor.PROCESS_ASSETS_STAGE_OPTIMIZE,
-          },
-          async (assets) => this.runWithoutHtmlWebpackPlugin(assets)
-        );
+      compilation.hooks.processAssets.tapPromise(
+        {
+          name: PLUGIN_NAME,
+          stage: compilation.constructor.PROCESS_ASSETS_STAGE_OPTIMIZE_INLINE,
+        },
+        async (assets) => {
+          try {
+            const htmlAssets = this.findHtmlAssets(assets);
 
-        return;
-      }
+            if (htmlAssets.length === 0 && htmlWebpackPlugins.length === 0) {
+              this.opts.logger.warn('Could not find any HTML asset.');
+            }
+
+            await Promise.all(
+              htmlAssets.map(async (htmlAsset) => {
+                const html = await this.process(
+                  htmlAsset.html.toString(),
+                  htmlAsset.name
+                );
+
+                this.compilation.updateAsset(
+                  htmlAsset.name,
+                  new this.sources.RawSource(html)
+                );
+              })
+            );
+
+            if (this.options.pruneSource) {
+              await this.pruneSources();
+            }
+          } catch (e) {
+            this.compilation.errors.push(e);
+          }
+        }
+      );
 
       if (this.options.pruneSource) {
         compilation.hooks.processAssets.tapPromise(
           {
             name: PLUGIN_NAME,
-            stage: compilation.constructor.PROCESS_ASSETS_STAGE_OPTIMIZE_SIZE,
+            // html-webpack-plugin uses PROCESS_ASSETS_STAGE_OPTIMIZE_INLINE
+            stage:
+              compilation.constructor.PROCESS_ASSETS_STAGE_OPTIMIZE_INLINE +
+              100,
           },
           async () => this.pruneSources()
         );
       }
     });
-  }
-
-  async runWithoutHtmlWebpackPlugin(assets) {
-    try {
-      const htmlAssets = this.findHtmlAssets(assets);
-
-      await Promise.all(
-        htmlAssets.map(async (htmlAsset) => {
-          const html = await this.process(
-            htmlAsset.html.toString(),
-            htmlAsset.name
-          );
-
-          this.compilation.updateAsset(
-            htmlAsset.name,
-            new this.sources.RawSource(html)
-          );
-        })
-      );
-
-      if (this.options.pruneSource) {
-        await this.pruneSources();
-      }
-    } catch (e) {
-      this.compilation.errors.push(e);
-    }
   }
 
   findHtmlAssets(assets) {
@@ -156,7 +154,9 @@ export default class BeastcssWebpackPlugin extends Beastcss {
         const html = this.compilation.getAsset(asset).source.source();
 
         if (!html) {
-          throw Error('Empty HTML asset.');
+          this.opts.logger.warn(`Empty HTML asset "${asset}".`);
+
+          return;
         }
 
         htmlAssets.push({
@@ -165,10 +165,6 @@ export default class BeastcssWebpackPlugin extends Beastcss {
         });
       }
     });
-
-    if (htmlAssets.length === 0) {
-      throw Error('Could not find HTML asset.');
-    }
 
     return htmlAssets;
   }
