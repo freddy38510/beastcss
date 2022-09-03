@@ -1,45 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Beastcss Webpack Plugin External stylesheets webpack@4 should match html snapshot 1`] = `
-"<!DOCTYPE html>
-<html>
-  <head>
-    <title>External CSS Demo</title>
-  <style>:root{font-size: 10px;}html{height: 100%;}body{padding-left: 11em;
-  font-family: 'Times New Roman', times, serif;
-  color: purple;
-  background-color: #d8da3d;}*,:after,:before{box-sizing: inherit;}ul.navbar{list-style-type: none;
-  padding: 0;
-  margin: 0;
-  position: absolute;
-  top: 2em;
-  left: 1em;
-  width: 9em;}h1{font-family: helvetica, arial, sans-serif;}ul.navbar li{background: white;
-  margin: 0.5em 0;
-  padding: 0.3em;
-  border-right: 1em solid black;}ul.navbar a{text-decoration: none;}a:link{color: blue;}a:visited{color: purple;}footer{margin-top: 1em;
-  padding-top: 1em;
-  border-top: thin dotted;}</style><link href=\\"main.css\\" rel=\\"stylesheet\\" media=\\"print\\" onload=\\"this.media='all'; this.onload=null;\\"><noscript><link rel=\\"stylesheet\\" href=\\"main.css\\"></noscript></head>
-  <body>
-    <ul class=\\"navbar\\">
-      <li>
-        <a href=\\"index.html\\">Home page</a>
-      </li>
-      <li>
-        <a href=\\"musings.html\\">Musings</a>
-      </li>
-    </ul>
-    <h1>My first styled page</h1>
-    <p>Welcome to my styled page!</p>
-    <footer>Made 5 April 2004</footer>
-  <script src=\\"bundle.js\\"></script></body>
-</html>
-"
-`;
-
-exports[`Beastcss Webpack Plugin External stylesheets webpack@4 should prune external stylesheet 1`] = `".extra-style{font-size: 200%;}"`;
-
-exports[`Beastcss Webpack Plugin External stylesheets webpack@5 should match html snapshot 1`] = `
+exports[`Beastcss Webpack Plugin External stylesheets should match html snapshot 1`] = `
 "<!DOCTYPE html>
 <html>
   <head>
@@ -76,7 +37,7 @@ exports[`Beastcss Webpack Plugin External stylesheets webpack@5 should match htm
 "
 `;
 
-exports[`Beastcss Webpack Plugin External stylesheets webpack@5 should prune external stylesheet 1`] = `
+exports[`Beastcss Webpack Plugin External stylesheets should prune external stylesheet 1`] = `
 ":root {
   font-size: 10px;
 }
@@ -133,49 +94,9 @@ footer {
 "
 `;
 
-exports[`Beastcss Webpack Plugin Internal stylesheets webpack@4 should remove entire unused internal stylesheets 1`] = `"h1{color: green;}"`;
+exports[`Beastcss Webpack Plugin Internal stylesheets should remove entire unused internal stylesheets 1`] = `"h1{color: green;}"`;
 
-exports[`Beastcss Webpack Plugin Internal stylesheets webpack@4 should remove unused rules 1`] = `
-"<!DOCTYPE html>
-<html>
-  <head>
-    <title>Basic Demo</title>
-    <style>body{padding-left: 11em;
-        font-family: 'Times New Roman', times, serif;
-        color: purple;
-        background-color: #d8da3d;}ul.navbar{list-style-type: none;
-        padding: 0;
-        margin: 0;
-        position: absolute;
-        top: 2em;
-        left: 1em;
-        width: 9em;}h1{font-family: helvetica, arial, sans-serif;}ul.navbar li{background: white;
-        margin: 0.5em 0;
-        padding: 0.3em;
-        border-right: 1em solid black;}ul.navbar a{text-decoration: none;}ul.navbar:not(.hidden) li:hover a{color: black;}ul.navbar:not(:hover) li:hover a{color: black;}ul.navbar li:hover a{color: red;}a:link{color: blue;}a:visited{color: purple;}footer{margin-top: 1em;
-        padding-top: 1em;
-        border-top: thin dotted;}.clazz\\\\:colon{color: green;}</style>
-  </head>
-  <body>
-    <ul class=\\"navbar clazz:colon\\">
-      <li>
-        <a href=\\"index.html\\">Home page</a>
-      </li>
-      <li>
-        <a href=\\"musings.html\\">Musings</a>
-      </li>
-    </ul>
-    <h1>My first styled page</h1>
-    <p>Welcome to my styled page!</p>
-    <footer>Made 5 April 2004</footer>
-  <script src=\\"bundle.js\\"></script></body>
-</html>
-"
-`;
-
-exports[`Beastcss Webpack Plugin Internal stylesheets webpack@5 should remove entire unused internal stylesheets 1`] = `"h1{color: green;}"`;
-
-exports[`Beastcss Webpack Plugin Internal stylesheets webpack@5 should remove unused rules 1`] = `
+exports[`Beastcss Webpack Plugin Internal stylesheets should remove unused rules 1`] = `
 "<!DOCTYPE html>
 <html>
   <head>
@@ -213,7 +134,7 @@ exports[`Beastcss Webpack Plugin Internal stylesheets webpack@5 should remove un
 "
 `;
 
-exports[`Beastcss Webpack Plugin Without html-webpack-plugin webpack@4 should match html snapshot 1`] = `
+exports[`Beastcss Webpack Plugin Without html-webpack-plugin should match html snapshot 1`] = `
 "<!DOCTYPE html>
 <html>
   <head>
@@ -228,22 +149,7 @@ exports[`Beastcss Webpack Plugin Without html-webpack-plugin webpack@4 should ma
 "
 `;
 
-exports[`Beastcss Webpack Plugin Without html-webpack-plugin webpack@5 should match html snapshot 1`] = `
-"<!DOCTYPE html>
-<html>
-  <head>
-    <title>Basic Demo</title>
-    
-    <style id=\\"used\\">h1{color: green;}</style>
-  </head>
-  <body>
-    <h1 class=\\"additional\\">Some HTML Here</h1>
-  </body>
-</html>
-"
-`;
-
-exports[`Beastcss Webpack Plugin additional stylesheets webpack@4 should match html snapshot 1`] = `
+exports[`Beastcss Webpack Plugin additional stylesheets should match html snapshot 1`] = `
 "<!DOCTYPE html>
 <html>
   <head>
@@ -258,59 +164,7 @@ exports[`Beastcss Webpack Plugin additional stylesheets webpack@4 should match h
 "
 `;
 
-exports[`Beastcss Webpack Plugin additional stylesheets webpack@5 should match html snapshot 1`] = `
-"<!DOCTYPE html>
-<html>
-  <head>
-    <title>Basic Demo</title>
-    
-    <style id=\\"used\\">h1{color: green;}.additional{background: red;}</style>
-  </head>
-  <body>
-    <h1 class=\\"additional\\">Some HTML Here</h1>
-  </body>
-</html>
-"
-`;
-
-exports[`Beastcss Webpack Plugin preloadExternalStylesheets webpack@4 should match html snapshot 1`] = `
-"<!DOCTYPE html>
-<html>
-  <head>
-    <title>External CSS Demo</title>
-  <style>:root{font-size: 10px;}html{height: 100%;}body{padding-left: 11em;
-  font-family: 'Times New Roman', times, serif;
-  color: purple;
-  background-color: #d8da3d;}*,:after,:before{box-sizing: inherit;}ul.navbar{list-style-type: none;
-  padding: 0;
-  margin: 0;
-  position: absolute;
-  top: 2em;
-  left: 1em;
-  width: 9em;}h1{font-family: helvetica, arial, sans-serif;}ul.navbar li{background: white;
-  margin: 0.5em 0;
-  padding: 0.3em;
-  border-right: 1em solid black;}ul.navbar a{text-decoration: none;}a:link{color: blue;}a:visited{color: purple;}footer{margin-top: 1em;
-  padding-top: 1em;
-  border-top: thin dotted;}</style><link rel=\\"preload\\" href=\\"main.css\\" as=\\"style\\"><link href=\\"main.css\\" rel=\\"stylesheet\\" media=\\"print\\" onload=\\"this.media='all'; this.onload=null;\\"><noscript><link rel=\\"stylesheet\\" href=\\"main.css\\"></noscript></head>
-  <body>
-    <ul class=\\"navbar\\">
-      <li>
-        <a href=\\"index.html\\">Home page</a>
-      </li>
-      <li>
-        <a href=\\"musings.html\\">Musings</a>
-      </li>
-    </ul>
-    <h1>My first styled page</h1>
-    <p>Welcome to my styled page!</p>
-    <footer>Made 5 April 2004</footer>
-  <script src=\\"bundle.js\\"></script></body>
-</html>
-"
-`;
-
-exports[`Beastcss Webpack Plugin preloadExternalStylesheets webpack@5 should match html snapshot 1`] = `
+exports[`Beastcss Webpack Plugin preloadExternalStylesheets should match html snapshot 1`] = `
 "<!DOCTYPE html>
 <html>
   <head>
@@ -347,113 +201,7 @@ exports[`Beastcss Webpack Plugin preloadExternalStylesheets webpack@5 should mat
 "
 `;
 
-exports[`Beastcss Webpack Plugin prune source on multiple html webpack@4 should match html snapshot 1`] = `
-"<!DOCTYPE html>
-<html>
-  <head>
-    <title>External CSS Demo</title>
-  <style>:root{font-size: 10px;}html{height: 100%;}body{padding-left: 11em;
-  font-family: 'Times New Roman', times, serif;
-  color: purple;
-  background-color: #d8da3d;}*,:after,:before{box-sizing: inherit;}ul.navbar{list-style-type: none;
-  padding: 0;
-  margin: 0;
-  position: absolute;
-  top: 2em;
-  left: 1em;
-  width: 9em;}h1{font-family: helvetica, arial, sans-serif;}ul.navbar li{background: white;
-  margin: 0.5em 0;
-  padding: 0.3em;
-  border-right: 1em solid black;}ul.navbar a{text-decoration: none;}a:link{color: blue;}a:visited{color: purple;}footer{margin-top: 1em;
-  padding-top: 1em;
-  border-top: thin dotted;}:root{font-size: 10px;}html{height: 100%;}body{padding-left: 11em;
-  font-family: 'Times New Roman', times, serif;
-  color: purple;
-  background-color: #d8da3d;}*,:after,:before{box-sizing: inherit;}ul.navbar{list-style-type: none;
-  padding: 0;
-  margin: 0;
-  position: absolute;
-  top: 2em;
-  left: 1em;
-  width: 9em;}h1{font-family: helvetica, arial, sans-serif;}ul.navbar li{background: white;
-  margin: 0.5em 0;
-  padding: 0.3em;
-  border-right: 1em solid black;}ul.navbar a{text-decoration: none;}a:link{color: blue;}a:visited{color: purple;}footer{margin-top: 1em;
-  padding-top: 1em;
-  border-top: thin dotted;}</style><link href=\\"main.css\\" rel=\\"stylesheet\\" media=\\"print\\" onload=\\"this.media='print'; this.onload=null;\\"><noscript><link rel=\\"stylesheet\\" href=\\"main.css\\" media=\\"print\\"></noscript><noscript><link rel=\\"stylesheet\\" href=\\"main.css\\"></noscript></head>
-  <body>
-    <ul class=\\"navbar\\">
-      <li>
-        <a href=\\"index.html\\">Home page</a>
-      </li>
-      <li>
-        <a href=\\"musings.html\\">Musings</a>
-      </li>
-    </ul>
-    <h1>My first styled page</h1>
-    <p>Welcome to my styled page!</p>
-    <footer>Made 5 April 2004</footer>
-  <script src=\\"bundle.js\\"></script></body>
-</html>
-"
-`;
-
-exports[`Beastcss Webpack Plugin prune source on multiple html webpack@4 should match html2 snapshot: test 1`] = `
-"<!DOCTYPE html>
-<html>
-  <head>
-    <title>External CSS Demo</title>
-  <style>:root{font-size: 10px;}html{height: 100%;}body{padding-left: 11em;
-  font-family: 'Times New Roman', times, serif;
-  color: purple;
-  background-color: #d8da3d;}*,:after,:before{box-sizing: inherit;}ul.navbar{list-style-type: none;
-  padding: 0;
-  margin: 0;
-  position: absolute;
-  top: 2em;
-  left: 1em;
-  width: 9em;}h1{font-family: helvetica, arial, sans-serif;}ul.navbar li{background: white;
-  margin: 0.5em 0;
-  padding: 0.3em;
-  border-right: 1em solid black;}ul.navbar a{text-decoration: none;}a:link{color: blue;}a:visited{color: purple;}footer{margin-top: 1em;
-  padding-top: 1em;
-  border-top: thin dotted;}h2{color: red;}.bold{font-weight: bold;}:root{font-size: 10px;}html{height: 100%;}body{padding-left: 11em;
-  font-family: 'Times New Roman', times, serif;
-  color: purple;
-  background-color: #d8da3d;}*,:after,:before{box-sizing: inherit;}ul.navbar{list-style-type: none;
-  padding: 0;
-  margin: 0;
-  position: absolute;
-  top: 2em;
-  left: 1em;
-  width: 9em;}h1{font-family: helvetica, arial, sans-serif;}ul.navbar li{background: white;
-  margin: 0.5em 0;
-  padding: 0.3em;
-  border-right: 1em solid black;}ul.navbar a{text-decoration: none;}a:link{color: blue;}a:visited{color: purple;}footer{margin-top: 1em;
-  padding-top: 1em;
-  border-top: thin dotted;}h2{color: red;}.bold{font-weight: bold;}</style><link href=\\"main.css\\" rel=\\"stylesheet\\" media=\\"print\\" onload=\\"this.media='print'; this.onload=null;\\"><noscript><link rel=\\"stylesheet\\" href=\\"main.css\\" media=\\"print\\"></noscript><noscript><link rel=\\"stylesheet\\" href=\\"main.css\\"></noscript></head>
-  <body>
-    <ul class=\\"navbar\\">
-      <li>
-        <a href=\\"index.html\\">Home page</a>
-      </li>
-      <li>
-        <a href=\\"musings.html\\">Musings</a>
-      </li>
-    </ul>
-    <h1>My first styled page</h1>
-    <p>Welcome to my styled page!</p>
-    <h2>Heading</h2>
-    <p class=\\"bold\\">bold paragraph</p>
-    <footer>Made 5 April 2004</footer>
-  <script src=\\"bundle.js\\"></script></body>
-</html>
-"
-`;
-
-exports[`Beastcss Webpack Plugin prune source on multiple html webpack@4 should match stylesheet snapshot 1`] = `".extra-style{font-size: 200%;}"`;
-
-exports[`Beastcss Webpack Plugin prune source on multiple html webpack@5 should match html snapshot 1`] = `
+exports[`Beastcss Webpack Plugin prune source on multiple html should match html snapshot 1`] = `
 "<!DOCTYPE html>
 <html>
   <head>
@@ -504,7 +252,7 @@ exports[`Beastcss Webpack Plugin prune source on multiple html webpack@5 should 
 "
 `;
 
-exports[`Beastcss Webpack Plugin prune source on multiple html webpack@5 should match html2 snapshot: test 1`] = `
+exports[`Beastcss Webpack Plugin prune source on multiple html should match html2 snapshot: test 1`] = `
 "<!DOCTYPE html>
 <html>
   <head>
@@ -557,7 +305,7 @@ exports[`Beastcss Webpack Plugin prune source on multiple html webpack@5 should 
 "
 `;
 
-exports[`Beastcss Webpack Plugin prune source on multiple html webpack@5 should match stylesheet snapshot 1`] = `
+exports[`Beastcss Webpack Plugin prune source on multiple html should match stylesheet snapshot 1`] = `
 ":root {
   font-size: 10px;
 }
@@ -620,7 +368,7 @@ h2 {
 "
 `;
 
-exports[`Beastcss Webpack Plugin prune source on multiple html without html-webpack-plugin webpack@4 should match html snapshot 1`] = `
+exports[`Beastcss Webpack Plugin prune source on multiple html without html-webpack-plugin should match html snapshot 1`] = `
 "<!DOCTYPE html>
 <html>
   <head>
@@ -658,7 +406,7 @@ exports[`Beastcss Webpack Plugin prune source on multiple html without html-webp
 "
 `;
 
-exports[`Beastcss Webpack Plugin prune source on multiple html without html-webpack-plugin webpack@4 should match html2 snapshot: test 1`] = `
+exports[`Beastcss Webpack Plugin prune source on multiple html without html-webpack-plugin should match html2 snapshot: test 1`] = `
 "<!DOCTYPE html>
 <html>
   <head>
@@ -698,128 +446,9 @@ exports[`Beastcss Webpack Plugin prune source on multiple html without html-webp
 "
 `;
 
-exports[`Beastcss Webpack Plugin prune source on multiple html without html-webpack-plugin webpack@4 should match stylesheet snapshot 1`] = `".extra-style{font-size: 200%;}"`;
+exports[`Beastcss Webpack Plugin prune source on multiple html without html-webpack-plugin should match stylesheet snapshot 1`] = `".extra-style{font-size: 200%;}"`;
 
-exports[`Beastcss Webpack Plugin prune source on multiple html without html-webpack-plugin webpack@5 should match html snapshot 1`] = `
-"<!DOCTYPE html>
-<html>
-  <head>
-    <title>External CSS Demo</title>
-    <style>:root{font-size: 10px;}html{height: 100%;}body{padding-left: 11em;
-  font-family: 'Times New Roman', times, serif;
-  color: purple;
-  background-color: #d8da3d;}*,:after,:before{box-sizing: inherit;}ul.navbar{list-style-type: none;
-  padding: 0;
-  margin: 0;
-  position: absolute;
-  top: 2em;
-  left: 1em;
-  width: 9em;}h1{font-family: helvetica, arial, sans-serif;}ul.navbar li{background: white;
-  margin: 0.5em 0;
-  padding: 0.3em;
-  border-right: 1em solid black;}ul.navbar a{text-decoration: none;}a:link{color: blue;}a:visited{color: purple;}footer{margin-top: 1em;
-  padding-top: 1em;
-  border-top: thin dotted;}</style><link rel=\\"stylesheet\\" href=\\"./style.css\\" media=\\"print\\" onload=\\"this.media='all'; this.onload=null;\\"><noscript><link rel=\\"stylesheet\\" href=\\"./style.css\\"></noscript>
-  </head>
-  <body>
-    <ul class=\\"navbar\\">
-      <li>
-        <a href=\\"index.html\\">Home page</a>
-      </li>
-      <li>
-        <a href=\\"musings.html\\">Musings</a>
-      </li>
-    </ul>
-    <h1>My first styled page</h1>
-    <p>Welcome to my styled page!</p>
-    <footer>Made 5 April 2004</footer>
-  </body>
-</html>
-"
-`;
-
-exports[`Beastcss Webpack Plugin prune source on multiple html without html-webpack-plugin webpack@5 should match html2 snapshot: test 1`] = `
-"<!DOCTYPE html>
-<html>
-  <head>
-    <title>External CSS Demo</title>
-    <style>:root{font-size: 10px;}html{height: 100%;}body{padding-left: 11em;
-  font-family: 'Times New Roman', times, serif;
-  color: purple;
-  background-color: #d8da3d;}*,:after,:before{box-sizing: inherit;}ul.navbar{list-style-type: none;
-  padding: 0;
-  margin: 0;
-  position: absolute;
-  top: 2em;
-  left: 1em;
-  width: 9em;}h1{font-family: helvetica, arial, sans-serif;}ul.navbar li{background: white;
-  margin: 0.5em 0;
-  padding: 0.3em;
-  border-right: 1em solid black;}ul.navbar a{text-decoration: none;}a:link{color: blue;}a:visited{color: purple;}footer{margin-top: 1em;
-  padding-top: 1em;
-  border-top: thin dotted;}h2{color: red;}.bold{font-weight: bold;}</style><link rel=\\"stylesheet\\" href=\\"./style.css\\" media=\\"print\\" onload=\\"this.media='all'; this.onload=null;\\"><noscript><link rel=\\"stylesheet\\" href=\\"./style.css\\"></noscript>
-  </head>
-  <body>
-    <ul class=\\"navbar\\">
-      <li>
-        <a href=\\"index.html\\">Home page</a>
-      </li>
-      <li>
-        <a href=\\"musings.html\\">Musings</a>
-      </li>
-    </ul>
-    <h1>My first styled page</h1>
-    <p>Welcome to my styled page!</p>
-    <h2>Heading</h2>
-    <p class=\\"bold\\">bold paragraph</p>
-    <footer>Made 5 April 2004</footer>
-  </body>
-</html>
-"
-`;
-
-exports[`Beastcss Webpack Plugin prune source on multiple html without html-webpack-plugin webpack@5 should match stylesheet snapshot 1`] = `".extra-style{font-size: 200%;}"`;
-
-exports[`Beastcss Webpack Plugin publicPath webpack@4 should match html snapshot 1`] = `
-"<!DOCTYPE html>
-<html>
-  <head>
-    <title>External CSS Demo</title>
-  <style>:root{font-size: 10px;}html{height: 100%;}body{padding-left: 11em;
-  font-family: 'Times New Roman', times, serif;
-  color: purple;
-  background-color: #d8da3d;}*,:after,:before{box-sizing: inherit;}ul.navbar{list-style-type: none;
-  padding: 0;
-  margin: 0;
-  position: absolute;
-  top: 2em;
-  left: 1em;
-  width: 9em;}h1{font-family: helvetica, arial, sans-serif;}ul.navbar li{background: white;
-  margin: 0.5em 0;
-  padding: 0.3em;
-  border-right: 1em solid black;}ul.navbar a{text-decoration: none;}a:link{color: blue;}a:visited{color: purple;}footer{margin-top: 1em;
-  padding-top: 1em;
-  border-top: thin dotted;}</style><link href=\\"/_public/main.css\\" rel=\\"stylesheet\\" media=\\"print\\" onload=\\"this.media='all'; this.onload=null;\\"><noscript><link rel=\\"stylesheet\\" href=\\"/_public/main.css\\"></noscript></head>
-  <body>
-    <ul class=\\"navbar\\">
-      <li>
-        <a href=\\"index.html\\">Home page</a>
-      </li>
-      <li>
-        <a href=\\"musings.html\\">Musings</a>
-      </li>
-    </ul>
-    <h1>My first styled page</h1>
-    <p>Welcome to my styled page!</p>
-    <footer>Made 5 April 2004</footer>
-  <script src=\\"/_public/bundle.js\\"></script></body>
-</html>
-"
-`;
-
-exports[`Beastcss Webpack Plugin publicPath webpack@4 should prune external sheet 1`] = `".extra-style{font-size: 200%;}"`;
-
-exports[`Beastcss Webpack Plugin publicPath webpack@5 should match html snapshot 1`] = `
+exports[`Beastcss Webpack Plugin publicPath should match html snapshot 1`] = `
 "<!DOCTYPE html>
 <html>
   <head>
@@ -856,7 +485,7 @@ exports[`Beastcss Webpack Plugin publicPath webpack@5 should match html snapshot
 "
 `;
 
-exports[`Beastcss Webpack Plugin publicPath webpack@5 should prune external sheet 1`] = `
+exports[`Beastcss Webpack Plugin publicPath should prune external sheet 1`] = `
 ":root {
   font-size: 10px;
 }
@@ -913,45 +542,7 @@ footer {
 "
 `;
 
-exports[`Beastcss Webpack Plugin webpack compilation webpack@4 should match html snapshot 1`] = `
-"<!DOCTYPE html>
-<html>
-  <head>
-    <title>Basic Demo</title>
-    <style>body{padding-left: 11em;
-        font-family: 'Times New Roman', times, serif;
-        color: purple;
-        background-color: #d8da3d;}ul.navbar{list-style-type: none;
-        padding: 0;
-        margin: 0;
-        position: absolute;
-        top: 2em;
-        left: 1em;
-        width: 9em;}h1{font-family: helvetica, arial, sans-serif;}ul.navbar li{background: white;
-        margin: 0.5em 0;
-        padding: 0.3em;
-        border-right: 1em solid black;}ul.navbar a{text-decoration: none;}ul.navbar:not(.hidden) li:hover a{color: black;}ul.navbar:not(:hover) li:hover a{color: black;}ul.navbar li:hover a{color: red;}a:link{color: blue;}a:visited{color: purple;}footer{margin-top: 1em;
-        padding-top: 1em;
-        border-top: thin dotted;}.clazz\\\\:colon{color: green;}</style>
-  </head>
-  <body>
-    <ul class=\\"navbar clazz:colon\\">
-      <li>
-        <a href=\\"index.html\\">Home page</a>
-      </li>
-      <li>
-        <a href=\\"musings.html\\">Musings</a>
-      </li>
-    </ul>
-    <h1>My first styled page</h1>
-    <p>Welcome to my styled page!</p>
-    <footer>Made 5 April 2004</footer>
-  <script src=\\"bundle.js\\"></script></body>
-</html>
-"
-`;
-
-exports[`Beastcss Webpack Plugin webpack compilation webpack@5 should match html snapshot 1`] = `
+exports[`Beastcss Webpack Plugin webpack compilation should match html snapshot 1`] = `
 "<!DOCTYPE html>
 <html>
   <head>

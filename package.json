@@ -26,7 +26,6 @@
     "@commitlint/config-conventional": "17.0.3",
     "@types/node": "16.11.49",
     "@types/webpack": "5.28.0",
-    "@types/webpack-sources": "3.2.0",
     "commitizen": "4.2.5",
     "cz-conventional-changelog": "3.3.0",
     "es-jest": "2.0.0",

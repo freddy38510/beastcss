@@ -1,18 +1,8 @@
-/* eslint-disable import/no-dynamic-require */
-import fs, { readdirSync } from 'fs';
+import fs from 'fs';
 import path from 'path';
 import rimraf from 'rimraf';
-import memoized from 'nano-memoize';
-import CachedInputFileSystem from 'enhanced-resolve/lib/CachedInputFileSystem';
+import webpack from 'webpack';
 import BeastcssWebpackPlugin from '../src/index';
-
-export const getAvailableWebpackVersions = memoized(() =>
-  readdirSync(path.resolve(__dirname, 'webpack-versions'), {
-    withFileTypes: true,
-  })
-    .filter((entry) => entry.isDirectory())
-    .map((dir) => dir.name)
-);
 
 // returns a promise resolving to the contents of a file
 export const readFile = async (file) =>
@@ -23,32 +13,9 @@ export const readFile = async (file) =>
  *
  * @param {string} fixture fixture dir name
  * @param {Function} configDecorator a function to decorate webpack config
- * @param {string} version webpack version
  * @returns {Promise<JSON>} webpack Stats formated to json
  */
-export async function compile(fixture, configDecorator, version) {
-  if (version === undefined || version === null) {
-    throw new Error('Webpack version is not specified');
-  }
-
-  if (!getAvailableWebpackVersions().includes(version)) {
-    throw new Error(
-      `Webpack version "${version}" is not available for testing`
-    );
-  }
-
-  let webpack;
-
-  try {
-    // eslint-disable-next-line global-require
-    webpack = require(`./webpack-versions/${version}/node_modules/webpack`);
-  } catch (err) {
-    throw new Error(
-      `Error requiring Webpack ${version}:\n${err}\n\n` +
-        'Try running "pnpm install".'
-    );
-  }
-
+export async function compile(fixture, configDecorator) {
   const context = path.dirname(path.resolve(__dirname, fixture));
 
   let config = {
@@ -72,15 +39,10 @@ export async function compile(fixture, configDecorator, version) {
   };
 
   if (configDecorator) {
-    config = configDecorator(config, version) || config;
+    config = configDecorator(config) || config;
   }
 
   const compiler = webpack(config);
-
-  if (version.startsWith('4')) {
-    // fix worker process that failed to exit gracefully
-    compiler.inputFileSystem = new CachedInputFileSystem(fs, 60000);
-  }
 
   return new Promise((resolve, reject) => {
     compiler.run((err, stats) => {
@@ -118,24 +80,18 @@ export async function compile(fixture, configDecorator, version) {
  *
  * @param {string} fixture fixture dir name
  * @param {Function} configDecorator a function to decorate webpack config
- * @param {string} version webpack version
  * @param {import('beastcss/src/index.d.ts').options} beastcssOptions options to passed to Beastcss
  * @returns {object} returns the compiled html file content and webpack stats formated to JSON
  */
 export async function compileToHtml(
   fixture,
   configDecorator,
-  version,
   beastcssOptions = {}
 ) {
-  const info = await compile(
-    `fixtures/${fixture}/index.js`,
-    (config) => {
-      configDecorator(config, version);
-      config.plugins.push(new BeastcssWebpackPlugin(beastcssOptions));
-    },
-    version
-  );
+  const info = await compile(`fixtures/${fixture}/index.js`, (config) => {
+    configDecorator(config);
+    config.plugins.push(new BeastcssWebpackPlugin(beastcssOptions));
+  });
 
   const html = await readFile(`fixtures/${fixture}/dist/index.html`);
 

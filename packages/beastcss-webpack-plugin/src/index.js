@@ -36,7 +36,7 @@ export default class BeastcssWebpackPlugin extends Beastcss {
 
   /**
    * @private
-   * @returns {import('webpack/sources')} Webpack Sources
+   * @returns {import('webpack').sources} Webpack Sources
    */
   get sources() {
     if (privateSources.has(this)) {
@@ -52,10 +52,7 @@ export default class BeastcssWebpackPlugin extends Beastcss {
 
   /** @param {import("webpack").Compiler} compiler Webpack Compiler */
   apply(compiler) {
-    this.sources =
-      (compiler.webpack && compiler.webpack.sources) ||
-      // eslint-disable-next-line global-require
-      require('webpack-sources');
+    this.sources = compiler.webpack.sources;
 
     this.options.path = compiler.options.output.path;
     this.options.publicPath = compiler.options.output.publicPath || '';
@@ -64,9 +61,6 @@ export default class BeastcssWebpackPlugin extends Beastcss {
   }
 
   run(compiler) {
-    const isWebpack5 =
-      (compiler.webpack && compiler.webpack.version.startsWith('5')) || false;
-
     const HtmlWebpackPlugins = compiler.options.plugins.filter(
       ({ constructor }) => constructor.name === 'HtmlWebpackPlugin'
     );
@@ -105,22 +99,11 @@ export default class BeastcssWebpackPlugin extends Beastcss {
       });
 
       if (HtmlWebpackPlugins.length === 0) {
-        if (isWebpack5) {
-          // Webpack5 processAssets (PROCESS_ASSETS_STAGE_OPTIMIZE) hook
-          compilation.hooks.processAssets.tapPromise(
-            {
-              name: PLUGIN_NAME,
-              stage: compilation.constructor.PROCESS_ASSETS_STAGE_OPTIMIZE,
-            },
-            async (assets) => this.runWithoutHtmlWebpackPlugin(assets)
-          );
-
-          return;
-        }
-
-        // Webpack4 compilation.optimizeAssets hook
-        compilation.hooks.optimizeAssets.tapPromise(
-          PLUGIN_NAME,
+        compilation.hooks.processAssets.tapPromise(
+          {
+            name: PLUGIN_NAME,
+            stage: compilation.constructor.PROCESS_ASSETS_STAGE_OPTIMIZE,
+          },
           async (assets) => this.runWithoutHtmlWebpackPlugin(assets)
         );
 
@@ -128,22 +111,12 @@ export default class BeastcssWebpackPlugin extends Beastcss {
       }
 
       if (this.options.pruneSource) {
-        if (isWebpack5) {
-          // Webpack5 processAssets (PROCESS_ASSETS_STAGE_OPTIMIZE_SIZE) hook
-          compilation.hooks.processAssets.tapPromise(
-            {
-              name: PLUGIN_NAME,
-              stage: compilation.constructor.PROCESS_ASSETS_STAGE_OPTIMIZE_SIZE,
-            },
-            async () => this.pruneSources()
-          );
-
-          return;
-        }
-
-        // Webpack4 compiler.emit hook
-        compiler.hooks.emit.tapPromise(PLUGIN_NAME, async () =>
-          this.pruneSources()
+        compilation.hooks.processAssets.tapPromise(
+          {
+            name: PLUGIN_NAME,
+            stage: compilation.constructor.PROCESS_ASSETS_STAGE_OPTIMIZE_SIZE,
+          },
+          async () => this.pruneSources()
         );
       }
     });
