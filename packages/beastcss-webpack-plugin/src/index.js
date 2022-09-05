@@ -1,8 +1,7 @@
 import Beastcss from 'beastcss';
 import { validate } from 'schema-utils';
+import { setVerbosity } from 'beastcss/src/helpers/log';
 import schema from './schema.json';
-
-const PLUGIN_NAME = 'beastcss-webpack-plugin';
 
 const privateCompilation = new WeakMap();
 
@@ -11,7 +10,7 @@ const privateSources = new WeakMap();
 export default class BeastcssWebpackPlugin extends Beastcss {
   constructor(options) {
     validate(schema, options, {
-      name: PLUGIN_NAME,
+      name: BeastcssWebpackPlugin.name,
       baseDataPath: 'options',
     });
 
@@ -59,27 +58,39 @@ export default class BeastcssWebpackPlugin extends Beastcss {
     this.options.path = compiler.options.output.path;
     this.options.publicPath = compiler.options.output.publicPath || '';
 
+    const logger = compiler.getInfrastructureLogger(BeastcssWebpackPlugin.name);
+
+    this.logger = setVerbosity(
+      Object.fromEntries(
+        Object.entries(this.logger).map(([level]) => [
+          level,
+          (msg, processId) =>
+            logger[level](`${processId ? `[${processId}] ` : ''}${msg}`),
+        ])
+      ),
+
+      this.options.logLevel
+    );
+
     this.run(compiler);
   }
 
   run(compiler) {
+    const { name } = BeastcssWebpackPlugin;
     const htmlWebpackPlugins = compiler.options.plugins.filter(
       ({ constructor }) => constructor.name === 'HtmlWebpackPlugin'
     );
 
-    compiler.hooks.afterEmit.tap(PLUGIN_NAME, () => this.clear());
+    compiler.hooks.afterEmit.tap(name, () => this.clear());
 
-    compiler.hooks.thisCompilation.tap(PLUGIN_NAME, (compilation) => {
+    compiler.hooks.thisCompilation.tap(name, (compilation) => {
       this.compilation = compilation;
       this.fs = compilation.outputFileSystem;
-      this.logger = compilation.getLogger
-        ? compilation.getLogger(PLUGIN_NAME)
-        : this.logger;
 
       htmlWebpackPlugins.forEach((HtmlWebpackPlugin) => {
         HtmlWebpackPlugin.constructor
           .getHooks(compilation)
-          .beforeEmit.tapPromise(PLUGIN_NAME, async (htmlPluginData) => {
+          .beforeEmit.tapPromise(name, async (htmlPluginData) => {
             if (this.processedAssets.has(htmlPluginData.outputName)) {
               return htmlPluginData;
             }
@@ -105,7 +116,7 @@ export default class BeastcssWebpackPlugin extends Beastcss {
 
       compilation.hooks.processAssets.tapPromise(
         {
-          name: PLUGIN_NAME,
+          name,
           stage: compilation.constructor.PROCESS_ASSETS_STAGE_OPTIMIZE_INLINE,
         },
         async (assets) => {
@@ -113,7 +124,7 @@ export default class BeastcssWebpackPlugin extends Beastcss {
             const htmlAssets = this.findHtmlAssets(assets);
 
             if (htmlAssets.length === 0 && htmlWebpackPlugins.length === 0) {
-              this.opts.logger.warn('Could not find any HTML asset.');
+              this.logger.warn('Could not find any HTML asset.');
             }
 
             await Promise.all(
@@ -148,7 +159,7 @@ export default class BeastcssWebpackPlugin extends Beastcss {
       if (this.options.pruneSource) {
         compilation.hooks.processAssets.tapPromise(
           {
-            name: PLUGIN_NAME,
+            name,
             // html-webpack-plugin uses PROCESS_ASSETS_STAGE_OPTIMIZE_INLINE
             stage:
               compilation.constructor.PROCESS_ASSETS_STAGE_OPTIMIZE_INLINE +
@@ -168,7 +179,7 @@ export default class BeastcssWebpackPlugin extends Beastcss {
         const html = this.compilation.getAsset(asset).source.source();
 
         if (!html) {
-          this.opts.logger.warn(`Empty HTML asset "${asset}".`);
+          this.logger.warn('Empty HTML asset', asset);
 
           return;
         }

@@ -83,14 +83,12 @@ export async function compile(fixture, configDecorator) {
  * @param {import('beastcss/src/index.d.ts').options} beastcssOptions options to passed to Beastcss
  * @returns {object} returns the compiled html file content and webpack stats formated to JSON
  */
-export async function compileToHtml(
-  fixture,
-  configDecorator,
-  beastcssOptions = {}
-) {
+export async function compileToHtml(fixture, configDecorator, beastcssOptions) {
   const info = await compile(`fixtures/${fixture}/index.js`, (config) => {
     configDecorator(config);
-    config.plugins.push(new BeastcssWebpackPlugin(beastcssOptions));
+    config.plugins.push(
+      new BeastcssWebpackPlugin({ logLevel: 'silent', ...beastcssOptions })
+    );
   });
 
   const html = await readFile(`fixtures/${fixture}/dist/index.html`);

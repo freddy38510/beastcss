@@ -1,9 +1,8 @@
-/* eslint-disable global-require */
-/* eslint-disable import/no-dynamic-require */
 import { JSDOM } from 'jsdom';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import { readFile, compileToHtml, cleanDist } from './_helpers';
+import BeastcssWebpackPlugin from '../src';
 
 /**
  * Webpack configuration options
@@ -535,19 +534,55 @@ describe('Beastcss Webpack Plugin', () => {
   });
 
   describe('webpack logging', () => {
-    let info;
+    let spyTrace;
+    let spyDebug;
+    let spyInfo;
+    let spyWarn;
+    let spyError;
 
     beforeAll(async () => {
-      ({ info } = await compileToHtml('basic', configure));
+      await compileToHtml(
+        'basic',
+        (config) => {
+          configure(config);
+
+          config.plugins.push({
+            apply: (compiler) => {
+              const getLogger = compiler.getInfrastructureLogger.bind(compiler);
+
+              compiler.getInfrastructureLogger = jest.fn((name) => {
+                const logger = getLogger(name);
+
+                if (name === BeastcssWebpackPlugin.name) {
+                  spyTrace = jest.spyOn(logger, 'trace').mockImplementation();
+                  spyDebug = jest.spyOn(logger, 'debug').mockImplementation();
+                  spyInfo = jest.spyOn(logger, 'info').mockImplementation();
+                  spyWarn = jest.spyOn(logger, 'warn').mockImplementation();
+                  spyError = jest.spyOn(logger, 'error').mockImplementation();
+                }
+
+                return logger;
+              });
+            },
+          });
+        },
+        { logLevel: 'info' }
+      );
     });
 
     afterAll(async () => {
       await cleanDist('basic');
+
+      jest.restoreAllMocks();
     });
 
-    it('should output logging in webpack logging stats', () => {
-      expect(info.logging['beastcss-webpack-plugin']).not.toBeNull();
-      expect(info.logging['beastcss-webpack-plugin'].entries).toHaveLength(2);
+    it('should output logging with correct formatting', () => {
+      expect(spyTrace).not.toHaveBeenCalled();
+      expect(spyDebug).not.toHaveBeenCalled();
+      expect(spyInfo).toHaveBeenCalled();
+      expect(spyWarn).not.toHaveBeenCalled();
+      expect(spyError).not.toHaveBeenCalled();
+      expect(spyInfo.mock.calls[0][0]).toMatch(/^\[index\.html\] (.*)/);
     });
   });
 });
