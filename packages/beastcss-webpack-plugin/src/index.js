@@ -16,6 +16,10 @@ export default class BeastcssWebpackPlugin extends Beastcss {
 
     super(options);
 
+    if (options && options.fs) {
+      this.hasCustomFs = true;
+    }
+
     this.processedAssets = new Set();
   }
 
@@ -68,7 +72,6 @@ export default class BeastcssWebpackPlugin extends Beastcss {
             logger[level](`${processId ? `[${processId}] ` : ''}${msg}`),
         ])
       ),
-
       this.options.logLevel
     );
 
@@ -81,11 +84,17 @@ export default class BeastcssWebpackPlugin extends Beastcss {
       ({ constructor }) => constructor.name === 'HtmlWebpackPlugin'
     );
 
+    // if no fs option was passed, fallback to webpack output filesystem
+    if (!this.hasCustomFs) {
+      compiler.hooks.beforeRun.tap(name, (compilerBeforeRun) => {
+        this.fs = Beastcss.createFsAdapter(compilerBeforeRun.outputFileSystem);
+      });
+    }
+
     compiler.hooks.afterEmit.tap(name, () => this.clear());
 
     compiler.hooks.thisCompilation.tap(name, (compilation) => {
       this.compilation = compilation;
-      this.fs = Beastcss.createFsAdapter(compiler.outputFileSystem);
 
       htmlWebpackPlugins.forEach((HtmlWebpackPlugin) => {
         HtmlWebpackPlugin.constructor
