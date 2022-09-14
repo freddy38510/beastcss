@@ -1,5 +1,6 @@
 import path from 'path';
 import fs from 'fs';
+import { promisify } from 'util';
 import FastGlob from 'fast-glob';
 import dropcss from '@freddy38510/dropcss';
 import { HTMLElement } from 'node-html-parser';
@@ -7,7 +8,6 @@ import parseHTML from './dom';
 import * as escapedChars from './helpers/escapedChars';
 import { formatToKB, formatToMs, formatToPercent } from './helpers/formatter';
 import { defaultLogger, setVerbosity } from './helpers/log';
-import { readFile, writeFile, removeFile } from './helpers/promisify-fs';
 
 export default class Beastcss {
   constructor(options = {}) {
@@ -19,6 +19,11 @@ export default class Beastcss {
       pruneSource: false,
       ...options,
     };
+
+    this.fs = Beastcss.createFsAdapter(this.options.fs || fs);
+
+    // no need to keep it in memory
+    delete this.options.fs;
 
     this.exclude = options.exclude
       ? options.exclude
@@ -32,12 +37,6 @@ export default class Beastcss {
       options.logger || defaultLogger,
       this.options.logLevel
     );
-
-    this.fs = {
-      readFile: readFile.bind(options.fs || fs.promises),
-      writeFile: writeFile.bind(options.fs || fs.promises),
-      removeFile: removeFile.bind(options.fs || fs.promises),
-    };
 
     this.usedSelectors = new Set();
 
@@ -215,7 +214,7 @@ export default class Beastcss {
   async removeStylesheet(stylesheet) {
     stylesheet.link.remove();
 
-    return this.fs.removeFile(stylesheet.path);
+    return this.fs.unlink(stylesheet.path);
   }
 
   isSelectorWhitelisted(selector) {
@@ -547,5 +546,16 @@ export default class Beastcss {
     );
 
     return Promise.all(promises);
+  }
+
+  static createFsAdapter(fileSystem) {
+    return Object.fromEntries(
+      ['readFile', 'writeFile', 'unlink'].map((method) => [
+        method,
+        fileSystem[method].toString().match(/callback/i)
+          ? promisify(fileSystem[method].bind(fileSystem))
+          : fileSystem[method],
+      ])
+    );
   }
 }

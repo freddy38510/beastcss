@@ -13,10 +13,16 @@ export interface Logger {
   debug: (msg: string, id?: string) => void;
 }
 
-interface FileSystem {
+interface FSlike {
   readFile: typeof fs.promises.readFile | typeof fs.readFile;
   writeFile: typeof fs.promises.writeFile | typeof fs.writeFile;
   unlink: typeof fs.promises.unlink | typeof fs.unlink;
+}
+
+interface FSAdapter {
+  readFile: (filePath: string) => Promise<Buffer | string>;
+  writeFile: (filePath: string, data: string) => Promise<void>;
+  unlink: (filePath: string) => Promise<void>;
 }
 
 export interface Options {
@@ -35,7 +41,7 @@ export interface Options {
   fontFace?: boolean;
   keyframes?: boolean;
   exclude?: ((href: string) => boolean) | RegExp;
-  fs?: FileSystem;
+  fs?: FSlike;
   logger?: Logger;
   logLevel?: logLevel;
 }
@@ -47,17 +53,13 @@ type stylesheet = {
 };
 
 declare class Beastcss {
-  constructor(options: Options?);
+  constructor(options?: Options);
   options: Options;
   logger: Logger;
   usedSelectors: Set<string>;
   cachedStylesheetsSource: Map<string, object>;
   stylesheetsToPrune: Map<string, object>;
-  fs: {
-    readFile: (filePath: string) => Promise<Buffer | string>;
-    writeFile: (filePath: string, data: string) => Promise<void>;
-    removeFile: (filePath: string) => Promise<void>;
-  };
+  fs: FSAdapter;
 
   exclude: (href: string) => boolean;
 

@@ -85,7 +85,7 @@ export default class BeastcssWebpackPlugin extends Beastcss {
 
     compiler.hooks.thisCompilation.tap(name, (compilation) => {
       this.compilation = compilation;
-      this.fs = compilation.outputFileSystem;
+      this.fs = Beastcss.createFsAdapter(compiler.outputFileSystem);
 
       htmlWebpackPlugins.forEach((HtmlWebpackPlugin) => {
         HtmlWebpackPlugin.constructor
@@ -280,7 +280,7 @@ export default class BeastcssWebpackPlugin extends Beastcss {
       if (this.compilation.assets[stylesheet.name]) {
         delete this.compilation.assets[stylesheet.name];
       } else {
-        await this.fs.removeFile(stylesheet.path);
+        await this.fs.unlink(stylesheet.path);
       }
     }
   }

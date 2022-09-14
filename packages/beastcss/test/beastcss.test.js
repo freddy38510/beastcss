@@ -1,4 +1,3 @@
-/* eslint-disable global-require */
 /* eslint-disable no-console */
 import fs from 'fs';
 import path from 'path';
@@ -350,7 +349,7 @@ describe('Beastcss', () => {
       );
 
       const Beastcss = instantiateBeastcss('basic', {
-        fs,
+        fs: fs.promises,
       });
 
       html = await Beastcss.process(originalHtml);
