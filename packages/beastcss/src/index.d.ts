@@ -1,7 +1,8 @@
 export default Beastcss;
 
-import type { HTMLElement } from 'node-html-parser';
 import type fs from 'fs';
+import type { HTMLElement } from 'node-html-parser';
+import type { FileSystemAdapter } from 'fast-glob';
 
 export type logLevel = 'info' | 'warn' | 'error' | 'trace' | 'debug' | 'silent';
 
@@ -17,12 +18,18 @@ interface FSlike {
   readFile: typeof fs.promises.readFile | typeof fs.readFile;
   writeFile: typeof fs.promises.writeFile | typeof fs.writeFile;
   unlink: typeof fs.promises.unlink | typeof fs.unlink;
+  readdir: typeof fs.promises.readdir | typeof fs.readdir;
+  lstat: typeof fs.promises.lstat | typeof fs.lstat;
+  stat: typeof fs.promises.stat | typeof fs.stat;
 }
 
 interface FSAdapter {
   readFile: (filePath: string) => Promise<Buffer | string>;
   writeFile: (filePath: string, data: string) => Promise<void>;
   unlink: (filePath: string) => Promise<void>;
+  readdir: FileSystemAdapter['readdir'];
+  lstat: FileSystemAdapter['lstat'];
+  stat: FileSystemAdapter['stat'];
 }
 
 export interface Options {

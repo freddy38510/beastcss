@@ -1,6 +1,6 @@
 import path from 'path';
 import fs from 'fs';
-import { promisify } from 'util';
+import { callbackify, promisify } from 'util';
 import FastGlob from 'fast-glob';
 import dropcss from '@freddy38510/dropcss';
 import { HTMLElement } from 'node-html-parser';
@@ -162,6 +162,7 @@ export default class Beastcss {
       unique: true,
       suppressErrors: true,
       absolute: false,
+      fs: this.fs,
     });
 
     entries.forEach((entry) => {
@@ -549,13 +550,23 @@ export default class Beastcss {
   }
 
   static createFsAdapter(fileSystem) {
-    return Object.fromEntries(
-      ['readFile', 'writeFile', 'unlink'].map((method) => [
-        method,
-        fileSystem[method].toString().match(/callback/i)
-          ? promisify(fileSystem[method].bind(fileSystem))
-          : fileSystem[method],
-      ])
-    );
+    return {
+      ...Object.fromEntries(
+        ['readFile', 'writeFile', 'unlink'].map((method) => [
+          method,
+          fileSystem[method].toString().match(/callback/i)
+            ? promisify(fileSystem[method].bind(fileSystem))
+            : fileSystem[method],
+        ])
+      ),
+      ...Object.fromEntries(
+        ['readdir', 'lstat', 'stat'].map((method) => [
+          method,
+          fileSystem[method].toString().match(/callback/i)
+            ? fileSystem[method].bind(fileSystem)
+            : callbackify(fileSystem[method].bind(fileSystem)),
+        ])
+      ),
+    };
   }
 }
