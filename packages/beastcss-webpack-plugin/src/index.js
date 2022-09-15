@@ -212,7 +212,7 @@ export default class BeastcssWebpackPlugin extends Beastcss {
 
     if (asset && asset.source) {
       this.cachedStylesheetsSource.set(stylesheet.name, {
-        content: asset.source.source().toString(),
+        content: asset.source.buffer(),
         size: asset.source.size(),
       });
 

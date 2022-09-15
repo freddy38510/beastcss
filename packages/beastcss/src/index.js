@@ -114,7 +114,7 @@ export default class Beastcss {
         const content = await this.fs.readFile(stylesheet.path);
 
         return {
-          content: content.toString(),
+          content,
           size: Buffer.byteLength(content),
         };
       } catch (e) {
@@ -384,7 +384,7 @@ export default class Beastcss {
     if (stylesheet.source.size < minSize) {
       Beastcss.cssToInternal(
         astHTML,
-        stylesheet.source.content,
+        stylesheet.source.content.toString(),
         stylesheet.link
       );
 
@@ -411,7 +411,7 @@ export default class Beastcss {
     const usedCSS = {
       content: this.dropUnusedCSS(
         html,
-        stylesheet.source.content,
+        stylesheet.source.content.toString(),
         processId,
         this.options.pruneSource
       ),
@@ -493,7 +493,9 @@ export default class Beastcss {
     }
 
     const unusedCSS = {
-      content: this.dropCSSByUsedSelectors(stylesheet.source.content),
+      content: this.dropCSSByUsedSelectors(
+        stylesheet.source.content.toString()
+      ),
     };
 
     if (stylesheet.source.content === unusedCSS.content) {
