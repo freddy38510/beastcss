@@ -1,7 +1,0 @@
-{
-  "name": "unused",
-  "version": "1.0.0",
-  "jest": {
-    "testURL": "http://localhost/"
-  }
-}

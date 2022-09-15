@@ -2,19 +2,18 @@
   "name": "beastcss-webpack-plugin",
   "version": "1.0.11",
   "description": "Webpack plugin to inline critical CSS and async load the rest.",
-  "main": "dist/index.cjs",
-  "module": "dist/index.esm.js",
+  "main": "dist/beastcss-webpack-plugin.cjs",
+  "module": "dist/beastcss-webpack-plugin.mjs",
   "exports": {
-    "types": "./dist/index.d.ts",
-    "require": "./dist/index.cjs",
-    "import": "./dist/index.esm.js"
+    "types": "./dist/beastcss-webpack-plugin.d.ts",
+    "require": "./dist/beastcss-webpack-plugin.cjs",
+    "import": "./dist/beastcss-webpack-plugin.mjs"
   },
   "type": "module",
   "files": [
-    "src",
     "dist"
   ],
-  "types": "./dist/index.d.ts",
+  "types": "./dist/beastcss-webpack-plugin.d.ts",
   "license": "MIT",
   "author": "Freddy Escobar <freddyescobar@hotmail.fr>",
   "keywords": [
@@ -32,11 +31,13 @@
     "directory": "packages/beastcss-webpack-plugin"
   },
   "engines": {
-    "node": ">=12.0.0"
+    "node": ">=12.17.0"
   },
   "scripts": {
-    "build": "rimraf dist && rollup -c",
-    "dev": "rimraf dist && rollup -c -w"
+    "build": "rimraf dist && pnpm build-temp-types && pnpm build-bundle && rimraf temp",
+    "build-bundle": "rollup --config rollup.config.ts --configPlugin esbuild",
+    "build-temp-types": "tsc --emitDeclarationOnly -p ./tsconfig.build.json",
+    "dev": "rimraf dist && pnpm build-bundle -w"
   },
   "dependencies": {
     "beastcss": "^1.2.1",
@@ -44,11 +45,10 @@
     "schema-utils": "4.0.0"
   },
   "devDependencies": {
-    "css-loader": "6.7.1",
-    "file-loader": "6.2.0",
-    "html-webpack-plugin": "5.5.0",
-    "jsdom": "20.0.0",
+    "css-loader": "6.2.0",
     "mini-css-extract-plugin": "2.6.1",
+    "html-webpack-plugin": "5.5.0",
+    "unionfs": "4.4.0",
     "webpack": "5.74.0"
   },
   "peerDependencies": {

@@ -1,0 +1,17 @@
+{
+  "extends": "@tsconfig/node12/tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": "./",
+    "outDir": "dist",
+    "declaration": true,
+    "declarationDir": "./temp",
+    "paths": {
+      "beastcss": ["../beastcss/src/index.ts"],
+      "@freddy38510/dropcss": ["../beastcss/src/types/dropcss.d.ts"]
+    },
+    "resolveJsonModule": true,
+    "noEmitOnError": true
+  },
+  "include": ["src", "./rollup.config.ts"],
+  "exclude": ["node_modules", "temp", "dist"]
+}

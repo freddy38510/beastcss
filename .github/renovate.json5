@@ -2,4 +2,10 @@
   "extends": ["config:base", "schedule:weekly", "group:allNonMajor"],
   "labels": ["dependencies"],
   "ignorePaths": ["**/test/**"],
+  "packageRules": [
+    {
+      "matchPackageNames": ["chalk"],
+      "allowedVersions": "<5.0.0",
+    },
+  ],
 }

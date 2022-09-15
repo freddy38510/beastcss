@@ -1,49 +1,47 @@
+const { defineConfig } = require('eslint-define-config');
 const path = require('path');
 
-module.exports = {
+module.exports = defineConfig({
   root: true,
   env: {
-    es2017: true,
     node: true,
-    browser: true,
-    'jest/globals': true,
+    jest: true,
   },
-  extends: [
-    'airbnb-base',
-    'prettier',
-    'plugin:jest/recommended',
-    'plugin:jest/style',
-    'plugin:jsdoc/recommended',
-  ],
-  parserOptions: {
-    ecmaVersion: 2019,
-    sourceType: 'module',
-  },
-  settings: {
-    'import/resolver': {
-      workspaces: {
-        extensions: ['.js'],
-        sources: {
-          beastcss: ['packages/beastcss/src/*'],
-        },
-      },
-    },
-    jsdoc: {
-      mode: 'typescript',
-    },
-  },
-  rules: {
-    'no-param-reassign': ['error', { props: false }],
-    'import/no-extraneous-dependencies': [
-      'error',
-      {
-        devDependencies: true,
-        packageDir: [
-          __dirname,
-          path.join(__dirname, 'packages/beastcss'),
-          path.join(__dirname, 'packages/beastcss-webpack-plugin'),
+  plugins: ['jest'],
+  extends: ['airbnb-base', 'plugin:jest/recommended', 'prettier'],
+  ignorePatterns: ['node_modules', 'dist', 'temp'],
+  overrides: [
+    {
+      files: ['*.ts', '*.tsx'],
+      extends: [
+        'airbnb-base',
+        'airbnb-typescript/base',
+        'plugin:@typescript-eslint/recommended',
+        'plugin:@typescript-eslint/recommended-requiring-type-checking',
+        'plugin:jest/recommended',
+        'prettier',
+      ],
+      parser: '@typescript-eslint/parser',
+      parserOptions: {
+        project: [
+          './packages/beastcss/tsconfig.json',
+          './packages/beastcss-webpack-plugin/tsconfig.json',
         ],
       },
-    ],
-  },
-};
+      rules: {
+        'no-param-reassign': ['error', { props: false }],
+        'import/no-extraneous-dependencies': [
+          'error',
+          {
+            devDependencies: true,
+            packageDir: [
+              __dirname,
+              path.join(__dirname, 'packages/beastcss'),
+              path.join(__dirname, 'packages/beastcss-webpack-plugin'),
+            ],
+          },
+        ],
+      },
+    },
+  ],
+});

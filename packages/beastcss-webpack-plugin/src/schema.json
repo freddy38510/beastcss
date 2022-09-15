@@ -25,6 +25,9 @@
       "type": "boolean",
       "default": true
     },
+    "fs": {
+      "type": "object"
+    },
     "asyncLoadExternalStylesheets": {
       "type": "boolean",
       "default": true

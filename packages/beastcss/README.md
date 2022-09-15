@@ -177,7 +177,7 @@ Inline used @font-face rules.
 
 Type: `Boolean`
 
-Default: `false`
+Default: `true`
 
 Inline used @keyframes rules.
 
