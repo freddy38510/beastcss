@@ -18,6 +18,6 @@ module.exports = {
   verbose: true,
   collectCoverage: true,
 
-  coverageReporters: ['text'],
+  coverageReporters: ['text', 'cobertura'],
   watchPathIgnorePatterns: ['node_modules', 'dist'],
 };
