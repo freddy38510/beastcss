@@ -31,7 +31,7 @@
     },
     "preloadExternalStylesheets": {
       "type": "boolean",
-      "default": true
+      "default": false
     },
     "exclude": {
       "anyOf": [{ "instanceof": "Function" }, { "instanceof": "RegExp" }]
@@ -44,7 +44,7 @@
     },
     "noscriptFallback": {
       "type": "boolean",
-      "default": true
+      "default": false
     },
     "fontFace": {
       "type": "boolean",

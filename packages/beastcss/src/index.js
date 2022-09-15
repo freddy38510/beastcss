@@ -486,23 +486,25 @@ export default class Beastcss {
       `this.media='${media || 'all'}'; this.onload=null;`
     );
 
-    if (this.options.noscriptFallback !== false) {
-      const noscript = new HTMLElement('noscript', {}, '', null);
-      const fallbackLink = new HTMLElement(
-        'link',
-        {},
-        `rel="stylesheet" href="${href}"`,
-        null
-      );
-
-      if (media) {
-        fallbackLink.setAttribute('media', media);
-      }
-
-      noscript.appendChild(fallbackLink);
-
-      link.after(noscript);
+    if (this.options.noscriptFallback !== true) {
+      return;
     }
+
+    const noscript = new HTMLElement('noscript', {}, '', null);
+    const fallbackLink = new HTMLElement(
+      'link',
+      {},
+      `rel="stylesheet" href="${href}"`,
+      null
+    );
+
+    if (media) {
+      fallbackLink.setAttribute('media', media);
+    }
+
+    noscript.appendChild(fallbackLink);
+
+    link.after(noscript);
   }
 
   async pruneSource(stylesheet, logId) {
