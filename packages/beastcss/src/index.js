@@ -49,37 +49,50 @@ export default class Beastcss {
 
     const astHTML = parseHTML(html);
 
-    // eslint-disable-next-line no-param-reassign
-    html = escapedChars.replaceHTMLClasses(html);
+    const escapedHtml = escapedChars.replaceHTMLClasses(html);
+
+    const hasRemovedNonCriticalCss = [];
 
     if (this.options.internal !== false) {
-      await Promise.all(
-        astHTML
-          .querySelectorAll('style')
-          .map(async (style) => this.processInternalStylesheet(html, style, id))
+      hasRemovedNonCriticalCss.push(
+        ...(await Promise.all(
+          astHTML
+            .querySelectorAll('style')
+            .map(async (style) =>
+              this.processInternalStylesheet(escapedHtml, style, id)
+            )
+        ))
       );
     }
 
     if (this.options.additionalStylesheets.length > 0) {
-      const additionalStylesheets = await this.getAdditionalStylesheets(
-        this.options.additionalStylesheets
-      );
+      const additionalStylesheets = await this.getAdditionalStylesheets();
 
-      await Promise.all(
-        additionalStylesheets.map(async (stylesheet) =>
-          this.processExternalStylesheet(astHTML, html, stylesheet, id)
-        )
+      hasRemovedNonCriticalCss.push(
+        ...(await Promise.all(
+          additionalStylesheets.map(async (stylesheet) =>
+            this.processExternalStylesheet(astHTML, escapedHtml, stylesheet, id)
+          )
+        ))
       );
     }
 
     if (this.options.external !== false) {
       const externalStylesheets = this.getExternalStylesheets(astHTML);
 
-      await Promise.all(
-        externalStylesheets.map(async (stylesheet) =>
-          this.processExternalStylesheet(astHTML, html, stylesheet, id)
-        )
+      hasRemovedNonCriticalCss.push(
+        ...(await Promise.all(
+          externalStylesheets.map(async (stylesheet) =>
+            this.processExternalStylesheet(astHTML, escapedHtml, stylesheet, id)
+          )
+        ))
       );
+    }
+
+    if (!hasRemovedNonCriticalCss.includes(true)) {
+      this.logger.info('No non-critical css rules was removed.', id);
+
+      return html;
     }
 
     if (this.options.merge !== false) {
@@ -91,7 +104,7 @@ export default class Beastcss {
 
     const end = process.hrtime.bigint();
 
-    this.logger.info(`Processed in ${formatToMs(end - start)}`, id);
+    this.logger.info(`Processed in ${formatToMs(end - start)}.`, id);
 
     return output;
   }
@@ -111,7 +124,7 @@ export default class Beastcss {
         };
       } catch (e) {
         this.logger.warn(
-          `Unable to locate stylesheet: ${stylesheet.path}`,
+          `External stylesheet "${stylesheet.path}" not found.`,
           processId
         );
 
@@ -143,12 +156,12 @@ export default class Beastcss {
     return path.resolve(this.options.path, normalizedPath);
   }
 
-  async getAdditionalStylesheets(sources) {
+  async getAdditionalStylesheets() {
     // const { default: FastGlob } = await import('fast-glob');
 
     const additionalStylesheets = [];
 
-    const entries = await FastGlob(sources, {
+    const entries = await FastGlob(this.options.additionalStylesheets, {
       cwd: this.options.path,
       baseNameMatch: true,
       unique: true,
@@ -159,6 +172,8 @@ export default class Beastcss {
 
     entries.forEach((entry) => {
       if (this.isExcluded(entry)) {
+        this.logger.debug(`Excluded additional stylesheet "${entry}".`);
+
         return;
       }
 
@@ -182,7 +197,15 @@ export default class Beastcss {
     astHTML.querySelectorAll('link[rel="stylesheet"]').forEach((link) => {
       const href = link.getAttribute('href');
 
+      if (!href) {
+        this.logger.warn(`External stylesheet href attribute is missing.`);
+
+        return;
+      }
+
       if (this.isExcluded(href)) {
+        this.logger.debug(`Excluded external stylesheet "${href}".`);
+
         return;
       }
 
@@ -244,7 +267,7 @@ export default class Beastcss {
     try {
       ({ css } = dropcss(options));
     } catch (e) {
-      this.logger.error(`Unable to parse css or html`, null);
+      this.logger.error(`Unable to parse css or html.`, null);
 
       throw e;
     }
@@ -331,16 +354,25 @@ export default class Beastcss {
       return;
     }
 
-    const head = astHTML.querySelector('head');
+    const headTag = astHTML.querySelector('head');
 
-    head.appendChild(style);
+    if (!headTag) {
+      this.logger.warn(
+        'Unable to insert style tag because head tag is missing.'
+      );
+
+      return;
+    }
+
+    headTag.appendChild(style);
   }
 
   static preloadExternalStylesheet(astHTML, link) {
     const href = link.getAttribute('href');
 
     if (astHTML.querySelector(`link[rel="preload"][href="${href}"]`)) {
-      // already present
+      this.logger.debug('Skip adding the preload link as it is already there.');
+
       return;
     }
 
@@ -364,21 +396,25 @@ export default class Beastcss {
     };
 
     usedCSS.size = Buffer.byteLength(usedCSS.content);
+    const originalSize = Buffer.byteLength(style.rawText);
 
     if (usedCSS.size === 0) {
-      if (style.parentNode) {
-        style.remove();
-      }
+      style.remove();
 
-      return;
+      this.logger.info(
+        `Removed internal stylesheet (${formatToKB(
+          originalSize
+        )}), no critical css rules was found.`,
+        processId
+      );
+
+      return true;
     }
 
     if (style.rawText === usedCSS.content) {
       // did not drop any selectors
-      return;
+      return false;
     }
-
-    const originalSize = Buffer.byteLength(style.rawText);
 
     style.textContent = usedCSS.content;
 
@@ -389,6 +425,8 @@ export default class Beastcss {
       )} of original ${formatToKB(originalSize)}).`,
       processId
     );
+
+    return true;
   }
 
   async processExternalStylesheet(astHTML, html, stylesheet, processId) {
@@ -397,7 +435,7 @@ export default class Beastcss {
     stylesheet.source = await this.getStylesheetSource(stylesheet, processId);
 
     if (!stylesheet.source) {
-      return;
+      return false;
     }
 
     // is below externalThreshold
@@ -417,15 +455,15 @@ export default class Beastcss {
       }
 
       this.logger.info(
-        `Inserted all of ${stylesheet.name} to internal (${formatToKB(
+        `Inserted all of ${stylesheet.name} (${formatToKB(
           stylesheet.source.size
         )} was below the threshold of ${formatToKB(
           this.options.externalThreshold
-        )})`,
+        )}).`,
         processId
       );
 
-      return;
+      return true;
     }
 
     const usedCSS = {
@@ -469,9 +507,11 @@ export default class Beastcss {
         stylesheet.source.size
       )} of original ${formatToKB(stylesheet.source.size)}) of ${
         stylesheet.name
-      } to internal`,
+      }.`,
       processId
     );
+
+    return true;
   }
 
   setExternalStylesheetAsync(link) {
@@ -511,7 +551,7 @@ export default class Beastcss {
     stylesheet.source = await this.getStylesheetSource(stylesheet, logId);
 
     if (!stylesheet.source) {
-      return;
+      return false;
     }
 
     const unusedCSS = {
@@ -520,12 +560,28 @@ export default class Beastcss {
       ),
     };
 
-    if (stylesheet.source.content === unusedCSS.content) {
-      // did not drop any selectors
-      return;
+    unusedCSS.size = Buffer.byteLength(unusedCSS.content);
+
+    if (
+      unusedCSS.size === 0 ||
+      unusedCSS.size < Number(this.options.externalThreshold)
+    ) {
+      await this.removeStylesheet(stylesheet);
+
+      this.logger.info(
+        `Removed external stylesheet ${stylesheet.name} (${formatToKB(
+          stylesheet.source.size
+        )}).`,
+        logId
+      );
+
+      return true;
     }
 
-    unusedCSS.size = Buffer.byteLength(unusedCSS.content);
+    if (stylesheet.source.content === unusedCSS.content) {
+      // did not drop any selectors
+      return false;
+    }
 
     await this.updateStylesheet(stylesheet, unusedCSS.content);
 
@@ -535,6 +591,20 @@ export default class Beastcss {
       )} of external stylesheet ${stylesheet.name}`,
       logId
     );
+
+    this.logger.info(
+      `Pruned ${formatToKB(
+        stylesheet.source.size - unusedCSS.size
+      )} (${formatToPercent(
+        stylesheet.source.size - unusedCSS.size,
+        stylesheet.source.size
+      )} of original ${formatToKB(
+        stylesheet.source.size
+      )}) of external stylesheet ${stylesheet.name}`,
+      logId
+    );
+
+    return true;
   }
 
   mergeInternalStylesheets(astHTML) {
@@ -570,7 +640,11 @@ export default class Beastcss {
       promises.push(this.pruneSource(stylesheet, logId))
     );
 
-    return Promise.all(promises);
+    const hasPrunedStylesheets = await Promise.all(promises);
+
+    if (!hasPrunedStylesheets.includes(true)) {
+      this.logger.info('No stylesheets was pruned.', logId);
+    }
   }
 
   static createFsAdapter(fileSystem) {

@@ -133,7 +133,7 @@ export default class BeastcssWebpackPlugin extends Beastcss {
             const htmlAssets = this.findHtmlAssets(assets);
 
             if (htmlAssets.length === 0 && htmlWebpackPlugins.length === 0) {
-              this.logger.warn('Could not find any HTML asset.');
+              this.logger.warn('Unable to find any HTML asset.');
             }
 
             await Promise.all(
@@ -188,7 +188,7 @@ export default class BeastcssWebpackPlugin extends Beastcss {
         const html = this.compilation.getAsset(asset).source.source();
 
         if (!html) {
-          this.logger.warn('Empty HTML asset', asset);
+          this.logger.warn('Empty HTML asset.', asset);
 
           return;
         }
@@ -219,27 +219,7 @@ export default class BeastcssWebpackPlugin extends Beastcss {
       return this.cachedStylesheetsSource.get(stylesheet.name);
     }
 
-    const promise = (async () => {
-      try {
-        const content = await this.fs.readFile(stylesheet.path);
-
-        return {
-          content,
-          size: Buffer.byteLength(content),
-        };
-      } catch (e) {
-        this.logger.warn(
-          `Unable to locate stylesheet: ${stylesheet.path}`,
-          processId
-        );
-
-        return undefined;
-      }
-    })();
-
-    this.cachedStylesheetsSource.set(stylesheet.name, promise);
-
-    return promise;
+    return super.getStylesheetSource(stylesheet, processId);
   }
 
   async getAdditionalStylesheets() {
@@ -259,6 +239,8 @@ export default class BeastcssWebpackPlugin extends Beastcss {
           }
         ).map(async (name) => {
           if (this.isExcluded(name)) {
+            this.logger.debug(`Excluded additional stylesheet "${name}".`);
+
             return;
           }
 
