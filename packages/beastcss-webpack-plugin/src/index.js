@@ -254,6 +254,8 @@ export default class BeastcssWebpackPlugin extends Beastcss {
       );
     }
 
+    additionalStylesheets.push(...(await super.getAdditionalStylesheets()));
+
     return additionalStylesheets;
   }
 
