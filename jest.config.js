@@ -4,16 +4,14 @@ module.exports = {
     {
       preset: 'es-jest',
       displayName: 'beastcss',
-      testMatch: ['<rootDir>/packages/beastcss/**/?(*.)+(spec|test).[jt]s?(x)'],
+      rootDir: '<rootDir>/packages/beastcss',
     },
     {
       preset: 'es-jest',
       displayName: 'beastcss-webpack-plugin',
-      testMatch: [
-        '<rootDir>/packages/beastcss-webpack-plugin/**/?(*.)+(spec|test).[jt]s?(x)',
-      ],
+      rootDir: '<rootDir>/packages/beastcss-webpack-plugin',
       moduleNameMapper: {
-        '^beastcss$': '<rootDir>/packages/beastcss/src/index.ts',
+        '^beastcss$': '<rootDir>/../beastcss/src/index.ts',
       },
     },
   ],
