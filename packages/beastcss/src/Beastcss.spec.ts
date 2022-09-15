@@ -229,6 +229,8 @@ describe('beastcss', () => {
 
   describe('internal option by default', () => {
     it('should remove non critical css from internal stylesheet', async () => {
+      jest.spyOn(console, 'info').mockImplementation(() => {});
+
       const css = [
         'h1 { color: blue; }',
         'h2.unused { color: red; }',
@@ -242,9 +244,7 @@ describe('beastcss', () => {
         '<p>This is a paragraph</p>',
       ].join('\n');
 
-      const beastcss = new Beastcss({
-        logLevel: 'silent',
-      });
+      const beastcss = new Beastcss();
 
       html = await beastcss.process(html);
 

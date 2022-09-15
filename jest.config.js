@@ -17,12 +17,7 @@ module.exports = {
   ],
   verbose: true,
   collectCoverage: true,
-  collectCoverageFrom: [
-    'packages/**/src/**/*.ts',
-    '!**/node_modules/**',
-    '!**/src/**/*.spec.ts',
-    '!**/src/**/index.ts',
-  ],
+
   coverageReporters: ['text'],
   watchPathIgnorePatterns: ['node_modules', 'dist'],
 };
