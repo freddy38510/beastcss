@@ -19,7 +19,7 @@ exports[`Beastcss Webpack Plugin External stylesheets should match html snapshot
   padding: 0.3em;
   border-right: 1em solid black;}ul.navbar a{text-decoration: none;}a:link{color: blue;}a:visited{color: purple;}footer{margin-top: 1em;
   padding-top: 1em;
-  border-top: thin dotted;}</style><link href=\\"main.css\\" rel=\\"stylesheet\\" media=\\"print\\" onload=\\"this.media='all'; this.onload=null;\\"><noscript><link rel=\\"stylesheet\\" href=\\"main.css\\"></noscript></head>
+  border-top: thin dotted;}</style><link href=\\"main.css\\" rel=\\"stylesheet\\" media=\\"print\\" onload=\\"this.media='all'; this.onload=null;\\"></head>
   <body>
     <ul class=\\"navbar\\">
       <li>
@@ -128,7 +128,7 @@ exports[`Beastcss Webpack Plugin preloadExternalStylesheets should match html sn
   padding: 0.3em;
   border-right: 1em solid black;}ul.navbar a{text-decoration: none;}a:link{color: blue;}a:visited{color: purple;}footer{margin-top: 1em;
   padding-top: 1em;
-  border-top: thin dotted;}</style><link rel=\\"preload\\" href=\\"main.css\\" as=\\"style\\"><link href=\\"main.css\\" rel=\\"stylesheet\\" media=\\"print\\" onload=\\"this.media='all'; this.onload=null;\\"><noscript><link rel=\\"stylesheet\\" href=\\"main.css\\"></noscript></head>
+  border-top: thin dotted;}</style><link rel=\\"preload\\" href=\\"main.css\\" as=\\"style\\"><link href=\\"main.css\\" rel=\\"stylesheet\\" media=\\"print\\" onload=\\"this.media='all'; this.onload=null;\\"></head>
   <body>
     <ul class=\\"navbar\\">
       <li>
@@ -165,7 +165,7 @@ exports[`Beastcss Webpack Plugin prune source on multiple html should match html
   padding: 0.3em;
   border-right: 1em solid black;}ul.navbar a{text-decoration: none;}a:link{color: blue;}a:visited{color: purple;}footer{margin-top: 1em;
   padding-top: 1em;
-  border-top: thin dotted;}</style><link href=\\"main.css\\" rel=\\"stylesheet\\" media=\\"print\\" onload=\\"this.media='all'; this.onload=null;\\"><noscript><link rel=\\"stylesheet\\" href=\\"main.css\\"></noscript></head>
+  border-top: thin dotted;}</style><link href=\\"main.css\\" rel=\\"stylesheet\\" media=\\"print\\" onload=\\"this.media='all'; this.onload=null;\\"></head>
   <body>
     <ul class=\\"navbar\\">
       <li>
@@ -202,7 +202,7 @@ exports[`Beastcss Webpack Plugin prune source on multiple html should match html
   padding: 0.3em;
   border-right: 1em solid black;}ul.navbar a{text-decoration: none;}a:link{color: blue;}a:visited{color: purple;}footer{margin-top: 1em;
   padding-top: 1em;
-  border-top: thin dotted;}h2{color: red;}.bold{font-weight: bold;}</style><link href=\\"main.css\\" rel=\\"stylesheet\\" media=\\"print\\" onload=\\"this.media='all'; this.onload=null;\\"><noscript><link rel=\\"stylesheet\\" href=\\"main.css\\"></noscript></head>
+  border-top: thin dotted;}h2{color: red;}.bold{font-weight: bold;}</style><link href=\\"main.css\\" rel=\\"stylesheet\\" media=\\"print\\" onload=\\"this.media='all'; this.onload=null;\\"></head>
   <body>
     <ul class=\\"navbar\\">
       <li>
@@ -243,7 +243,7 @@ exports[`Beastcss Webpack Plugin prune source on multiple html without html-webp
   padding: 0.3em;
   border-right: 1em solid black;}ul.navbar a{text-decoration: none;}a:link{color: blue;}a:visited{color: purple;}footer{margin-top: 1em;
   padding-top: 1em;
-  border-top: thin dotted;}</style><link rel=\\"stylesheet\\" href=\\"./style.css\\" media=\\"print\\" onload=\\"this.media='all'; this.onload=null;\\"><noscript><link rel=\\"stylesheet\\" href=\\"./style.css\\"></noscript>
+  border-top: thin dotted;}</style><link rel=\\"stylesheet\\" href=\\"./style.css\\" media=\\"print\\" onload=\\"this.media='all'; this.onload=null;\\">
   </head>
   <body>
     <ul class=\\"navbar\\">
@@ -281,7 +281,7 @@ exports[`Beastcss Webpack Plugin prune source on multiple html without html-webp
   padding: 0.3em;
   border-right: 1em solid black;}ul.navbar a{text-decoration: none;}a:link{color: blue;}a:visited{color: purple;}footer{margin-top: 1em;
   padding-top: 1em;
-  border-top: thin dotted;}h2{color: red;}.bold{font-weight: bold;}</style><link rel=\\"stylesheet\\" href=\\"./style.css\\" media=\\"print\\" onload=\\"this.media='all'; this.onload=null;\\"><noscript><link rel=\\"stylesheet\\" href=\\"./style.css\\"></noscript>
+  border-top: thin dotted;}h2{color: red;}.bold{font-weight: bold;}</style><link rel=\\"stylesheet\\" href=\\"./style.css\\" media=\\"print\\" onload=\\"this.media='all'; this.onload=null;\\">
   </head>
   <body>
     <ul class=\\"navbar\\">
@@ -323,7 +323,7 @@ exports[`Beastcss Webpack Plugin publicPath should match html snapshot 1`] = `
   padding: 0.3em;
   border-right: 1em solid black;}ul.navbar a{text-decoration: none;}a:link{color: blue;}a:visited{color: purple;}footer{margin-top: 1em;
   padding-top: 1em;
-  border-top: thin dotted;}</style><link href=\\"/_public/main.css\\" rel=\\"stylesheet\\" media=\\"print\\" onload=\\"this.media='all'; this.onload=null;\\"><noscript><link rel=\\"stylesheet\\" href=\\"/_public/main.css\\"></noscript></head>
+  border-top: thin dotted;}</style><link href=\\"/_public/main.css\\" rel=\\"stylesheet\\" media=\\"print\\" onload=\\"this.media='all'; this.onload=null;\\"></head>
   <body>
     <ul class=\\"navbar\\">
       <li>
