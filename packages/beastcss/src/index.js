@@ -166,17 +166,19 @@ export default class Beastcss {
     });
 
     entries.forEach((entry) => {
-      if (entry.endsWith('.css')) {
-        const stylesheet = {
-          path: this.getStylesheetPath(entry),
-        };
-
-        stylesheet.name = path
-          .relative(this.options.path, stylesheet.path)
-          .replace(/^\.\//, '');
-
-        additionalStylesheets.push(stylesheet);
+      if (this.exclude(entry)) {
+        return;
       }
+
+      const stylesheet = {
+        path: this.getStylesheetPath(entry),
+      };
+
+      stylesheet.name = path
+        .relative(this.options.path, stylesheet.path)
+        .replace(/^\.\//, '');
+
+      additionalStylesheets.push(stylesheet);
     });
 
     return additionalStylesheets;
