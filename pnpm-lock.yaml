@@ -78,12 +78,12 @@ importers:
       '@freddy38510/dropcss': 2.4.0
       fast-glob: 3.2.12
       kolorist: 1.6.0
-      node-html-parser: 5.4.2
+      node-html-parser: 6.0.0
     dependencies:
       '@freddy38510/dropcss': 2.4.0
       fast-glob: 3.2.12
       kolorist: 1.6.0
-      node-html-parser: 5.4.2
+      node-html-parser: 6.0.0
 
   packages/beastcss-webpack-plugin:
     specifiers:
@@ -3274,7 +3274,7 @@ packages:
     dev: true
 
   /he/1.2.0:
-    resolution: {integrity: sha512-F/1DnUGPopORZi0ni+CvrCgHQ5FyEAHRLSApuYWMmrbSwoN2Mn/7k+Gl38gJnR7yyDZk6WLXwiGod1JOWNDKGw==, registry: https://registry.yarnpkg.com/, tarball: https://registry.yarnpkg.com/he/-/he-1.2.0.tgz}
+    resolution: {integrity: sha512-F/1DnUGPopORZi0ni+CvrCgHQ5FyEAHRLSApuYWMmrbSwoN2Mn/7k+Gl38gJnR7yyDZk6WLXwiGod1JOWNDKGw==}
     hasBin: true
 
   /homedir-polyfill/1.0.3:
@@ -4499,8 +4499,8 @@ packages:
       tslib: 2.4.0
     dev: true
 
-  /node-html-parser/5.4.2:
-    resolution: {integrity: sha512-RaBPP3+51hPne/OolXxcz89iYvQvKOydaqoePpOgXcrOKZhjVIzmpKZz+Hd/RBO2/zN2q6CNJhQzucVz+u3Jyw==}
+  /node-html-parser/6.0.0:
+    resolution: {integrity: sha512-o4vS5Jm7ZdV5WN4/jHmCEVJOpm4exLCeXOcZnNzXi0BGv0AS8FsGwyQ4k0Ujmui1NMQs6qsTy+amjjpr9rmz4Q==}
     dependencies:
       css-select: 4.3.0
       he: 1.2.0
