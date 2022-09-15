@@ -258,7 +258,7 @@ export default class BeastcssWebpackPlugin extends Beastcss {
             posixSlashes: true,
           }
         ).map(async (name) => {
-          if (this.exclude(name)) {
+          if (this.isExcluded(name)) {
             return;
           }
 

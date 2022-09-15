@@ -25,14 +25,6 @@ export default class Beastcss {
     // no need to keep it in memory
     delete this.options.fs;
 
-    this.exclude = options.exclude
-      ? options.exclude
-      : (href) => !(href || '').match(/\.css$/);
-
-    if (this.exclude instanceof RegExp) {
-      this.exclude = this.exclude.test.bind(this.exclude);
-    }
-
     this.logger = setVerbosity(
       options.logger || defaultLogger,
       this.options.logLevel
@@ -166,7 +158,7 @@ export default class Beastcss {
     });
 
     entries.forEach((entry) => {
-      if (this.exclude(entry)) {
+      if (this.isExcluded(entry)) {
         return;
       }
 
@@ -190,7 +182,7 @@ export default class Beastcss {
     astHTML.querySelectorAll('link[rel="stylesheet"]').forEach((link) => {
       const href = link.getAttribute('href');
 
-      if (this.exclude(href)) {
+      if (this.isExcluded(href)) {
         return;
       }
 
@@ -298,6 +290,32 @@ export default class Beastcss {
     this.cachedStylesheetsSource.clear();
 
     this.stylesheetsToPrune.clear();
+  }
+
+  isExcluded(stylesheetPath) {
+    // Exclude remote stylesheets
+    if (
+      /^https?:\/\//.test(stylesheetPath) ||
+      stylesheetPath.startsWith('//')
+    ) {
+      return true;
+    }
+
+    if (
+      this.options.exclude instanceof RegExp &&
+      this.options.exclude.test(stylesheetPath)
+    ) {
+      return true;
+    }
+
+    if (
+      this.options.exclude instanceof Function &&
+      this.options.exclude(stylesheetPath)
+    ) {
+      return true;
+    }
+
+    return !/\.css$/.test(stylesheetPath.replace(/\?\w+$/, ''));
   }
 
   static cssToInternal(astHTML, css, link) {
