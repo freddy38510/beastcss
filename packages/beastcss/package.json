@@ -40,9 +40,9 @@
   },
   "dependencies": {
     "@freddy38510/dropcss": "2.4.0",
-    "fast-glob": "3.2.11",
-    "kolorist": "1.5.1",
-    "node-html-parser": "5.4.1"
+    "fast-glob": "3.2.12",
+    "kolorist": "1.6.0",
+    "node-html-parser": "5.4.2"
   },
   "publishConfig": {
     "access": "public"
