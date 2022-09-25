@@ -63,6 +63,7 @@ describe('beastcss', () => {
         '<p class="with&lt;guillemets&gt;"></p>',
         '<p class="with{brackets}"></p>',
         '<p class="with[square-brackets]"></p>',
+        '<p class="with.full-stop"></p>',
         '<p class="with:[mixed/chars]"></p>',
         '</body>',
       ].join('\n');
@@ -78,6 +79,7 @@ describe('beastcss', () => {
           `.with\\<guillemets\\> { color: blue; }`,
           `.with\\{brackets\\} { color: blue; }`,
           `.with\\[square-brackets\\] { color: blue; }`,
+          `.with\\.full-stop { color: blue; }`,
           `.with\\:\\[mixed\\/chars\\] { color: blue; }`,
         ].join('\n'),
       });
@@ -105,6 +107,7 @@ describe('beastcss', () => {
       expect(stylesTagContent).toMatch('.with\\<guillemets\\>');
       expect(stylesTagContent).toMatch('.with\\{brackets\\}');
       expect(stylesTagContent).toMatch('.with\\[square-brackets\\]');
+      expect(stylesTagContent).toMatch('.with\\.full-stop');
       expect(stylesTagContent).toMatch('.with\\:\\[mixed\\/chars\\]');
     });
 
@@ -122,6 +125,7 @@ describe('beastcss', () => {
       expect(bodyTagContent).toMatch('with&lt;guillemets&gt;');
       expect(bodyTagContent).toMatch('with{brackets}');
       expect(bodyTagContent).toMatch('with[square-brackets]');
+      expect(bodyTagContent).toMatch('with.full-stop');
       expect(bodyTagContent).toMatch('with:[mixed/chars]');
     });
   });
