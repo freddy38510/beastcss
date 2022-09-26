@@ -1,5 +1,32 @@
 # Changelog
 
+## [2.0.0](https://github.com/freddy38510/beastcss/compare/beastcss-v1.2.1...beastcss-v2.0.0) (2022-09-26)
+
+
+### ⚠ BREAKING CHANGES
+
+* do not add a noscript tag by default
+
+### Features
+
+* add more logging and improve some of it ([52c42b4](https://github.com/freddy38510/beastcss/commit/52c42b479fafc9d9a6aa588120015fbfa8df8f47))
+* do not add a noscript tag by default ([ab407e8](https://github.com/freddy38510/beastcss/commit/ab407e89e29f6e7ece769da2031df77c5f2e8936))
+* exclude remote stylesheets and rework exclusion logic for better robustness ([ea879f0](https://github.com/freddy38510/beastcss/commit/ea879f0e4cdb99d8201d0281375f75fc5cf98703))
+* support period special character in class names  ([#104](https://github.com/freddy38510/beastcss/issues/104)) ([cd7cd61](https://github.com/freddy38510/beastcss/commit/cd7cd61f3dbf73eca8b64b4b7e86bc4d4baad517))
+* supports excluding additional stylesheets ([08d363c](https://github.com/freddy38510/beastcss/commit/08d363c2949e5d203bf97e4fe3b903202b60424c))
+
+
+### Bug Fixes
+
+* **deps:** update dependency node-html-parser to v6 ([#102](https://github.com/freddy38510/beastcss/issues/102)) ([0c01b28](https://github.com/freddy38510/beastcss/commit/0c01b288aff944d652dbe6ca657d00b62743f1fa))
+* use provided filesystem when searching for additional stylesheets ([66da34d](https://github.com/freddy38510/beastcss/commit/66da34d72a8838a18d5338d14b320c21d951c6f1))
+
+
+### Performance Improvements
+
+* caches the content of external stylesheets as a buffer instead of a string ([ec8f6ba](https://github.com/freddy38510/beastcss/commit/ec8f6ba204bc98a1485b7cf6b815968933def8f3))
+* use dependency kolorist instead of chalk ([cf6cc2b](https://github.com/freddy38510/beastcss/commit/cf6cc2bd02e80465984f57a2c4917b77de4f20a7))
+
 ## [1.2.1](https://github.com/freddy38510/beastcss/compare/beastcss-v1.2.0...beastcss-v1.2.1) (2022-08-17)
 
 
