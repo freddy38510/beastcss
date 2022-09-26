@@ -1,5 +1,46 @@
 # Changelog
 
+## [2.0.0](https://github.com/freddy38510/beastcss/compare/beastcss-webpack-plugin-v1.0.11...beastcss-webpack-plugin-v2.0.0) (2022-09-26)
+
+
+### ⚠ BREAKING CHANGES
+
+* do not add a noscript tag by default
+* drop webpack 4 support
+
+### Features
+
+* add more logging and improve some of it ([52c42b4](https://github.com/freddy38510/beastcss/commit/52c42b479fafc9d9a6aa588120015fbfa8df8f47))
+* do not add a noscript tag by default ([ab407e8](https://github.com/freddy38510/beastcss/commit/ab407e89e29f6e7ece769da2031df77c5f2e8936))
+* exclude remote stylesheets and rework exclusion logic for better robustness ([ea879f0](https://github.com/freddy38510/beastcss/commit/ea879f0e4cdb99d8201d0281375f75fc5cf98703))
+* handle logging with webpack infrastructure logger ([1da01eb](https://github.com/freddy38510/beastcss/commit/1da01ebd661096fd4473e4b67a8260991678fe89))
+* supports excluding additional stylesheets ([08d363c](https://github.com/freddy38510/beastcss/commit/08d363c2949e5d203bf97e4fe3b903202b60424c))
+
+
+### Bug Fixes
+
+* ensure to process each html asset only once ([7c372ab](https://github.com/freddy38510/beastcss/commit/7c372ab7e9cb5c5a86c797598cb1fc76882127e0))
+* get additional stylesheets from filesystem in addition to webpack assets ([9cfb190](https://github.com/freddy38510/beastcss/commit/9cfb1900f13fc1f8fcd38ef9646d78903e94f212))
+* process all html assets and prune stylesheet sources at the right time ([5c201d0](https://github.com/freddy38510/beastcss/commit/5c201d04860aea56be90282af4a472c0f060eac9))
+* set fs property with webpack output filesystem when available if no fs option is passed ([c2caed5](https://github.com/freddy38510/beastcss/commit/c2caed54ac6f1f0d856c1f2fa1bb8d03af902f96))
+
+
+### Performance Improvements
+
+* caches the content of external stylesheets as a buffer instead of a string ([ec8f6ba](https://github.com/freddy38510/beastcss/commit/ec8f6ba204bc98a1485b7cf6b815968933def8f3))
+
+
+### Code Refactoring
+
+* drop webpack 4 support ([164ef2d](https://github.com/freddy38510/beastcss/commit/164ef2d9943cf2a107389e347639dc5b1925d4c9))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * beastcss bumped from ^1.2.1 to ^2.0.0
+
 ## [1.0.11](https://github.com/freddy38510/beastcss/compare/beastcss-webpack-plugin-v1.0.10...beastcss-webpack-plugin-v1.0.11) (2022-08-17)
 
 

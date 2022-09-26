@@ -1,4 +1,4 @@
 {
-  "packages/beastcss": "1.2.1",
-  "packages/beastcss-webpack-plugin": "1.0.11"
+  "packages/beastcss": "2.0.0",
+  "packages/beastcss-webpack-plugin": "2.0.0"
 }
