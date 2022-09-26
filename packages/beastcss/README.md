@@ -1,6 +1,6 @@
 # Beastcss
 
-> Inline critical CSS and async load the rest.
+> Inline critical CSS and asynchronous load the rest.
 
 ## Installation
 
@@ -22,46 +22,100 @@ pnpm add -D beastcss
 
 ## Usage
 
-Create a Beastcss instance with the given options.
-
-Then call the async `process(html)` method with a HTML string as parameter.
-
 ```js
-const Beastcss = require('beastcss');
+import fs from 'fs/promises';
+import Beastcss from 'beastcss';
 
 const beastcss = new Beastcss({
-  // optional configuration (see below)
+  // optional configuration (see below).
 });
 
 (async () => {
-  const processedHTML = await beastcss.process(originalHTML);
+  // get the html string to process
+  const html = await fs.readFile('index.html', 'utf-8');
+
+  // call the process method of the previously instantiated Beastcss class
+  const processedHTML = await beastcss.process(html);
+
+  // do something with the processed html string
+  await fs.writeFile('index.html', processedHTML, 'utf-8');
 })();
 ```
 
-That's it! The resultant html will have its critical CSS inlined and the stylesheets async loaded.
+The resulting HTML string will have its critical CSS inlined and any corresponding external stylesheet links tweaked to be loaded asynchronously by a browser.
 
 ### Prune Source
 
-Process one or multiple html strings then call the `pruneSources()` method to remove critical css from your external stylesheets files.
+Process one or more html strings then call the `pruneSources()` method to remove critical css from external stylesheet files.
 
 ```js
 const Beastcss = require('beastcss');
 
 const beastcss = new Beastcss({
-  pruneSource: true,
+  pruneSource: true, // required
   // ... others options
 });
 
 (async () => {
-  const processedHTML = await beastcss.process(originalHTML);
+  // process html strings sequentially
+  const processedHtml = await beastcss.process(html);
+  const processedHtml2 = await beastcss.process(html2);
+  const processedHtml3 = await beastcss.process(html3);
 
-  const processedHTML2 = await beastcss.process(originalHTML2);
+  // or process html strings in parallel
+  const processedHtmls = await Promise.all([
+    beastcss.process(html),
+    beastcss.process(html2),
+    beastcss.process(html3),
+  ]);
 
-  const processedHTML3 = await beastcss.process(originalHTML3);
-
+  // Remove critical css from external stylesheets
   await beastcss.pruneSources();
 })();
 ```
+
+## API Reference
+
+### process(html)
+
+Apply critical CSS processing to the html.
+
+```typescript
+async function process(
+  html: string,
+  processId?: string | number
+): Promise<string>;
+```
+
+> Notes: `processId` parameter is passed to the logger. It helps to identify logging for each call to the `process` method in case multiple calls to the method are made in parallel.
+
+### `pruneSources()`
+
+Remove all previously collected critical CSS from external stylesheets.
+
+```typescript
+async function pruneSources(processId?: string | number): Promise<void>;
+```
+
+### `clear()`
+
+Free up memory by clearing cached stylesheets and critical selectors collected when pruneSource option is enabled.
+
+```typescript
+function clear(): void;
+```
+
+### `setVerbosity()`
+
+Set the logging verbosity.
+
+```typescript
+function setVerbosity(
+  logLevel?: 'debug' | 'info' | 'warn' | 'error' | 'silent'
+): void;
+```
+
+> Notes: use the level set in the [`logLevel` option](#logLevel) if no parameter is passed.
 
 ## Options
 
@@ -71,7 +125,7 @@ Type: `String`
 
 Default: `process.cwd()`
 
-Base path location of the CSS files. Set to the current working directory by default.
+Location of the absolute base path of CSS files. Set to the current working directory by default.
 
 ### `publicPath`
 
@@ -79,7 +133,7 @@ Type: `String`
 
 Default: `''`
 
-Public path of the CSS resources. This prefix is removed from the href attribute.
+Public path to remove when finding actual CSS resource paths.
 
 ### `external`
 
@@ -87,7 +141,7 @@ Type: `Boolean`
 
 Default `true`
 
-Process external stylesheets.
+Process external stylesheets `<link href="path/to/external/stylesheet.css" rel="stylesheet">`.
 
 ### `internal`
 
@@ -95,7 +149,7 @@ Type: `Boolean`
 
 Default `true`
 
-Process internal stylesheets.
+Process internal stylesheets `<style></style>`.
 
 ### `additionalStylesheets`
 
@@ -103,7 +157,7 @@ Type: `Array`
 
 Default `[]`
 
-Array of Glob for matching other stylesheets to be used while looking for critical CSS.
+Array of [Globs](https://github.com/mrmlnc/fast-glob#basic-syntax) for matching additional stylesheets to be used while looking for critical CSS.
 
 ### `externalThreshold`
 
@@ -111,7 +165,7 @@ Type: `Number`
 
 Default `0`
 
-Completely inline external stylesheets smaller than a given size.
+Completely inline external stylesheets below a given size in bytes.
 
 ### `merge`
 
@@ -119,7 +173,7 @@ Type: `Boolean`
 
 Default `true`
 
-Merged inlined stylesheets into a single `<style></style>` tag.
+Merge `<style>` tags into a single one.
 
 ### `pruneSource`
 
@@ -127,7 +181,7 @@ Type: `Boolean`
 
 Default `false`
 
-Remove inlined rules from the external stylesheet.
+Remove critical CSS from external stylesheets. Critical css selectors are collected on every call to the `process()` method. To actually remove critical css from external stylesheets, the `pruneSources()` method must be called last.
 
 ### `preloadExternalStylesheets`
 
@@ -135,7 +189,7 @@ Type: `Boolean`
 
 Default `false`
 
-Preload external stylesheets.
+Add a `link` tag to preload external stylesheets.
 
 ### `asyncLoadExternalStylesheets`
 
@@ -143,27 +197,29 @@ Type: `Boolean`
 
 Default `true`
 
-Async load external stylesheets.
+Make the loading of external stylesheets asynchronous.
 
 ### `noscriptFallback`
 
 Type: `Boolean`
 
-Default `true`
+Default `false`
 
-Add `<noscript>` fallback to load external stylesheets.
+Add a `<noscript>` tag as an alternative to load external stylesheets in case JS is disabled.
+
+> Notes: JS is used if the `asyncLoadExternalStylesheets` option is enabled.
 
 ### `exclude`
 
-Type: `Function|Regexp`
+Type: `((stylesheetPath: string) => boolean) | RegExp`
 
 Exclude matching external stylesheets from processing.
 
 ### `whitelist`
 
-Type: `String[]|Regexp[]`
+Type: `String[]|RegExp[]`
 
-An array of css selectors to be considered as used rules.
+An array of css selectors to be considered as critical CSS.
 
 ### `fontFace`
 
@@ -171,7 +227,7 @@ Type: `Boolean`
 
 Default: `false`
 
-Inline used @font-face rules.
+Inline critical `@font-face` rules.
 
 ### `keyframes`
 
@@ -179,49 +235,47 @@ Type: `Boolean`
 
 Default: `true`
 
-Inline used @keyframes rules.
+Inline critical `@keyframes` rules.
 
 ### `fs`
 
 Type: `Object`
 
-Filesystem to be used when reading/writing to external stylesheets files.
+Default: built-in NodeJS [`fs`](https://nodejs.org/docs/latest-v12.x/api/fs.html) module.
+
+Custom file system to read, write and remove external stylesheets. Methods with callback or promise are supported.
 
 ### `logLevel`
 
-Type: `String`
+Type: `String` (see [Log Level](#log-level))
 
 Default: `'info'`
 
-Set the printed output verbosity. See [available levels](#log-Level).
+The level of logging verbosity.
 
 ### `logger`
 
-Type: `Object`
+Type: `Object` (see [Custom Logger Interface](#custom-logger-interface))
 
-Provide a custom logger interface.
+Provide a custom `Logger`.
 
 ## Log Level
 
-Controls the printed output verbosity. Specifies the level the logger should use. A logger will
-not produce output for any log level beneath the specified level. Available levels and order
-are:
+Controls logging verbosity by specifying the level the logger should use. The logger will not produce output for any logging level below the specified level. The levels available in order of verbosity are:
 
-- `trace`
-- `debug`
-- `info`
-- `warn`
-- `error`
-- `silent`
+- `'debug'`
+- `'info'`
+- `'warn'`
+- `'error'`
+- `'silent'`
 
 ## Custom Logger Interface
 
 ```typescript
 interface Logger {
-  info: (msg: string, id?: string) => void;
-  warn: (msg: string, id?: string) => void;
-  error: (msg: string, id?: string) => void;
-  trace: (msg: string, id?: string) => void;
-  debug: (msg: string, id?: string) => void;
+  debug: (msg: string, processId?: string | number) => void;
+  info: (msg: string, processId?: string | number) => void;
+  warn: (msg: string, processId?: string | number) => void;
+  error: (msg: string, processId?: string | number) => void;
 }
 ```

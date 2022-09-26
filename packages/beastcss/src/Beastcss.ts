@@ -690,7 +690,7 @@ namespace Beastcss {
      */
     path: string;
     /**
-     * Public path of the CSS resources. This prefix is removed from the `href` attribute.
+     * Public path to remove when parsing actual CSS resource paths.
      */
     publicPath: string;
     /**
@@ -710,7 +710,7 @@ namespace Beastcss {
      */
     externalThreshold: number;
     /**
-     * Custom File system to read, write and remove external stylesheets.
+     * Custom file system to read, write and remove external stylesheets.
      */
     fs?: FSLike;
     /**
@@ -742,13 +742,13 @@ namespace Beastcss {
      */
     preloadExternalStylesheets?: boolean;
     /**
-     * Add the `<noscript>` tag as a fallback to loading external stylesheets asynchronously.
+     * Add a `<noscript>` tag as a fallback to loading external stylesheets asynchronously.
      */
     noscriptFallback?: boolean;
     /**
      * An array of css selectors to be considered as critical CSS.
      */
-    whitelist?: Array<string | RegExp>;
+    whitelist?: string[] | RegExp[];
     /**
      * Inline critical `@font-face` rules.
      */
