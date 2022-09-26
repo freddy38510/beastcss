@@ -18,7 +18,7 @@ export function replaceHTMLClasses(html: string) {
         .replace(/}/gm, '__9') // }
         .replace(/\[/gm, '__10') // [
         .replace(/\]/gm, '__11') // ]
-        .replace(/\./gm, '__12') // ]
+        .replace(/\./gm, '__12') // .
   );
 }
 
@@ -38,8 +38,8 @@ export function replaceCSSSelectors(css: string) {
     .replace(/\\{/gm, '__8') // \{
     .replace(/\\}/gm, '__9') // \}
     .replace(/\\\[/gm, '__10') // \[
-    .replace(/\\\]/gm, '__11') // \[
-    .replace(/\\\./gm, '__12'); // \]
+    .replace(/\\\]/gm, '__11') // \]
+    .replace(/\\\./gm, '__12'); // \.
 }
 
 /**
