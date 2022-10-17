@@ -28,7 +28,7 @@
   "devDependencies": {
     "@commitlint/cli": "17.1.2",
     "@commitlint/config-conventional": "17.1.0",
-    "@rollup/plugin-json": "4.1.0",
+    "@rollup/plugin-json": "5.0.0",
     "@tsconfig/node12": "1.0.11",
     "@types/jest": "29.0.3",
     "@types/micromatch": "4.0.2",
