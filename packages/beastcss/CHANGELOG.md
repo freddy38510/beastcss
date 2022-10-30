@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.1](https://github.com/freddy38510/beastcss/compare/beastcss-v2.0.0...beastcss-v2.0.1) (2022-10-30)
+
+
+### Bug Fixes
+
+* avoid incorrect replacement of special characters ([7f49f5b](https://github.com/freddy38510/beastcss/commit/7f49f5b44a5dee5f1fedbbdc136fd0d1a8a99c4e))
+
 ## [2.0.0](https://github.com/freddy38510/beastcss/compare/beastcss-v1.2.1...beastcss-v2.0.0) (2022-09-26)
 
 
