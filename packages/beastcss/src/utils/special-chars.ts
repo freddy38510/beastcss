@@ -44,22 +44,20 @@ export function replaceCSSSelectors(css: string) {
 
 /**
  * Restore escaped specials characters in css selectors replaced by unique strings.
- *
- * Done in reverse order to avoid mismatching unique strings.
  */
 export function restoreCSSSelectors(css: string) {
   return css
-    .replace(/__12__/gm, '\\.')
-    .replace(/__11__/gm, '\\]')
-    .replace(/__10__/gm, '\\[')
-    .replace(/__9__/gm, '\\}')
-    .replace(/__8__/gm, '\\{')
-    .replace(/__7__/gm, '\\>')
-    .replace(/__6__/gm, '\\<')
-    .replace(/__5__/gm, '\\!')
-    .replace(/__4__/gm, '\\)')
-    .replace(/__3__/gm, '\\(')
-    .replace(/__2__/gm, '\\?')
+    .replace(/__0__/gm, '\\:')
     .replace(/__1__/gm, '\\/')
-    .replace(/__0__/gm, '\\:');
+    .replace(/__2__/gm, '\\?')
+    .replace(/__3__/gm, '\\(')
+    .replace(/__4__/gm, '\\)')
+    .replace(/__5__/gm, '\\!')
+    .replace(/__6__/gm, '\\<')
+    .replace(/__7__/gm, '\\>')
+    .replace(/__8__/gm, '\\{')
+    .replace(/__9__/gm, '\\}')
+    .replace(/__10__/gm, '\\[')
+    .replace(/__11__/gm, '\\]')
+    .replace(/__12__/gm, '\\.');
 }
