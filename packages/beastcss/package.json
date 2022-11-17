@@ -42,7 +42,7 @@
     "@freddy38510/dropcss": "2.4.0",
     "fast-glob": "3.2.12",
     "kolorist": "1.6.0",
-    "node-html-parser": "6.1.1"
+    "node-html-parser": "6.1.4"
   },
   "publishConfig": {
     "access": "public"
