@@ -6,7 +6,14 @@ import { AsyncLocalStorage } from 'async_hooks';
 import dropcss, { type DropcssOptions } from '@freddy38510/dropcss';
 import lightningcss from 'lightningcss';
 import type { FileSystemAdapter } from 'fast-glob';
-import { htmlParser, specialChars, logging, formatter } from './utils';
+
+import {
+  htmlParser,
+  specialChars,
+  logging,
+  formatter,
+  getStylesheetId,
+} from './utils';
 
 class Beastcss {
   public opts: Beastcss.Options;
@@ -37,6 +44,10 @@ class Beastcss {
       logLevel: 'info',
       ...(options || {}),
     };
+
+    if (this.opts.autoRemoveStyleTags === true) {
+      this.opts.merge = false;
+    }
 
     this.setVerbosity();
 
@@ -424,6 +435,18 @@ class Beastcss {
     style.$$external = true;
 
     if (link) {
+      if (this.opts.autoRemoveStyleTags === true) {
+        const id = getStylesheetId();
+
+        style.setAttribute('data-id', id);
+        link.setAttribute('data-id', id);
+
+        let autoRemove = '';
+
+        autoRemove = `document.querySelector('style[data-id="'+this.dataset.id+'"]').remove(),this.onload=null;`;
+        link.setAttribute('onload', autoRemove);
+      }
+
       link.before(style);
 
       return;
@@ -553,6 +576,9 @@ class Beastcss {
     // Skip, no change
     if (source.size === criticalCss.size) return false;
 
+    // noscriptFallback option is checked in the method
+    this.insertNoscriptTag(stylesheet.link);
+
     this.insertStyle(astHTML, criticalCss.content, stylesheet.link);
 
     if (stylesheet.link) {
@@ -581,17 +607,26 @@ class Beastcss {
   }
 
   private makeLoadingAsync(link: htmlParser.ExtendedHTMLElement) {
-    this.insertNoscriptTag(link);
-
     const media = link.getAttribute('media') || 'all';
 
     // @see http://filamentgroup.github.io/loadCSS/test/mediatoggle.html
     link.setAttribute('media', 'print');
-    link.setAttribute('onload', `this.media='${media}'; this.onload=null;`);
+    link.setAttribute('data-media', media);
+
+    let autoRemove = '';
+
+    if (this.opts.autoRemoveStyleTags === true) {
+      autoRemove = `document.querySelector('style[data-id="'+this.dataset.id+'"]').remove(),`;
+    }
+
+    link.setAttribute(
+      'onload',
+      `this.media=this.dataset.media,delete this.dataset.media,${autoRemove}this.onload=null;`
+    );
   }
 
-  private insertNoscriptTag(link: htmlParser.ExtendedHTMLElement) {
-    if (this.opts.noscriptFallback !== true) {
+  private insertNoscriptTag(link?: htmlParser.ExtendedHTMLElement) {
+    if (this.opts.noscriptFallback !== true || !link) {
       return;
     }
 
@@ -782,6 +817,11 @@ namespace Beastcss {
      * @default true
      */
     merge?: boolean;
+    /**
+     * Remove style tags containing critical css once the corresponding external stylesheet is loaded.
+     * @default false
+     */
+    autoRemoveStyleTags?: boolean;
     /**
      * Load external stylesheets asynchronously.
      * @default true

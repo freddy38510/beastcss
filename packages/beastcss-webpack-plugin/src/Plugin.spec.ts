@@ -145,10 +145,10 @@ describe('Beastcss Webpack Plugin', () => {
 
     it('should make external stylesheet loading async', () => {
       expect(html).toMatch(
-        `<link rel="stylesheet" href="/main.css" media="print" onload="this.media='all'; this.onload=null;">`
+        `<link rel="stylesheet" href="/main.css" media="print" data-media="all" onload="this.media=this.dataset.media,delete this.dataset.media,this.onload=null;">`
       );
       expect(html2).toMatch(
-        `<link href="main.css" rel="stylesheet" media="print" onload="this.media='all'; this.onload=null;">`
+        `<link href="main.css" rel="stylesheet" media="print" data-media="all" onload="this.media=this.dataset.media,delete this.dataset.media,this.onload=null;">`
       );
     });
   });

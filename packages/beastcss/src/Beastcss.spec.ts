@@ -42,7 +42,7 @@ describe('beastcss', () => {
 
     it('should make external stylesheet loading async', () => {
       expect(html).toMatch(
-        `<link rel="stylesheet" href="/style.css" media="print" onload="this.media='screen'; this.onload=null;">`
+        `<link rel="stylesheet" href="/style.css" media="print" data-media="screen" onload="this.media=this.dataset.media;delete this.dataset.media;this.onload=null;">`
       );
     });
   });
@@ -362,7 +362,7 @@ describe('beastcss', () => {
 
       it('should make non-excluded external stylesheet loading async', () => {
         expect(html).toMatch(
-          `<link rel="stylesheet" href="/style.css" media="print" onload="this.media='all'; this.onload=null;">`
+          `<link rel="stylesheet" href="/style.css" media="print" data-media="all" onload="this.media=this.dataset.media,delete this.dataset.media,this.onload=null;">`
         );
 
         expect(html).toMatch(`<link rel="stylesheet" href="/excluded.css">`);
@@ -397,7 +397,7 @@ describe('beastcss', () => {
       expect(html).not.toMatch(/<style>.*<\/style>/);
 
       expect(html).not.toMatch(
-        `<link rel="stylesheet" href="/style.css" media="print" onload="this.media='all'; this.onload=null;">`
+        `<link rel="stylesheet" href="/style.css" media="print" onload="this.media='all';this.onload=null;">`
       );
     });
   });
@@ -584,9 +584,7 @@ describe('beastcss', () => {
 
       beastcss.clear();
 
-      expect(html).not.toMatch(
-        `<link rel="stylesheet" href="/style.css" media="print" onload="this.media='all'; this.onload=null;">`
-      );
+      expect(html).toMatch(`<link rel="stylesheet" href="/style.css">`);
     });
   });
 
@@ -722,7 +720,7 @@ describe('beastcss', () => {
 
     it('should make external stylesheet loading async', () => {
       expect(html).toMatch(
-        `<link rel="stylesheet" href="/public/style.css" media="print" onload="this.media='all'; this.onload=null;">`
+        `<link rel="stylesheet" href="/public/style.css" media="print" data-media="all" onload="this.media=this.dataset.media,delete this.dataset.media,this.onload=null;">`
       );
     });
   });
@@ -818,6 +816,7 @@ describe('beastcss', () => {
         logLevel: 'silent',
         fs: vol as unknown as Beastcss.FSLike,
         noscriptFallback: true,
+        autoRemoveStyleTags: true,
       });
 
       html = await beastcss.process(html);
@@ -830,6 +829,104 @@ describe('beastcss', () => {
     });
   });
 
+  describe('autoRemoveStyleTags option enabled', () => {
+    let html: string;
+
+    beforeAll(async () => {
+      html = [
+        '<link rel="stylesheet" href="/style.css" media="screen">',
+        '<h1>Hello World!</h1>',
+        '<p>This is a paragraph</p>',
+      ].join('\n');
+
+      vol.fromJSON({
+        './style.css': [
+          'h1 { color: blue; }',
+          'h2.unused { color: red; }',
+          'p { color: purple; }',
+          'p.unused { color: orange; }',
+        ].join('\n'),
+      });
+
+      const beastcss = new Beastcss({
+        logLevel: 'silent',
+        fs: vol as unknown as Beastcss.FSLike,
+        autoRemoveStyleTags: true,
+      });
+
+      html = await beastcss.process(html);
+
+      beastcss.clear();
+    });
+
+    it('should insert critical css from external stylesheet', () => {
+      expect(html).toMatch(
+        /<style data-id="\d*">h1{color: blue;}p{color: purple;}<\/style>/
+      );
+    });
+
+    it('should make external stylesheet loading async and auto remove style tags', () => {
+      const [, onload] = html.match(/onload="(.*)"/ims) || ['', ''];
+
+      expect(onload).toMatchInlineSnapshot(
+        `"this.media=this.dataset.media,delete this.dataset.media,document.querySelector('style[data-id=&quot;'+this.dataset.id+'&quot;]').remove(),this.onload=null;"`
+      );
+
+      expect(html).toMatch(
+        /<link rel="stylesheet" href="\/style.css" media="print" data-id="\d*"/
+      );
+    });
+  });
+
+  describe('autoRemoveStyleTags option enabled with asyncLoadExternalStylesheets option disabled', () => {
+    let html: string;
+
+    beforeAll(async () => {
+      html = [
+        '<link rel="stylesheet" href="/style.css" media="screen">',
+        '<h1>Hello World!</h1>',
+        '<p>This is a paragraph</p>',
+      ].join('\n');
+
+      vol.fromJSON({
+        './style.css': [
+          'h1 { color: blue; }',
+          'h2.unused { color: red; }',
+          'p { color: purple; }',
+          'p.unused { color: orange; }',
+        ].join('\n'),
+      });
+
+      const beastcss = new Beastcss({
+        logLevel: 'silent',
+        fs: vol as unknown as Beastcss.FSLike,
+        autoRemoveStyleTags: true,
+        asyncLoadExternalStylesheets: false,
+      });
+
+      html = await beastcss.process(html);
+
+      beastcss.clear();
+    });
+
+    it('should insert critical css from external stylesheet', () => {
+      expect(html).toMatch(
+        /<style data-id="\d*">h1{color: blue;}p{color: purple;}<\/style>/
+      );
+    });
+
+    it('should remove style tags when external stylesheet is loaded', () => {
+      const [, onload] = html.match(/onload="(.*)"/ims) || ['', ''];
+
+      expect(onload).toMatchInlineSnapshot(
+        `"document.querySelector('style[data-id=&quot;'+this.dataset.id+'&quot;]').remove(),this.onload=null;"`
+      );
+
+      expect(html).toMatch(
+        /<link rel="stylesheet" href="\/style.css" media="screen" data-id="\d*"/
+      );
+    });
+  });
   describe('minifyCss option enabled', () => {
     let html: string;
 

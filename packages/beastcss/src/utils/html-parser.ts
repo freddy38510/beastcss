@@ -6,6 +6,7 @@ export declare class ExtendedHTMLElement extends HTMLElement {
   public before(node: Node): Node;
   public after(node: Node): Node;
 
+  public querySelector(selector: string): ExtendedHTMLElement | null;
   public querySelectorAll(selector: string): ExtendedHTMLElement[];
 }
 
