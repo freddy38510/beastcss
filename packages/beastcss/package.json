@@ -42,6 +42,7 @@
     "@freddy38510/dropcss": "2.4.0",
     "fast-glob": "3.2.12",
     "kolorist": "1.6.0",
+    "lightningcss": "1.16.1",
     "node-html-parser": "6.1.4"
   },
   "publishConfig": {

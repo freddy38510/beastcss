@@ -4,6 +4,7 @@ import { callbackify, promisify } from 'util';
 import { AsyncLocalStorage } from 'async_hooks';
 
 import dropcss, { type DropcssOptions } from '@freddy38510/dropcss';
+import lightningcss from 'lightningcss';
 import type { FileSystemAdapter } from 'fast-glob';
 import { htmlParser, specialChars, logging, formatter } from './utils';
 
@@ -31,6 +32,7 @@ class Beastcss {
       publicPath: '',
       additionalStylesheets: [],
       externalThreshold: 0,
+      minifyTargets: [],
       logger: logging.defaultLogger,
       logLevel: 'info',
       ...(options || {}),
@@ -354,7 +356,12 @@ class Beastcss {
     return false;
   }
 
-  private getCriticalCss(html: string, css: string, reverse = false) {
+  private getCriticalCss(
+    html: string,
+    css: string,
+    filename = 'internal style',
+    reverse = false
+  ) {
     const fontFace = this.opts.fontFace !== true; // @font-face rules are not critical unless set to true
     const keyframes = this.opts.keyframes === false; // @keyframes rules are critical unless set to false
 
@@ -384,6 +391,21 @@ class Beastcss {
     }
 
     criticalCss = specialChars.restoreCSSSelectors(criticalCss);
+
+    if (this.opts.minifyCss === true) {
+      const { code } = lightningcss.transform({
+        filename,
+        code: Buffer.from(criticalCss),
+        minify: true,
+        sourceMap: false,
+        targets: lightningcss.browserslistToTargets(this.opts.minifyTargets),
+      });
+
+      return {
+        content: code.toString(),
+        size: code.byteLength,
+      };
+    }
 
     return { content: criticalCss, size: Buffer.byteLength(criticalCss) };
   }
@@ -522,7 +544,11 @@ class Beastcss {
       return true;
     }
 
-    const criticalCss = this.getCriticalCss(html, source.content.toString());
+    const criticalCss = this.getCriticalCss(
+      html,
+      source.content.toString(),
+      stylesheet.filename
+    );
 
     // Skip, no change
     if (source.size === criticalCss.size) return false;
@@ -591,6 +617,7 @@ class Beastcss {
     const nonCriticalCss = this.getCriticalCss(
       '',
       source.content.toString(),
+      stylesheetPath,
       true
     );
 
@@ -725,6 +752,17 @@ namespace Beastcss {
      * Process internal stylesheets `<style></style>`.
      */
     internal?: boolean;
+    /**
+     * Minify css with lightningcss.
+     * https://github.com/parcel-bundler/lightningcss
+     * @default false
+     */
+    minifyCss?: boolean;
+    /**
+     * The browser targets passed to lightningcss when minifying css.
+     * @default ['> 0.5%', 'last 2 versions', 'Firefox ESR', 'not dead']
+     */
+    minifyTargets: string[];
     /**
      * Remove critical CSS from external stylesheets.
      */

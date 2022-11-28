@@ -502,6 +502,7 @@ describe('beastcss', () => {
         logLevel: 'silent',
         fs: vol as unknown as Beastcss.FSLike,
         pruneSource: true,
+        minifyCss: true,
       });
 
       await Promise.all([
@@ -518,7 +519,7 @@ describe('beastcss', () => {
         'utf8'
       );
 
-      expect(prunedStylesheet).toMatch('p.unused{color: orange;}');
+      expect(prunedStylesheet).toMatch('p.unused{color:orange}');
     });
 
     it('should remove external stylesheet totally pruned', async () => {
@@ -826,6 +827,41 @@ describe('beastcss', () => {
       expect(html).toMatch(
         '<noscript><link rel="stylesheet" href="/style.css" media="screen"></noscript>'
       );
+    });
+  });
+
+  describe('minifyCss option enabled', () => {
+    let html: string;
+
+    beforeAll(async () => {
+      html = [
+        '<link rel="stylesheet" href="/style.css" media="screen">',
+        '<h1>Hello World!</h1>',
+        '<p>This is a paragraph</p>',
+      ].join('\n');
+
+      vol.fromJSON({
+        './style.css': [
+          'h1 { color: blue; }',
+          'h2.unused { color: red; }',
+          'p { color: purple; }',
+          'p.unused { color: orange; }',
+        ].join('\n'),
+      });
+
+      const beastcss = new Beastcss({
+        logLevel: 'silent',
+        fs: vol as unknown as Beastcss.FSLike,
+        minifyCss: true,
+      });
+
+      html = await beastcss.process(html);
+
+      beastcss.clear();
+    });
+
+    it('should insert minified critical css from external stylesheet', () => {
+      expect(html).toMatch('<style>h1{color:#00f}p{color:purple}</style>');
     });
   });
 
