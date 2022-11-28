@@ -97,6 +97,16 @@ Remove all previously collected critical CSS from external stylesheets.
 async function pruneSources(processId?: string | number): Promise<void>;
 ```
 
+### `getScriptCSPHash()`
+
+Returns the sha256 hash of the script containing the event handlers for asynchronously loaded external stylesheets.
+
+This is useful for [Content Security Policy](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/script-src#unsafe_inline_script).
+
+```typescript
+function getScriptCSPHash(): string | null;
+```
+
 ### `clear()`
 
 Free up memory by clearing cached stylesheets and critical selectors collected when pruneSource option is enabled.
@@ -167,6 +177,22 @@ Default `0`
 
 Completely inline external stylesheets below a given size in bytes.
 
+### `minifyCss`
+
+Type: `Boolean`
+
+Default: `false`
+
+Minify css with [lightningcss](https://github.com/parcel-bundler/lightningcss).
+
+### `minifyTargets`
+
+Type: `string[]`
+
+Default `['> 0.5%', 'last 2 versions', 'Firefox ESR', 'not dead']`
+
+The browser targets passed to [lightningcss](https://github.com/parcel-bundler/lightningcss) when minifying css.
+
 ### `merge`
 
 Type: `Boolean`
@@ -199,6 +225,26 @@ Default `true`
 
 Make the loading of external stylesheets asynchronous.
 
+### `autoRemoveStyleTags`
+
+Type: `Boolean`
+
+Default `false`
+
+Remove style tags containing critical css once the corresponding external stylesheet is loaded.
+
+> Notes: This avoid duplicate css rules.
+
+### `eventHandlers`
+
+Type: `'attr' | 'script'`
+
+Default: `'attr'`
+
+Weither event handlers should be inline inside link tag attribute (`'attr'`) or a separate script (`'script'`).
+
+> Notes: Setting it to `'script'` can be useful for Content Security Policy.
+
 ### `noscriptFallback`
 
 Type: `Boolean`
@@ -207,7 +253,7 @@ Default `false`
 
 Add a `<noscript>` tag as an alternative to load external stylesheets in case JS is disabled.
 
-> Notes: JS is used if the `asyncLoadExternalStylesheets` option is enabled.
+> Notes: JS is used if the `asyncLoadExternalStylesheets` option or the `autoRemoveStyleTags` option is enabled.
 
 ### `exclude`
 
