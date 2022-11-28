@@ -6,6 +6,20 @@
   * dependencies
     * beastcss bumped from ^2.0.0 to ^2.0.1
 
+## [2.1.0](https://github.com/freddy38510/beastcss/compare/beastcss-webpack-plugin-v2.0.1...beastcss-webpack-plugin-v2.1.0) (2022-11-28)
+
+
+### Features
+
+* add an option to remove style tags once external stylesheet is loaded ([04839e2](https://github.com/freddy38510/beastcss/commit/04839e2344a72793dfae43ff7952ee861d1dfd37))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * beastcss bumped from ^2.0.1 to ^2.1.0
+
 ## [2.0.0](https://github.com/freddy38510/beastcss/compare/beastcss-webpack-plugin-v1.0.11...beastcss-webpack-plugin-v2.0.0) (2022-09-26)
 
 
