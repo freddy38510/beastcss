@@ -588,6 +588,39 @@ describe('beastcss', () => {
     });
   });
 
+  describe("asyncLoadExternalStylesheets option disabled && eventHandlers option set to 'script'", () => {
+    it('should not make external stylesheet loading async', async () => {
+      const html = [
+        '<link rel="stylesheet" href="/style.css">',
+        '<h1>Hello World!</h1>',
+        '<p>This is a paragraph</p>',
+      ].join('\n');
+
+      vol.fromJSON({
+        './style.css': [
+          'h1 { color: blue; }',
+          'h2.unused { color: red; }',
+          'p { color: purple; }',
+          'p.unused { color: orange; }',
+        ].join('\n'),
+      });
+
+      const beastcss = new Beastcss({
+        logLevel: 'silent',
+        fs: vol as unknown as Beastcss.FSLike,
+        asyncLoadExternalStylesheets: false,
+        eventHandlers: 'script',
+      });
+
+      await beastcss.process(html);
+
+      beastcss.clear();
+
+      expect(html).toMatch(`<link rel="stylesheet" href="/style.css">`);
+      expect(html).not.toMatch('<script>');
+    });
+  });
+
   describe('keyframes option by default', () => {
     it('should insert critical @keyframes rules from external stylesheet', async () => {
       let html = [
@@ -878,6 +911,107 @@ describe('beastcss', () => {
     });
   });
 
+  describe("eventHandlers option set to 'script'", () => {
+    let html: string;
+
+    beforeAll(async () => {
+      html = [
+        '<link rel="stylesheet" href="/style.css" media="screen">',
+        '<h1>Hello World!</h1>',
+        '<p>This is a paragraph</p>',
+      ].join('\n');
+
+      vol.fromJSON({
+        './style.css': [
+          'h1 { color: blue; }',
+          'h2.unused { color: red; }',
+          'p { color: purple; }',
+          'p.unused { color: orange; }',
+        ].join('\n'),
+      });
+
+      const beastcss = new Beastcss({
+        logLevel: 'silent',
+        fs: vol as unknown as Beastcss.FSLike,
+        eventHandlers: 'script',
+      });
+
+      html = await beastcss.process(html);
+
+      beastcss.clear();
+    });
+
+    it('should insert critical css from external stylesheet', () => {
+      expect(html).toMatch(
+        /<style data-id="\d*">h1{color: blue;}p{color: purple;}<\/style>/
+      );
+    });
+
+    it('should make external stylesheet loading async and do not have onload attribute', () => {
+      expect(html).toMatch(
+        /<link rel="stylesheet" href="\/style.css" media="print" data-id="\d*" data-media="screen">/
+      );
+    });
+
+    it('should move event handler to a script tag', () => {
+      const [, script] = html.match(/<script>(.*)<\/script>/ims) || ['', ''];
+      expect(script).toMatchInlineSnapshot(
+        `"[].forEach.call(document.querySelectorAll('link[rel="stylesheet"][data-id]'),function(e){e.onload=function(){e.media=e.dataset.media,delete e.dataset.media;}});"`
+      );
+    });
+  });
+
+  describe("autoRemoveStyleTags option enabled and eventHandlers option set to 'script'", () => {
+    let html: string;
+
+    beforeAll(async () => {
+      html = [
+        '<link rel="stylesheet" href="/style.css" media="screen">',
+        '<h1>Hello World!</h1>',
+        '<p>This is a paragraph</p>',
+      ].join('\n');
+
+      vol.fromJSON({
+        './style.css': [
+          'h1 { color: blue; }',
+          'h2.unused { color: red; }',
+          'p { color: purple; }',
+          'p.unused { color: orange; }',
+        ].join('\n'),
+      });
+
+      const beastcss = new Beastcss({
+        logLevel: 'silent',
+        fs: vol as unknown as Beastcss.FSLike,
+        autoRemoveStyleTags: true,
+        eventHandlers: 'script',
+      });
+
+      html = await beastcss.process(html);
+
+      beastcss.clear();
+    });
+
+    it('should insert critical css from external stylesheet', () => {
+      expect(html).toMatch(
+        /<style data-id="\d*">h1{color: blue;}p{color: purple;}<\/style>/
+      );
+    });
+
+    it('should make external stylesheet loading async and do not have onload attribute', () => {
+      expect(html).toMatch(
+        /<link rel="stylesheet" href="\/style.css" media="print" data-id="\d*" data-media="screen">/
+      );
+    });
+
+    it('should move event handler to a script tag', () => {
+      const [, script] = html.match(/<script>(.*)<\/script>/ims) || ['', ''];
+      expect(script).toMatchInlineSnapshot(
+        `"[].forEach.call(document.querySelectorAll('link[rel="stylesheet"][data-id]'),function(e){e.onload=function(){e.media=e.dataset.media,delete e.dataset.media,document.querySelector('style[data-id="'+e.dataset.id+'"]').remove();}});"`
+      );
+    });
+  });
+
   describe('autoRemoveStyleTags option enabled with asyncLoadExternalStylesheets option disabled', () => {
     let html: string;
 
@@ -927,6 +1061,59 @@ describe('beastcss', () => {
       );
     });
   });
+
+  describe("autoRemoveStyleTags option enabled and eventHandlers option set to 'script' with asyncLoadExternalStylesheets option disabled", () => {
+    let html: string;
+
+    beforeAll(async () => {
+      html = [
+        '<link rel="stylesheet" href="/style.css" media="screen">',
+        '<h1>Hello World!</h1>',
+        '<p>This is a paragraph</p>',
+      ].join('\n');
+
+      vol.fromJSON({
+        './style.css': [
+          'h1 { color: blue; }',
+          'h2.unused { color: red; }',
+          'p { color: purple; }',
+          'p.unused { color: orange; }',
+        ].join('\n'),
+      });
+
+      const beastcss = new Beastcss({
+        logLevel: 'silent',
+        fs: vol as unknown as Beastcss.FSLike,
+        autoRemoveStyleTags: true,
+        eventHandlers: 'script',
+        asyncLoadExternalStylesheets: false,
+      });
+
+      html = await beastcss.process(html);
+
+      beastcss.clear();
+    });
+
+    it('should insert critical css from external stylesheet', () => {
+      expect(html).toMatch(
+        /<style data-id="\d*">h1{color: blue;}p{color: purple;}<\/style>/
+      );
+    });
+
+    it('external stylesheet should not have onload attribute', () => {
+      expect(html).toMatch(
+        /<link rel="stylesheet" href="\/style.css" media="screen" data-id="\d*">/
+      );
+    });
+
+    it('should move event handler to a script tag', () => {
+      const [, script] = html.match(/<script>(.*)<\/script>/ims) || ['', ''];
+      expect(script).toMatchInlineSnapshot(
+        `"[].forEach.call(document.querySelectorAll('link[rel="stylesheet"][data-id]'),function(e){e.onload=function(){document.querySelector('style[data-id="'+e.dataset.id+'"]').remove();}});"`
+      );
+    });
+  });
+
   describe('minifyCss option enabled', () => {
     let html: string;
 

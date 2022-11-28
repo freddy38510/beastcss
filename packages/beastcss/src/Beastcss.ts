@@ -40,6 +40,7 @@ class Beastcss {
       additionalStylesheets: [],
       externalThreshold: 0,
       minifyTargets: [],
+      eventHandlers: 'attr',
       logger: logging.defaultLogger,
       logLevel: 'info',
       ...(options || {}),
@@ -88,6 +89,10 @@ class Beastcss {
             )
           ))
         );
+      }
+
+      if (this.opts.eventHandlers === 'script') {
+        this.moveEventHandlers(astHTML);
       }
 
       if (!hasRemovedNonCriticalCss.includes(true)) {
@@ -435,12 +440,22 @@ class Beastcss {
     style.$$external = true;
 
     if (link) {
-      if (this.opts.autoRemoveStyleTags === true) {
+      if (
+        this.opts.autoRemoveStyleTags === true ||
+        (this.opts.eventHandlers === 'script' &&
+          this.opts.asyncLoadExternalStylesheets !== false)
+      ) {
         const id = getStylesheetId();
 
         style.setAttribute('data-id', id);
         link.setAttribute('data-id', id);
+      }
 
+      if (
+        this.opts.autoRemoveStyleTags === true &&
+        this.opts.asyncLoadExternalStylesheets === false &&
+        this.opts.eventHandlers === 'attr'
+      ) {
         let autoRemove = '';
 
         autoRemove = `document.querySelector('style[data-id="'+this.dataset.id+'"]').remove(),this.onload=null;`;
@@ -613,16 +628,51 @@ class Beastcss {
     link.setAttribute('media', 'print');
     link.setAttribute('data-media', media);
 
-    let autoRemove = '';
+    if (this.opts.eventHandlers === 'attr') {
+      let autoRemove = '';
 
-    if (this.opts.autoRemoveStyleTags === true) {
-      autoRemove = `document.querySelector('style[data-id="'+this.dataset.id+'"]').remove(),`;
+      if (this.opts.autoRemoveStyleTags === true) {
+        autoRemove = `document.querySelector('style[data-id="'+this.dataset.id+'"]').remove(),`;
+      }
+
+      link.setAttribute(
+        'onload',
+        `this.media=this.dataset.media,delete this.dataset.media,${autoRemove}this.onload=null;`
+      );
+    }
+  }
+
+  private moveEventHandlers(astHTML: htmlParser.ExtendedHTMLElement) {
+    if (
+      this.opts.asyncLoadExternalStylesheets === false &&
+      this.opts.autoRemoveStyleTags !== true
+    ) {
+      return;
     }
 
-    link.setAttribute(
-      'onload',
-      `this.media=this.dataset.media,delete this.dataset.media,${autoRemove}this.onload=null;`
+    const script = htmlParser.extendHTMLElement(
+      new htmlParser.HTMLElement('script', {}, '', null, [-1, -1])
     );
+
+    let asyncLoading = '';
+    let autoRemove = '';
+
+    if (this.opts.asyncLoadExternalStylesheets !== false) {
+      asyncLoading = `e.media=e.dataset.media,delete e.dataset.media`;
+
+      if (this.opts.autoRemoveStyleTags) {
+        asyncLoading += ',';
+      }
+    }
+
+    if (this.opts.autoRemoveStyleTags) {
+      autoRemove = `document.querySelector('style[data-id="'+e.dataset.id+'"]').remove()`;
+    }
+
+    script.textContent = `[].forEach.call(document.querySelectorAll('link[rel="stylesheet"][data-id]'),function(e){e.onload=function(){${asyncLoading}${autoRemove};}});`;
+
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    astHTML.querySelector('link:last-of-type')!.after(script);
   }
 
   private insertNoscriptTag(link?: htmlParser.ExtendedHTMLElement) {
@@ -822,6 +872,12 @@ namespace Beastcss {
      * @default false
      */
     autoRemoveStyleTags?: boolean;
+    /**
+     * Weither event handlers should be inline inside link tag attribute or a separate script.
+     * Setting it to 'script' is useful for Content Security Policy.
+     * @default "attr"
+     */
+    eventHandlers?: 'attr' | 'script';
     /**
      * Load external stylesheets asynchronously.
      * @default true
