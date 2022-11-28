@@ -2,7 +2,7 @@ import esbuild from 'rollup-plugin-esbuild';
 import dts from 'rollup-plugin-dts';
 import type { RollupOptions } from 'rollup';
 
-import { name } from './package.json';
+const name = 'beastcss';
 
 const bundle = (config: RollupOptions) => ({
   input: 'src/index.ts',
