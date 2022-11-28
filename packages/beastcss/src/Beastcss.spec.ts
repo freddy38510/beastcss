@@ -1,4 +1,5 @@
 import { vol } from 'memfs';
+import crypto from 'crypto';
 import Beastcss from './Beastcss';
 import { defaultLogger } from './utils/logging';
 
@@ -9,6 +10,7 @@ describe('beastcss', () => {
 
   describe('Basic Usage', () => {
     let html: string;
+    let cspHash: string | null;
 
     beforeAll(async () => {
       html = [
@@ -33,6 +35,8 @@ describe('beastcss', () => {
 
       html = await beastcss.process(html);
 
+      cspHash = beastcss.getScriptCSPHash();
+
       beastcss.clear();
     });
 
@@ -42,7 +46,18 @@ describe('beastcss', () => {
 
     it('should make external stylesheet loading async', () => {
       expect(html).toMatch(
-        `<link rel="stylesheet" href="/style.css" media="print" data-media="screen" onload="this.media=this.dataset.media;delete this.dataset.media;this.onload=null;">`
+        `<link rel="stylesheet" href="/style.css" media="print" data-media="screen" onload="this.media=this.dataset.media,delete this.dataset.media,this.onload=null;">`
+      );
+    });
+
+    it('should return correct CSP hash', () => {
+      const [, onload] = html.match(/onload="(.*)"/ims) || ['', ''];
+
+      expect(cspHash).toBe(
+        crypto
+          .createHash('sha256')
+          .update(onload.replace(/&quot;/g, '"'))
+          .digest('base64')
       );
     });
   });
@@ -582,9 +597,12 @@ describe('beastcss', () => {
 
       await beastcss.process(html);
 
+      const cspHash = beastcss.getScriptCSPHash();
+
       beastcss.clear();
 
       expect(html).toMatch(`<link rel="stylesheet" href="/style.css">`);
+      expect(cspHash).toBeNull();
     });
   });
 
@@ -614,10 +632,13 @@ describe('beastcss', () => {
 
       await beastcss.process(html);
 
+      const cspHash = beastcss.getScriptCSPHash();
+
       beastcss.clear();
 
       expect(html).toMatch(`<link rel="stylesheet" href="/style.css">`);
       expect(html).not.toMatch('<script>');
+      expect(cspHash).toBeNull();
     });
   });
 
@@ -864,6 +885,7 @@ describe('beastcss', () => {
 
   describe('autoRemoveStyleTags option enabled', () => {
     let html: string;
+    let cspHash: string | null;
 
     beforeAll(async () => {
       html = [
@@ -889,6 +911,8 @@ describe('beastcss', () => {
 
       html = await beastcss.process(html);
 
+      cspHash = beastcss.getScriptCSPHash();
+
       beastcss.clear();
     });
 
@@ -909,10 +933,22 @@ describe('beastcss', () => {
         /<link rel="stylesheet" href="\/style.css" media="print" data-id="\d*"/
       );
     });
+
+    it('should return correct CSP hash', () => {
+      const [, onload] = html.match(/onload="(.*)"/ims) || ['', ''];
+
+      expect(cspHash).toBe(
+        crypto
+          .createHash('sha256')
+          .update(onload.replace(/&quot;/g, '"'))
+          .digest('base64')
+      );
+    });
   });
 
   describe("eventHandlers option set to 'script'", () => {
     let html: string;
+    let cspHash: string | null;
 
     beforeAll(async () => {
       html = [
@@ -937,6 +973,8 @@ describe('beastcss', () => {
       });
 
       html = await beastcss.process(html);
+
+      cspHash = beastcss.getScriptCSPHash();
 
       beastcss.clear();
     });
@@ -959,10 +997,19 @@ describe('beastcss', () => {
         `"[].forEach.call(document.querySelectorAll('link[rel="stylesheet"][data-id]'),function(e){e.onload=function(){e.media=e.dataset.media,delete e.dataset.media;}});"`
       );
     });
+
+    it('should return correct CSP hash', () => {
+      const [, script] = html.match(/<script>(.*)<\/script>/ims) || ['', ''];
+
+      expect(cspHash).toBe(
+        crypto.createHash('sha256').update(script).digest('base64')
+      );
+    });
   });
 
   describe("autoRemoveStyleTags option enabled and eventHandlers option set to 'script'", () => {
     let html: string;
+    let cspHash: string | null;
 
     beforeAll(async () => {
       html = [
@@ -988,6 +1035,8 @@ describe('beastcss', () => {
       });
 
       html = await beastcss.process(html);
+
+      cspHash = beastcss.getScriptCSPHash();
 
       beastcss.clear();
     });
@@ -1010,10 +1059,19 @@ describe('beastcss', () => {
         `"[].forEach.call(document.querySelectorAll('link[rel="stylesheet"][data-id]'),function(e){e.onload=function(){e.media=e.dataset.media,delete e.dataset.media,document.querySelector('style[data-id="'+e.dataset.id+'"]').remove();}});"`
       );
     });
+
+    it('should return correct CSP hash', () => {
+      const [, script] = html.match(/<script>(.*)<\/script>/ims) || ['', ''];
+
+      expect(cspHash).toBe(
+        crypto.createHash('sha256').update(script).digest('base64')
+      );
+    });
   });
 
   describe('autoRemoveStyleTags option enabled with asyncLoadExternalStylesheets option disabled', () => {
     let html: string;
+    let cspHash: string | null;
 
     beforeAll(async () => {
       html = [
@@ -1040,6 +1098,8 @@ describe('beastcss', () => {
 
       html = await beastcss.process(html);
 
+      cspHash = beastcss.getScriptCSPHash();
+
       beastcss.clear();
     });
 
@@ -1060,10 +1120,22 @@ describe('beastcss', () => {
         /<link rel="stylesheet" href="\/style.css" media="screen" data-id="\d*"/
       );
     });
+
+    it('should return correct CSP hash', () => {
+      const [, onload] = html.match(/onload="(.*)"/ims) || ['', ''];
+
+      expect(cspHash).toBe(
+        crypto
+          .createHash('sha256')
+          .update(onload.replace(/&quot;/g, '"'))
+          .digest('base64')
+      );
+    });
   });
 
   describe("autoRemoveStyleTags option enabled and eventHandlers option set to 'script' with asyncLoadExternalStylesheets option disabled", () => {
     let html: string;
+    let cspHash: string | null;
 
     beforeAll(async () => {
       html = [
@@ -1091,6 +1163,8 @@ describe('beastcss', () => {
 
       html = await beastcss.process(html);
 
+      cspHash = beastcss.getScriptCSPHash();
+
       beastcss.clear();
     });
 
@@ -1110,6 +1184,14 @@ describe('beastcss', () => {
       const [, script] = html.match(/<script>(.*)<\/script>/ims) || ['', ''];
       expect(script).toMatchInlineSnapshot(
         `"[].forEach.call(document.querySelectorAll('link[rel="stylesheet"][data-id]'),function(e){e.onload=function(){document.querySelector('style[data-id="'+e.dataset.id+'"]').remove();}});"`
+      );
+    });
+
+    it('should return correct CSP hash', () => {
+      const [, script] = html.match(/<script>(.*)<\/script>/ims) || ['', ''];
+
+      expect(cspHash).toBe(
+        crypto.createHash('sha256').update(script).digest('base64')
       );
     });
   });

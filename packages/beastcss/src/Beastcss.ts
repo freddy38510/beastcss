@@ -157,6 +157,44 @@ class Beastcss {
     );
   }
 
+  /**
+   * Returns the sha256 hash of the script containing the event handlers
+   * for asynchronously loaded external stylesheets.
+   *
+   * This is useful for Content Security Policy.
+   */
+  public getScriptCSPHash(): string | null {
+    if (this.opts.eventHandlers === 'script') {
+      if (this.opts.asyncLoadExternalStylesheets === false) {
+        if (this.opts.autoRemoveStyleTags === true) {
+          return 'A/wfhB35UabxOsb1JHSev+WuhSzV6UVdrXroQoJGHjs=';
+        }
+
+        return null;
+      }
+
+      if (this.opts.autoRemoveStyleTags === true) {
+        return '3co704+RoS/4/+160cUCCJcbeqklc8Xjxvu+mUntI/g=';
+      }
+
+      return '5Tv55JY7KfsCmpqJE8qIYBmAY0tukwtjE0lGd4c3ZJY=';
+    }
+
+    if (this.opts.autoRemoveStyleTags === true) {
+      if (this.opts.asyncLoadExternalStylesheets === false) {
+        return 'Nnn7CC8aSvx01msRxf6LzPaz8ZD4Jjs+KYOoMWCg1TM=';
+      }
+
+      return 'ASKMmekk3KUgRvb2C/X8MJrbBvEWdig1Lh4/C5XXhjU=';
+    }
+
+    if (this.opts.asyncLoadExternalStylesheets === false) {
+      return null;
+    }
+
+    return 'dRZ1sPlGAaDC1F4f7tarcT3BjBY9XkskErevAM4KpY8=';
+  }
+
   protected static createFsAdapter(fileSystem: Beastcss.FSLike) {
     return {
       readFile: fileSystem.readFile.toString().match(/callback/i)
