@@ -714,30 +714,37 @@ namespace Beastcss {
   export interface Options {
     /**
      * Absolute path location of the CSS files. Set to the current working directory by default.
+     * @default process.cwd()
      */
     path: string;
     /**
      * Public path to remove when parsing actual CSS resource paths.
+     * @default ''
      */
     publicPath: string;
     /**
      * Array of Glob for matching other stylesheets to be used while looking for critical CSS.
+     * @default []
      */
     additionalStylesheets: string[];
     /**
      * The level of logging verbosity.
+     * @default 'info'
      */
     logLevel: logging.LogLevel;
     /**
      * Provide a custom `Logger`.
+     * @default logging.defaultLogger
      */
     logger: logging.Logger;
     /**
      * Completely inline external stylesheets below a given size in bytes.
+     * @default 0
      */
     externalThreshold: number;
     /**
      * Custom file system to read, write and remove external stylesheets.
+     * @default import fs
      */
     fs?: FSLike;
     /**
@@ -746,10 +753,12 @@ namespace Beastcss {
     exclude?: ((href: string) => boolean) | RegExp;
     /**
      * Process external stylesheets `<link href="path/to/external/stylesheet.css" rel="stylesheet" />`.
+     * @default true
      */
     external?: boolean;
     /**
      * Process internal stylesheets `<style></style>`.
+     * @default true
      */
     internal?: boolean;
     /**
@@ -765,22 +774,27 @@ namespace Beastcss {
     minifyTargets: string[];
     /**
      * Remove critical CSS from external stylesheets.
+     * @default false
      */
     pruneSource?: boolean;
     /**
      * Merge `<style>` tags into a single one.
+     * @default true
      */
     merge?: boolean;
     /**
      * Load external stylesheets asynchronously.
+     * @default true
      */
     asyncLoadExternalStylesheets?: boolean;
     /**
      * Preload external stylesheets.
+     * @default false
      */
     preloadExternalStylesheets?: boolean;
     /**
      * Add a `<noscript>` tag as a fallback to loading external stylesheets asynchronously.
+     * @default false
      */
     noscriptFallback?: boolean;
     /**
@@ -789,10 +803,12 @@ namespace Beastcss {
     whitelist?: string[] | RegExp[];
     /**
      * Inline critical `@font-face` rules.
+     * @default false
      */
     fontFace?: boolean;
     /**
      * Inline critical `@keyframes` rules.
+     * @default true
      */
     keyframes?: boolean;
   }
