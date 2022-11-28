@@ -1,5 +1,16 @@
 # Changelog
 
+## [2.1.0](https://github.com/freddy38510/beastcss/compare/beastcss-v2.0.1...beastcss-v2.1.0) (2022-11-28)
+
+
+### Features
+
+* add an option to remove style tags once external stylesheet is loaded ([04839e2](https://github.com/freddy38510/beastcss/commit/04839e2344a72793dfae43ff7952ee861d1dfd37))
+* add option to place event handlers in the attribute or in a separate script tag ([cb14668](https://github.com/freddy38510/beastcss/commit/cb14668384da1477d41508b8707be51eeda063f8))
+* add public method to get script hash for CSP ([c3283cb](https://github.com/freddy38510/beastcss/commit/c3283cb6cf4f01769359fee54cc9fa9d1fa7a9fb))
+* **beastcss:** add an option to minify css ([ad4b774](https://github.com/freddy38510/beastcss/commit/ad4b77489fa8bc58e04ef1ec80c742d57562b04d))
+* **dts:** add default value for each option description ([5e5ca81](https://github.com/freddy38510/beastcss/commit/5e5ca816a5190f215adf027f7b78345b58e6fb1e))
+
 ## [2.0.1](https://github.com/freddy38510/beastcss/compare/beastcss-v2.0.0...beastcss-v2.0.1) (2022-10-30)
 
 
