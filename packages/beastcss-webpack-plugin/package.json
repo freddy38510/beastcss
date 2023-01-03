@@ -45,8 +45,8 @@
     "schema-utils": "4.0.0"
   },
   "devDependencies": {
-    "css-loader": "6.7.2",
-    "mini-css-extract-plugin": "2.7.0",
+    "css-loader": "6.7.3",
+    "mini-css-extract-plugin": "2.7.2",
     "html-webpack-plugin": "5.5.0",
     "unionfs": "4.4.0",
     "webpack": "5.75.0"
