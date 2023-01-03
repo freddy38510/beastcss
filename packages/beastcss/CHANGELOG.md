@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.1.1](https://github.com/freddy38510/beastcss/compare/beastcss-v2.1.0...beastcss-v2.1.1) (2023-01-03)
+
+
+### Bug Fixes
+
+* consider special characters when whitelisting selectors ([0c38525](https://github.com/freddy38510/beastcss/commit/0c38525024df2000d8b06296e159f5614e0eeb90))
+* do not process external stylesheets targeting print media ([f2c98e8](https://github.com/freddy38510/beastcss/commit/f2c98e8c55098dab7979b4a1fe15d25fa1b6c303))
+
 ## [2.1.0](https://github.com/freddy38510/beastcss/compare/beastcss-v2.0.1...beastcss-v2.1.0) (2022-11-28)
 
 
