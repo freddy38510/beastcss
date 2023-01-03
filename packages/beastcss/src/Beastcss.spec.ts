@@ -1309,6 +1309,36 @@ describe('beastcss', () => {
         'Excluded additional stylesheet'
       );
     });
+
+    it('should output debug message if external stylesheet media attribute is print', async () => {
+      const html = [
+        '<link rel="stylesheet" href="/style.css" media="print">',
+        '<h1>Hello World!</h1>',
+        '<p>This is a paragraph</p>',
+      ].join('\n');
+
+      vol.fromJSON({
+        './style.css': [
+          'p { color: purple; }',
+          'p.unused { color: orange; }',
+        ].join('\n'),
+      });
+
+      const beastcss = new Beastcss({
+        fs: vol as unknown as Beastcss.FSLike,
+        logLevel: 'debug',
+        logger: defaultLogger,
+      });
+
+      await beastcss.process(html);
+
+      beastcss.clear();
+
+      expect(spyDebug.mock.results).toHaveLength(1);
+      expect((spyDebug.mock.calls[0] as string[])[0]).toMatch(
+        'Skipped external stylesheet "/style.css" as it targeted print media.'
+      );
+    });
   });
 
   describe('Infos logging', () => {

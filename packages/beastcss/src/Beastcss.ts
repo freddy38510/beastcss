@@ -350,10 +350,20 @@ class Beastcss {
 
     astHTML.querySelectorAll('link[rel="stylesheet"]').forEach((link) => {
       const href = link.getAttribute('href');
+      const media = link.getAttribute('media');
 
       if (!href) {
         this.opts.logger.warn(
           `External stylesheet href attribute is missing.`,
+          this.processId
+        );
+
+        return;
+      }
+
+      if (media && media === 'print') {
+        this.opts.logger.debug(
+          `Skipped external stylesheet "${href}" as it targeted print media.`,
           this.processId
         );
 
