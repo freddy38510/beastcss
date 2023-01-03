@@ -6,6 +6,12 @@
   * dependencies
     * beastcss bumped from ^2.0.0 to ^2.0.1
 
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * beastcss bumped from ^2.1.0 to ^2.1.1
+
 ## [2.1.0](https://github.com/freddy38510/beastcss/compare/beastcss-webpack-plugin-v2.0.1...beastcss-webpack-plugin-v2.1.0) (2022-11-28)
 
 
