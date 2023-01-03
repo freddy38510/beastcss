@@ -50,6 +50,19 @@ class Beastcss {
       this.opts.merge = false;
     }
 
+    if (Array.isArray(this.opts.whitelist)) {
+      this.opts.whitelist = this.opts.whitelist.map((sel) => {
+        if (sel instanceof RegExp) {
+          return new RegExp(
+            specialChars.replaceCSSSelectors(sel.source),
+            sel.flags
+          );
+        }
+
+        return specialChars.replaceCSSSelectors(sel);
+      });
+    }
+
     this.setVerbosity();
 
     this.fs = Beastcss.createFsAdapter(this.opts.fs || fs);
@@ -944,7 +957,7 @@ namespace Beastcss {
     /**
      * An array of css selectors to be considered as critical CSS.
      */
-    whitelist?: string[] | RegExp[];
+    whitelist?: (string | RegExp)[];
     /**
      * Inline critical `@font-face` rules.
      * @default false

@@ -160,13 +160,14 @@ describe('beastcss', () => {
             'h2.unused { color: red; }',
             'p { color: purple; }',
             'p.unused { color: orange; }',
+            `.with\\:colon { color: blue; }`,
           ].join('\n'),
         });
 
         const beastcss = new Beastcss({
           logLevel: 'silent',
           fs: vol as unknown as Beastcss.FSLike,
-          whitelist: ['h2.unused', 'p.unused'],
+          whitelist: ['h2.unused', 'p.unused', '.with\\:colon'],
         });
 
         html = await beastcss.process(html);
@@ -174,7 +175,7 @@ describe('beastcss', () => {
         beastcss.clear();
 
         expect(html).toMatch(
-          '<style>h1{color: blue;}h2.unused{color: red;}p{color: purple;}p.unused{color: orange;}</style>'
+          '<style>h1{color: blue;}h2.unused{color: red;}p{color: purple;}p.unused{color: orange;}.with\\:colon{color: blue;}</style>'
         );
       });
     });
@@ -193,13 +194,14 @@ describe('beastcss', () => {
             'h2.unused { color: red; }',
             'p { color: purple; }',
             'p.unused { color: orange; }',
+            `.with\\/slash { color: yellow; }`,
           ].join('\n'),
         });
 
         const beastcss = new Beastcss({
           logLevel: 'silent',
           fs: vol as unknown as Beastcss.FSLike,
-          whitelist: [/h2/, /p/],
+          whitelist: [/h2/, /p/, /with\/slash/],
         });
 
         html = await beastcss.process(html);
@@ -207,7 +209,7 @@ describe('beastcss', () => {
         beastcss.clear();
 
         expect(html).toMatch(
-          '<style>h1{color: blue;}h2.unused{color: red;}p{color: purple;}p.unused{color: orange;}</style>'
+          '<style>h1{color: blue;}h2.unused{color: red;}p{color: purple;}p.unused{color: orange;}.with\\/slash{color: yellow;}</style>'
         );
       });
     });
