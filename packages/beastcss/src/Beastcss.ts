@@ -4,7 +4,7 @@ import { callbackify, promisify } from 'util';
 import { AsyncLocalStorage } from 'async_hooks';
 
 import dropcss, { type DropcssOptions } from '@freddy38510/dropcss';
-import lightningcss from 'lightningcss';
+import { transform, browserslistToTargets } from 'lightningcss';
 import type { FileSystemAdapter } from 'fast-glob';
 
 import {
@@ -470,12 +470,12 @@ class Beastcss {
     criticalCss = specialChars.restoreCSSSelectors(criticalCss);
 
     if (this.opts.minifyCss === true) {
-      const { code } = lightningcss.transform({
+      const { code } = transform({
         filename,
         code: Buffer.from(criticalCss),
         minify: true,
         sourceMap: false,
-        targets: lightningcss.browserslistToTargets(this.opts.minifyTargets),
+        targets: browserslistToTargets(this.opts.minifyTargets),
       });
 
       return {
