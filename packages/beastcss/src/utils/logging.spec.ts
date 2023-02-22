@@ -8,7 +8,7 @@ describe('logger', () => {
   let spyWarn: jest.SpyInstance;
   let spyError: jest.SpyInstance;
 
-  beforeAll(() => {
+  beforeEach(() => {
     spyDebug = jest.spyOn(console, 'debug').mockImplementation();
     spyInfo = jest.spyOn(console, 'info').mockImplementation();
     spyWarn = jest.spyOn(console, 'warn').mockImplementation();
