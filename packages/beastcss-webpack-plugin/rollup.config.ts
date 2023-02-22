@@ -1,7 +1,8 @@
+import { defineConfig, type RollupOptions } from 'rollup';
+
 import esbuild from 'rollup-plugin-esbuild';
 import dts from 'rollup-plugin-dts';
 import json from '@rollup/plugin-json';
-import type { RollupOptions } from 'rollup';
 
 const name = 'beastcss-webpack-plugin';
 
@@ -11,57 +12,70 @@ const bundle = (config: RollupOptions) => ({
   ...config,
 });
 
-export default [
-  bundle({
-    plugins: [
-      esbuild({
-        tsconfig: './tsconfig.build.json',
-      }),
-      json({ preferConst: true }),
-    ],
-    output: [
-      {
-        file: `dist/${String(name)}.cjs`,
-        format: 'cjs',
-        sourcemap: true,
-        exports: 'auto',
-        generatedCode: {
-          constBindings: true,
+export default defineConfig((args) => {
+  const isWatch = !!args.w || !!args.watch;
+
+  const options = [
+    bundle({
+      plugins: [
+        esbuild({
+          tsconfig: './tsconfig.build.json',
+        }),
+        json({ preferConst: true }),
+      ],
+      output: [
+        {
+          file: `dist/${String(name)}.cjs`,
+          format: 'cjs',
+          sourcemap: true,
+          exports: 'auto',
+          generatedCode: {
+            constBindings: true,
+          },
         },
-      },
-      {
-        file: `dist/${String(name)}.mjs`,
+        {
+          file: `dist/${String(name)}.mjs`,
+          format: 'es',
+          sourcemap: true,
+          generatedCode: {
+            constBindings: true,
+          },
+        },
+      ],
+    }),
+  ];
+
+  if (isWatch) {
+    return options;
+  }
+
+  options.push(
+    bundle({
+      plugins: [
+        dts(),
+        {
+          name: 'fix-declaration-export',
+          renderChunk(code) {
+            return {
+              code: code.replace(
+                'export { BeastcssWebpackPlugin as default };',
+                'export = BeastcssWebpackPlugin;'
+              ),
+              map: { mappings: '' },
+            };
+          },
+        },
+      ],
+      input: './temp/beastcss-webpack-plugin/src/index.d.ts',
+      output: {
+        file: `dist/${String(name)}.d.ts`,
         format: 'es',
-        sourcemap: true,
         generatedCode: {
           constBindings: true,
         },
       },
-    ],
-  }),
-  bundle({
-    plugins: [
-      dts(),
-      {
-        name: 'fix-declaration-export',
-        renderChunk(code) {
-          return {
-            code: code.replace(
-              'export { BeastcssWebpackPlugin as default };',
-              'export = BeastcssWebpackPlugin;'
-            ),
-            map: { mappings: '' },
-          };
-        },
-      },
-    ],
-    input: './temp/beastcss-webpack-plugin/src/index.d.ts',
-    output: {
-      file: `dist/${String(name)}.d.ts`,
-      format: 'es',
-      generatedCode: {
-        constBindings: true,
-      },
-    },
-  }),
-];
+    })
+  );
+
+  return options;
+});
