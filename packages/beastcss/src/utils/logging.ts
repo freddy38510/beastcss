@@ -10,7 +10,7 @@ export declare const Levels: readonly [
   'silent'
 ];
 
-export type LogLevel = typeof Levels[number];
+export type LogLevel = (typeof Levels)[number];
 
 export interface Logger {
   debug: (msg: string, processId?: Beastcss.ProcessId) => void;
