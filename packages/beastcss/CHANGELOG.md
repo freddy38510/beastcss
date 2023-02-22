@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.2](https://github.com/freddy38510/beastcss/compare/beastcss-v2.1.1...beastcss-v2.1.2) (2023-02-22)
+
+
+### Bug Fixes
+
+* import the provided named exports from the lightningcss package ([#123](https://github.com/freddy38510/beastcss/issues/123)) ([86a5ea9](https://github.com/freddy38510/beastcss/commit/86a5ea9f0289d0900c5ba69acf452d7b2ed435ba))
+
 ## [2.1.1](https://github.com/freddy38510/beastcss/compare/beastcss-v2.1.0...beastcss-v2.1.1) (2023-01-03)
 
 
