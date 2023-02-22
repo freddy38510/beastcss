@@ -34,7 +34,7 @@ importers:
       memfs: 3.4.12
       pnpm: 7.21.0
       prettier: 2.8.1
-      rimraf: 3.0.2
+      rimraf: 4.1.2
       rollup: 3.9.1
       rollup-plugin-dts: 5.1.0
       rollup-plugin-esbuild: 5.0.0
@@ -66,7 +66,7 @@ importers:
       memfs: 3.4.12
       pnpm: 7.21.0
       prettier: 2.8.1
-      rimraf: 3.0.2
+      rimraf: 4.1.2
       rollup: 3.9.1
       rollup-plugin-dts: 5.1.0_esmavzhadgk2idmxtiodxm33ma
       rollup-plugin-esbuild: 5.0.0_j4bcziqiqz24ynjp7uy74p2bym
@@ -5207,6 +5207,12 @@ packages:
     hasBin: true
     dependencies:
       glob: 7.2.3
+    dev: true
+
+  /rimraf/4.1.2:
+    resolution: {integrity: sha512-BlIbgFryTbw3Dz6hyoWFhKk+unCcHMSkZGrTFVAx2WmttdBSonsdtRlwiuTbDqTKr+UlXIUqJVS4QT5tUzGENQ==}
+    engines: {node: '>=14'}
+    hasBin: true
     dev: true
 
   /rollup-plugin-dts/5.1.0_esmavzhadgk2idmxtiodxm33ma:
