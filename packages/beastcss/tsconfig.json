@@ -5,9 +5,6 @@
     "outDir": "dist",
     "declaration": true,
     "declarationDir": "./temp",
-    "paths": {
-      "@freddy38510/dropcss": ["src/types/dropcss.d.ts"]
-    },
     "resolveJsonModule": true,
     "noEmitOnError": true
   },
