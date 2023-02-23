@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.3](https://github.com/freddy38510/beastcss/compare/beastcss-v2.1.2...beastcss-v2.1.3) (2023-02-23)
+
+
+### Bug Fixes
+
+* **deps:** update all non-major dependencies ([#125](https://github.com/freddy38510/beastcss/issues/125)) ([61cda31](https://github.com/freddy38510/beastcss/commit/61cda31593f610ce207c11d3f8c354281248be40))
+
 ## [2.1.2](https://github.com/freddy38510/beastcss/compare/beastcss-v2.1.1...beastcss-v2.1.2) (2023-02-22)
 
 
