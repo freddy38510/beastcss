@@ -1,6 +1,6 @@
 {
   "name": "beastcss-webpack-plugin",
-  "version": "2.1.2",
+  "version": "2.1.3",
   "description": "Webpack plugin to inline critical CSS and async load the rest.",
   "main": "dist/beastcss-webpack-plugin.cjs",
   "module": "dist/beastcss-webpack-plugin.mjs",
@@ -40,7 +40,7 @@
     "dev": "rimraf dist && pnpm build-bundle -w"
   },
   "dependencies": {
-    "beastcss": "^2.1.2",
+    "beastcss": "^2.1.3",
     "micromatch": "4.0.5",
     "schema-utils": "4.0.0"
   },

@@ -18,6 +18,20 @@
   * dependencies
     * beastcss bumped from ^2.1.1 to ^2.1.2
 
+## [2.1.3](https://github.com/freddy38510/beastcss/compare/beastcss-webpack-plugin-v2.1.2...beastcss-webpack-plugin-v2.1.3) (2023-02-23)
+
+
+### Bug Fixes
+
+* **deps:** update all non-major dependencies ([#125](https://github.com/freddy38510/beastcss/issues/125)) ([61cda31](https://github.com/freddy38510/beastcss/commit/61cda31593f610ce207c11d3f8c354281248be40))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * beastcss bumped from ^2.1.2 to ^2.1.3
+
 ## [2.1.0](https://github.com/freddy38510/beastcss/compare/beastcss-webpack-plugin-v2.0.1...beastcss-webpack-plugin-v2.1.0) (2022-11-28)
 
 
