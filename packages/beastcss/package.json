@@ -39,7 +39,7 @@
     "dev": "rimraf dist && pnpm build-bundle -w"
   },
   "dependencies": {
-    "@freddy38510/dropcss": "2.4.0",
+    "@freddy38510/dropcss": "2.5.0",
     "fast-glob": "3.2.12",
     "kolorist": "1.7.0",
     "lightningcss": "1.19.0",
