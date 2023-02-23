@@ -6,8 +6,7 @@
     "declaration": true,
     "declarationDir": "./temp",
     "paths": {
-      "beastcss": ["../beastcss/src/index.ts"],
-      "@freddy38510/dropcss": ["../beastcss/src/types/dropcss.d.ts"]
+      "beastcss": ["../beastcss/src/index.ts"]
     },
     "resolveJsonModule": true,
     "noEmitOnError": true
