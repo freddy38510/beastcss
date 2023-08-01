@@ -32,7 +32,7 @@ importers:
       jest: 29.4.3
       lint-staged: 13.1.2
       memfs: 3.4.13
-      pnpm: 7.27.1
+      pnpm: 7.33.4
       prettier: 2.8.4
       rimraf: 4.1.2
       rollup: 3.17.2
@@ -64,7 +64,7 @@ importers:
       jest: 29.4.3_@types+node@18.14.1
       lint-staged: 13.1.2
       memfs: 3.4.13
-      pnpm: 7.27.1
+      pnpm: 7.33.4
       prettier: 2.8.4
       rimraf: 4.1.2
       rollup: 3.17.2
@@ -5116,8 +5116,8 @@ packages:
       find-up: 4.1.0
     dev: true
 
-  /pnpm/7.27.1:
-    resolution: {integrity: sha512-IpBeZ+71slENbuOXwbV4U6yxOMfEWEvlVuT6+ChZ1D80oF0eHyN4h/hc13UrzVXpXI3bf7sPfRWGb8TYkrvJUA==}
+  /pnpm/7.33.4:
+    resolution: {integrity: sha512-xEbf/tkwHpGM/GXq5U/sDSiE6ykLPho+o71PHNRWqkVLm6dJe4G/5Pg619Ow32ovekrr7pii5qtfamujB/+1bA==}
     engines: {node: '>=14.6'}
     hasBin: true
     dev: true
