@@ -1,5 +1,5 @@
 {
-  "extends": ["config:base", "schedule:weekly", "group:allNonMajor"],
+  "extends": ["config:recommended", "schedule:weekly", "group:allNonMajor"],
   "labels": ["dependencies"],
   "ignorePaths": ["**/test/**"],
   "packageRules": [
