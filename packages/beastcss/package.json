@@ -40,10 +40,10 @@
   },
   "dependencies": {
     "@freddy38510/dropcss": "2.5.0",
-    "fast-glob": "3.2.12",
-    "kolorist": "1.7.0",
-    "lightningcss": "1.19.0",
-    "node-html-parser": "6.1.5"
+    "fast-glob": "3.3.2",
+    "kolorist": "1.8.0",
+    "lightningcss": "1.27.0",
+    "node-html-parser": "6.1.13"
   },
   "publishConfig": {
     "access": "public"
