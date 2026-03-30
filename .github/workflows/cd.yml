@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Running Release Please
-        uses: google-github-actions/release-please-action@v3
+        uses: googleapis/release-please-action@v3
         id: release-please
         with:
           command: manifest
