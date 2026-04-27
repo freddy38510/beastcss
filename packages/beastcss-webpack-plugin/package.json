@@ -41,7 +41,7 @@
   },
   "dependencies": {
     "beastcss": "^2.1.3",
-    "micromatch": "4.0.5",
+    "micromatch": "4.0.8",
     "schema-utils": "4.0.0"
   },
   "devDependencies": {
