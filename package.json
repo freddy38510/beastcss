@@ -39,7 +39,7 @@
     "commitizen": "4.3.0",
     "cz-conventional-changelog": "3.3.0",
     "es-jest": "2.1.0",
-    "esbuild": "0.17.10",
+    "esbuild": "0.25.0",
     "eslint": "8.34.0",
     "eslint-config-airbnb-typescript": "17.0.0",
     "eslint-config-prettier": "8.6.0",
